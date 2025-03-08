@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e927c8ed43b6fda408db9b6dda9335fa, type: 3}
+  m_Name: Steel sword
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: Steel sword
+  itemIcon: {fileID: 1526008332, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: 1e6ee591dc0145246a00b3962e310e80
+  dropChance: 27.9
+  itemDescription: A sword forged from steel. Suitable for intermediate adventurers.
+  equipmentType: 0
+  itemCooldown: 0
+  itemEffects: []
+  strength: 0
+  agility: 5
+  intelligence: 0
+  vitality: 0
+  damage: 12
+  critChance: 7
+  critPower: 0
+  health: 0
+  armor: 0
+  evasion: 0
+  magicResistance: 0
+  fireDamage: 0
+  iceDamage: 0
+  lightningDamage: 0
+  craftingMaterials:
+  - data: {fileID: 11400000, guid: 998de9a13768d924bb20aa32cd04ce90, type: 2}
+    stackSize: 1
+  - data: {fileID: 11400000, guid: 15f4f3d0561830a41b0198d88781eb0a, type: 2}
+    stackSize: 15
