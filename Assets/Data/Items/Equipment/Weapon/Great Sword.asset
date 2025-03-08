@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e927c8ed43b6fda408db9b6dda9335fa, type: 3}
+  m_Name: Great Sword
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: Great sword
+  itemIcon: {fileID: 1071341138, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: 977180e6957ca124facfe3dc48fad731
+  dropChance: 10.5
+  itemDescription: A massive greatsword forged from iron.
+  equipmentType: 0
+  itemCooldown: 0
+  itemEffects: []
+  strength: 0
+  agility: 0
+  intelligence: 0
+  vitality: 0
+  damage: 40
+  critChance: 5
+  critPower: 20
+  health: 0
+  armor: 0
+  evasion: 0
+  magicResistance: 25
+  fireDamage: 0
+  iceDamage: 0
+  lightningDamage: 0
+  craftingMaterials: []
