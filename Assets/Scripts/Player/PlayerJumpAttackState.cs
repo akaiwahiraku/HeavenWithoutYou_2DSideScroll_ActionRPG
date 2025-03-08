@@ -27,7 +27,18 @@ public class PlayerJumpAttackState : PlayerState
 
         // クローンアタックスキルの発動
         if (SkillManager.instance.clone != null && SkillManager.instance.clone.CanUseSkill())
-            player.skill.clone.CloneOnAttack(true, false);
+        {
+            // 例として0.2秒遅延させる場合
+            player.StartCoroutine(DelayedCloneOnAttack(0.1f));
+        }
+
+        // 火葬スキル
+        if (SkillManager.instance.pyre != null && SkillManager.instance.pyre.CanUseSkill())
+        {
+            // 例として0.2秒遅延させる場合
+            player.StartCoroutine(DelayedReleasePyre(0.2f));
+        }
+
 
     }
 
@@ -73,6 +84,26 @@ public class PlayerJumpAttackState : PlayerState
         if (triggerCalled)
         {
             stateMachine.ChangeState(player.airState);
+        }
+    }
+
+    private IEnumerator DelayedCloneOnAttack(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        // ステート中にまだ条件が合致しているかなど、必要に応じてチェックしてください
+        if (SkillManager.instance.clone != null && SkillManager.instance.clone.CanUseSkill())
+        {
+            player.skill.clone.CloneOnAttack(true, false);
+        }
+    }
+
+    private IEnumerator DelayedReleasePyre(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        // ステート中にまだ条件が合致しているかなど、必要に応じてチェックしてください
+        if (SkillManager.instance.pyre != null && SkillManager.instance.pyre.CanUseSkill())
+        {
+            SkillManager.instance.pyre.CreatePyre();
         }
     }
 }

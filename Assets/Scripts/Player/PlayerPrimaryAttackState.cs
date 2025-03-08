@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class PlayerPrimaryAttackState : PlayerState
 {
@@ -23,8 +25,17 @@ public class PlayerPrimaryAttackState : PlayerState
     {
         base.Enter();
 
-        if (comboCounter > 2 || Time.time >= lastTimerAttacked + comboWindow)
-            comboCounter = 0;
+        // pyreスキルが有効な場合は、コンボ上限を1（＝2回攻撃）にする
+        if (SkillManager.instance.pyre != null && SkillManager.instance.pyre.CanUseSkill())
+        {
+            if (comboCounter > 1 || Time.time >= lastTimerAttacked + comboWindow)
+                comboCounter = 0;
+        }
+        else
+        {
+            if (comboCounter > 2 || Time.time >= lastTimerAttacked + comboWindow)
+                comboCounter = 0;
+        }
 
         // 3撃目はダメージを1/2にして3回攻撃
         if (comboCounter == 2)
@@ -41,9 +52,23 @@ public class PlayerPrimaryAttackState : PlayerState
 
         stateTimer = .1f;
 
-        // 幻影スキル追加時
+        // 幻影スキル
         if (SkillManager.instance.clone != null && SkillManager.instance.clone.CanUseSkill())
-            player.skill.clone.CloneOnAttack(true, false);
+        {
+            // 例として0.2秒遅延させる場合
+            player.StartCoroutine(DelayedCloneOnAttack(0.1f));
+        }
+
+        // 火葬スキル
+        if (SkillManager.instance.pyre != null && SkillManager.instance.pyre.CanUseSkill())
+        {
+
+            // 例として0.2秒遅延させる場合
+            player.StartCoroutine(DelayedReleasePyre(0.2f));
+        }
+
+
+        //SkillManager.instance.pyre.CreatePyre();
 
 
     }
@@ -68,8 +93,8 @@ public class PlayerPrimaryAttackState : PlayerState
     {
         base.Update();
 
-        if (stateTimer < 0)
-            player.SetZeroVelocity();
+        if (stateTimer < 0) { }
+        player.SetZeroVelocity();
 
         if (triggerCalled)
             stateMachine.ChangeState(player.idleState);
@@ -84,5 +109,24 @@ public class PlayerPrimaryAttackState : PlayerState
             }
         }
     }
-}
 
+    private IEnumerator DelayedCloneOnAttack(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        // ステート中にまだ条件が合致しているかなど、必要に応じてチェックしてください
+        if (SkillManager.instance.clone != null && SkillManager.instance.clone.CanUseSkill())
+        {
+            player.skill.clone.CloneOnAttack(true, false);
+        }
+    }
+
+    private IEnumerator DelayedReleasePyre(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        // ステート中にまだ条件が合致しているかなど、必要に応じてチェックしてください
+        if (SkillManager.instance.pyre != null && SkillManager.instance.pyre.CanUseSkill())
+        {
+            SkillManager.instance.pyre.CreatePyre();
+        }
+    }
+}

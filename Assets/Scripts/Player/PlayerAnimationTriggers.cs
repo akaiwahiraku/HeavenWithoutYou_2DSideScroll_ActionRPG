@@ -99,6 +99,14 @@ public class PlayerAnimationTriggers : MonoBehaviour
         SkillManager.instance.force.CreateForce();
     }
 
+    // PyreƒXƒLƒ‹’Ç‰ÁŽž
+    //private void ReleasePyre()
+    //{
+    //    if (SkillManager.instance.pyre != null && SkillManager.instance.pyre.CanUseSkill())
+    //        SkillManager.instance.pyre.CreatePyre();
+    //}
+
+
     private void ReleaseHeal()
     {
         SkillManager.instance.heal.CreateHeal();

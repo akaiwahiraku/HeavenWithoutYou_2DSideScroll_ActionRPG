@@ -12,6 +12,8 @@ public class SkillManager : MonoBehaviour
     public ShadowFlare_Skill shadowFlare { get; private set; }
     public Force_Skill force { get; private set; }
     public ShatteredSun_Skill shatteredSun { get; private set; }
+    public Pyre_Skill pyre { get; private set; }
+
 
     public Heal_Skill heal { get; private set; }
     public Blackhole_Skill blackhole { get; private set; }
@@ -48,6 +50,7 @@ public class SkillManager : MonoBehaviour
         shadowFlare = GetComponent<ShadowFlare_Skill>();
         force = GetComponent<Force_Skill>();
         shatteredSun = GetComponent<ShatteredSun_Skill>();
+        pyre = GetComponent<Pyre_Skill>();
         guard = GetComponent<Guard_Skill>();
         heal = GetComponent<Heal_Skill>();
         dreamtideDriving = GetComponent<DreamtideDriving_Skill>();

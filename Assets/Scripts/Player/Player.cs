@@ -37,6 +37,7 @@ public class Player : Entity
     public GameObject shadowFlare { get; private set; }
     public GameObject force { get; private set; }
     public GameObject shatteredSun { get; private set; }
+    public GameObject pyre { get; private set; }
 
 
     public PlayerFX fx { get; private set; }
@@ -168,10 +169,10 @@ public class Player : Entity
         shatteredSun = _newShatteredSun;
     }
 
-    //public void AssignNewPyre(GameObject _newPyre)
-    //{
-    //    pyre = _newPyre;
-    //}
+    public void AssignNewPyre(GameObject _newPyre)
+    {
+        pyre = _newPyre;
+    }
 
     public IEnumerator BusyFor(float _seconds)
     {

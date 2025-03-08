@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Pyer_Skill : Skill
+public class Pyre_Skill : Skill
 {
-    [Header("ShadowPyre Info")]
+    [Header("Pyre Info")]
     [SerializeField] private UI_SkillTreeSlot pyreUnlockButton;
     public bool pyreUnlocked { get; private set; }
     [SerializeField] private Vector2 launchForce;
@@ -66,6 +66,6 @@ public class Pyer_Skill : Skill
         {
             Debug.LogWarning("Pyre_Skill: Pyre_Skill_Controller not found.");
         }
-        //player.AssignNewPyre(pyre);
+        player.AssignNewPyre(pyre);
     }
 }

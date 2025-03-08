@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pyre
+  m_Name: shadowFlare
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -20,7 +20,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8ab6b311a9372574b97d96bbfe23200b, type: 2}
+  m_Motion: {fileID: 7400000, guid: 32d20281ee834744f8f168989fa7aa2f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

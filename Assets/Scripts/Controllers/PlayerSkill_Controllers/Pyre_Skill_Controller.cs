@@ -39,7 +39,7 @@ public class Pyre_Skill_Controller : MonoBehaviour
             sr.flipX = true;
         }
 
-        Invoke("DestroyMe", 3);
+        Invoke("DestroyMe", .32f);
     }
 
     private void Update()
