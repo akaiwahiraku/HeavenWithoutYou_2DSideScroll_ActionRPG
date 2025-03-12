@@ -37,8 +37,6 @@ public class PlayerShadowBringerOverDrive1stState : PlayerState
         if (player.fx != null)
             player.fx.StopOverDriveFX();
 
-
-
         player.stats.overDriveStock--;
 
         // ñ≥ìGèÛë‘ÇäJén
@@ -124,7 +122,7 @@ public class PlayerShadowBringerOverDrive1stState : PlayerState
         {
             if (playerStats != null && playerStats.screenFlashBlackout != null)
             {
-                playerStats.overDrive1stText.FlashOverDriveText();
+                playerStats.overDriveDreamtideText.FlashOverDriveText();
                 playerStats.screenFlashBlackout.FlashBlackScreen();
             }
             else

@@ -39,7 +39,7 @@ public class UI_ItemSlot : MonoBehaviour, ISelectHandler, IDeselectHandler
         bool isCurrentlySelected = EventSystem.current.currentSelectedGameObject == gameObject;
         if (isCurrentlySelected)
         {
-            Debug.Log($"ItemSlot {gameObject.name}: Showing tooltip with Name={itemName}, Type={itemType}, Description={itemDescription}");
+            //Debug.Log($"ItemSlot {gameObject.name}: Showing tooltip with Name={itemName}, Type={itemType}, Description={itemDescription}");
             uiManager.itemToolTip.ShowToolTip(itemName, itemType, itemDescription);
         }
     }
@@ -64,7 +64,7 @@ public class UI_ItemSlot : MonoBehaviour, ISelectHandler, IDeselectHandler
     /// </summary>
     public virtual void HandleItemAction()
     {
-        Debug.Log("UI_ItemSlot: HandleItemAction called");
+        //Debug.Log("UI_ItemSlot: HandleItemAction called");
         // 必要に応じて共通の処理を実装可能
     }
 
@@ -81,17 +81,17 @@ public class UI_ItemSlot : MonoBehaviour, ISelectHandler, IDeselectHandler
     {
         if (itemData == null)
         {
-            Debug.LogWarning("[UpdateSlot] Null itemData for slot: " + gameObject.name);
+            //Debug.LogWarning("[UpdateSlot] Null itemData for slot: " + gameObject.name);
             CleanUpSlot();
             SetButtonInteractable(false);
             return;
         }
 
-        Debug.Log("[UpdateSlot] Setting slot " + gameObject.name + " with item: " + itemData.itemName + " (stack: " + stackSize + ")");
+        //Debug.Log("[UpdateSlot] Setting slot " + gameObject.name + " with item: " + itemData.itemName + " (stack: " + stackSize + ")");
 
         if (itemImage == null || itemAmountText == null || itemNameText == null)
         {
-            Debug.LogError("[UpdateSlot] UI components not properly assigned in " + gameObject.name);
+            //Debug.LogError("[UpdateSlot] UI components not properly assigned in " + gameObject.name);
             SetButtonInteractable(false);
             return;
         }
@@ -109,7 +109,7 @@ public class UI_ItemSlot : MonoBehaviour, ISelectHandler, IDeselectHandler
         // InventoryItemフィールドの更新
         this.item = new InventoryItem(itemData);
 
-        Debug.Log("[UpdateSlot] Slot " + gameObject.name + " updated successfully.");
+        //Debug.Log("[UpdateSlot] Slot " + gameObject.name + " updated successfully.");
     }
 
 
@@ -142,13 +142,13 @@ public class UI_ItemSlot : MonoBehaviour, ISelectHandler, IDeselectHandler
     // ────────── ゲームパッド操作対応 (選択時) ──────────
     public void OnSelect(BaseEventData eventData)
     {
-        Debug.Log("[UI_ItemSlot] OnSelect called on: " + gameObject.name);
+        //Debug.Log("[UI_ItemSlot] OnSelect called on: " + gameObject.name);
         if (item != null && item.data != null && item.data.itemType == ItemType.Equipment)
         {
             UIManager uiManager = GetComponentInParent<UIManager>();
             if (uiManager != null)
             {
-                Debug.Log("[UI_ItemSlot] (Select) Calling ShowStatPreview for item: " + item.data.itemName);
+                //Debug.Log("[UI_ItemSlot] (Select) Calling ShowStatPreview for item: " + item.data.itemName);
                 uiManager.ShowStatPreview(item.data as ItemData_Equipment);
             }
         }
@@ -156,7 +156,7 @@ public class UI_ItemSlot : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public void OnDeselect(BaseEventData eventData)
     {
-        Debug.Log("[UI_ItemSlot] OnDeselect called on: " + gameObject.name);
+        //Debug.Log("[UI_ItemSlot] OnDeselect called on: " + gameObject.name);
         UIManager uiManager = GetComponentInParent<UIManager>();
         if (uiManager != null)
         {

@@ -38,6 +38,8 @@ public class PlayerGuardState : PlayerState
         base.Exit();
         player.stats.isInGuardState = false;
 
+        player.lastGuardExitTime = Time.time;
+
         //player.rb.sharedMaterial = originalMaterial;
     }
 
@@ -56,6 +58,10 @@ public class PlayerGuardState : PlayerState
             if (SkillManager.instance.blackhole != null && SkillManager.instance.blackhole.CanUseSkill())
             {
                 stateMachine.ChangeState(player.shadowBringerOverDrive2nd);
+            }
+            if (SkillManager.instance.unleashed != null && SkillManager.instance.unleashed.CanUseSkill())
+            {
+                stateMachine.ChangeState(player.aimUnleashed);
             }
             else
             {

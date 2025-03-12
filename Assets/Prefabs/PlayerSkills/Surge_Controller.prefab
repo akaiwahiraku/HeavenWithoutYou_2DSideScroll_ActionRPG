@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 8123332866396189903}
   - component: {fileID: 2206671364098363321}
   - component: {fileID: 2776975846028684867}
-  - component: {fileID: 5597365405656263679}
-  - component: {fileID: 5101752665708379304}
   - component: {fileID: 4352760828108461123}
+  - component: {fileID: 4826789774692040439}
+  - component: {fileID: 1452386440731055227}
   m_Layer: 0
-  m_Name: Pyre_Controller
+  m_Name: Surge_Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 5023716971373247267}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.112006, y: 0.93, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalPosition: {x: 7.112006, y: 1, z: 0}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7484867918996920003}
@@ -78,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 814014425
   m_SortingLayer: 12
   m_SortingOrder: 2
-  m_Sprite: {fileID: -585096957, guid: c7583cbf3ce6c4845b5b7ccaf67e62c8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 971680849, guid: 7b63c8b5bce3e5f41823ff5d2ee34bfe, type: 3}
+  m_Color: {r: 0.1786668, g: 0.2417019, b: 0.6886792, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 5023716971373247267}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d61bacc1a60d6b046867f6461c5119a5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 21852e935d34f2b44a07ce25d2d3a7fd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -110,20 +110,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5597365405656263679
-MonoBehaviour:
+--- !u!50 &4352760828108461123
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5023716971373247267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f54583daafaea094985ef14465cc9b27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!70 &5101752665708379304
-CapsuleCollider2D:
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!61 &4826789774692040439
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -154,36 +169,31 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0064689773, y: -0.43686083}
-  m_Size: {x: 2.3424075, y: 8.1471815}
-  m_Direction: 0
---- !u!50 &4352760828108461123
-Rigidbody2D:
-  serializedVersion: 4
+  m_Offset: {x: 0.014166832, y: -0.02965343}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6, y: 6}
+    newSize: {x: 8.75, y: 5.8125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.4705334, y: 4.007407}
+  m_EdgeRadius: 0
+--- !u!114 &1452386440731055227
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5023716971373247267}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f86b1fb66113740af21786dd5d3490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7622527646079668079
 GameObject:
   m_ObjectHideFlags: 0

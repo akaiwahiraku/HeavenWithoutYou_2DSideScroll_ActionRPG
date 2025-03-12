@@ -28,18 +28,22 @@ public class PlayerJumpAttackState : PlayerState
         // クローンアタックスキルの発動
         if (SkillManager.instance.clone != null && SkillManager.instance.clone.CanUseSkill())
         {
-            // 例として0.2秒遅延させる場合
             player.StartCoroutine(DelayedCloneOnAttack(0.1f));
         }
 
         // 火葬スキル
         if (SkillManager.instance.pyre != null && SkillManager.instance.pyre.CanUseSkill())
         {
-            // 例として0.2秒遅延させる場合
+            player.anim.speed = 0.8f;
             player.StartCoroutine(DelayedReleasePyre(0.2f));
         }
 
-
+        // サージスキル
+        if (SkillManager.instance.surge != null && SkillManager.instance.surge.CanUseSkill())
+        {
+            player.anim.speed = 0.75f;
+            player.StartCoroutine(DelayedReleaseSurge(0.25f));
+        }
     }
 
     // 攻撃方向に基づく速度加算処理
@@ -60,6 +64,12 @@ public class PlayerJumpAttackState : PlayerState
     public override void Exit()
     {
         base.Exit();
+
+        if (SkillManager.instance.surge != null && SkillManager.instance.surge.CanUseSkill())
+        {
+            player.anim.speed = 1.0f;
+            //player.StartCoroutine("BusyFor", 0.2f);
+        }
 
         // 攻撃方向をリセットして他のステートに影響しないようにする
         attackDir = 0;
@@ -104,6 +114,15 @@ public class PlayerJumpAttackState : PlayerState
         if (SkillManager.instance.pyre != null && SkillManager.instance.pyre.CanUseSkill())
         {
             SkillManager.instance.pyre.CreatePyre();
+        }
+    }
+    private IEnumerator DelayedReleaseSurge(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        // ステート中にまだ条件が合致しているかなど、必要に応じてチェックしてください
+        if (SkillManager.instance.surge != null && SkillManager.instance.surge.CanUseSkill())
+        {
+            SkillManager.instance.surge.CreateSurge();
         }
     }
 }

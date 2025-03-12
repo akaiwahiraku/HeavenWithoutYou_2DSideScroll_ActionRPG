@@ -21,6 +21,12 @@ public class EnemyRespawnManager : MonoBehaviour
         {
             yield return new WaitForSeconds(respawnInterval);
 
+            if (Unleashed_Skill.IsUnleashedActive)
+            {
+                Debug.Log("Unleashedスキル発動中のため、敵リスポーンをスキップします。");
+                continue;
+            }
+
             foreach (Transform point in respawnPoints)
             {
                 RespawnEnemy(point.position);
@@ -30,7 +36,7 @@ public class EnemyRespawnManager : MonoBehaviour
 
     private void RespawnEnemy(Vector3 position)
     {
-        // activeEnemiesリストをクリーンアップしてnullを含まないようにする
+        // activeEnemiesリストのクリーニング
         activeEnemies.RemoveAll(e => e == null);
 
         // 非アクティブな敵を再利用
@@ -42,7 +48,7 @@ public class EnemyRespawnManager : MonoBehaviour
         }
         else
         {
-            // 新しい敵を生成してリストに追加
+            // 新規生成してリストに追加
             enemy = Instantiate(enemyPrefab, position, Quaternion.identity);
             activeEnemies.Add(enemy);
         }

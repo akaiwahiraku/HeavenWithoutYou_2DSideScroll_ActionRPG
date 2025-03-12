@@ -46,6 +46,9 @@ public class PlayerFX : EntityFX
 
     public void CreateAfterImage(Vector3 playerVelocity)
     {
+        if (playerVelocity.sqrMagnitude < 0.01f)
+            return;
+
         if (afterImageCooldownTimer < 0)
         {
             afterImageCooldownTimer = afterImageCooldown;

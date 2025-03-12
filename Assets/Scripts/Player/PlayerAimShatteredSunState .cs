@@ -92,7 +92,7 @@ public class PlayerAimShatteredSunState : PlayerState
         {
             if (playerStats != null && playerStats.screenFlashBlackout != null)
             {
-                playerStats.overDrive2ndShatteredText.FlashOverDriveText();
+                playerStats.overDriveShatteredSunText.FlashOverDriveText();
                 playerStats.screenFlashBlackout.FlashBlackScreen();
             }
             else

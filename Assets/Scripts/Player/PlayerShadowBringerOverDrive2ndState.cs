@@ -105,7 +105,7 @@ public class PlayerShadowBringerOverDrive2ndState : PlayerState
         {
             if (playerStats != null && playerStats.screenFlashBlackout != null)
             {
-                playerStats.overDrive2ndText.FlashOverDriveText();
+                playerStats.overDrivePhantasmNightText.FlashOverDriveText();
                 playerStats.screenFlashBlackout.FlashBlackScreen();
             }
             else

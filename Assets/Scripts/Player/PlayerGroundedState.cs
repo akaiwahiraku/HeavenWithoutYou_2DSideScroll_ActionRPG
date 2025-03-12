@@ -8,6 +8,9 @@ public class PlayerGroundedState : PlayerState
     public PlayerStats currentOverDrive;
     public PlayerStats maxOverDrive;
 
+    // 地上状態での追加：チャージ遷移用の閾値
+    //private float chargeTransitionThreshold = 1.0f; // 例：1秒以上保持でチャージ攻撃へ
+
     public PlayerGroundedState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName)
         : base(_player, _stateMachine, _animBoolName)
     {
@@ -17,14 +20,11 @@ public class PlayerGroundedState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        // Groundedに戻ったときの向きを初期化
         player.dashDir = 0;
         player.rushDir = 0;
-    }
+        canDoubleJump = true;
+        player.canAirDash = true;
 
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void Update()
@@ -35,31 +35,43 @@ public class PlayerGroundedState : PlayerState
         horizontalInput = joystickInputManager.Horizontal;
         verticalInput = joystickInputManager.Vertical;
 
-        // 通常攻撃
+        // 攻撃ボタンが新たに押されたときは通常攻撃状態に遷移（この部分は既存）
         if (joystickInputManager.Button2Down() && !joystickInputManager.Button5())
         {
-            float attackDir = horizontalInput;
-            attackDir = attackDir == 0 ? player.facingDir : Mathf.Sign(attackDir); // 入力がない場合は facingDir を使用
-            player.primaryAttack.SetAttackDirection(attackDir); // 攻撃方向を設定
-            stateMachine.ChangeState(player.primaryAttack);
+            if (SkillManager.instance.surge != null && SkillManager.instance.surge.CanUseSkill())
+            {
+                float attackDir = horizontalInput;
+                attackDir = (attackDir == 0 ? player.facingDir : Mathf.Sign(attackDir));
+                player.primaryAttackCharge.SetAttackDirection(attackDir);
+                stateMachine.ChangeState(player.primaryAttackCharge);
+            }
+            else
+            {
+                // PrimaryAttackState に入る際に、攻撃開始時刻を記録（Player.attackButtonPressTime を Player クラスに定義しておく）
+                //player.attackButtonPressTime = Time.time;
+                float attackDir = horizontalInput;
+                attackDir = (attackDir == 0 ? player.facingDir : Mathf.Sign(attackDir));
+                player.primaryAttack.SetAttackDirection(attackDir);
+                stateMachine.ChangeState(player.primaryAttack);
+                return;
+
+            }
         }
 
-        // (A) "すり抜け床" の処理を先に
+        // (A) すり抜け床の処理、(B) ジャンプ処理
         if (player.IsThroughGroundDetected() && verticalInput < 0 && joystickInputManager.Button0Down())
         {
             IgnoreThroughGroundCollision();
         }
-        // (B) そのあとでジャンプ
         else if (joystickInputManager.Button0Down() &&
-         !UIManager.instance.isMenuOpen &&
-         !UIManager.instance.menuJustClosed &&  // ← 追加：直前にメニューが閉じられていなければ
-         (player.IsGroundDetectedFore() || player.IsGroundDetectedBack() || player.IsThroughGroundDetected()))
+                 !UIManager.instance.isMenuOpen &&
+                 !UIManager.instance.menuJustClosed &&
+                 (player.IsGroundDetectedFore() || player.IsGroundDetectedBack() || player.IsThroughGroundDetected()))
         {
             stateMachine.ChangeState(player.jumpState);
         }
 
-
-        // 特殊スキル（SkillManager の specialSkill にセットされている && スキルが解放済み）
+        //スペシャルスキル
         if (joystickInputManager.Button3Down() && !joystickInputManager.Button5())
         {
             if (SkillManager.instance.darkCircle != null && SkillManager.instance.darkCircle.CanUseSkill())
@@ -68,31 +80,51 @@ public class PlayerGroundedState : PlayerState
                 stateMachine.ChangeState(player.aimShadowFlare);
             if (SkillManager.instance.force != null && SkillManager.instance.force.CanUseSkill())
                 stateMachine.ChangeState(player.aimForce);
+        }
 
-        }   
-
-        // 回復スキル
+        //ヒール
         if (joystickInputManager.Button4Down() &&
             SkillManager.instance.heal != null && SkillManager.instance.heal.CanUseSkill())
         {
             stateMachine.ChangeState(player.heal);
         }
 
-        // 防御
+        //ガード
         if (joystickInputManager.Button5() && !joystickInputManager.Button2())
         {
             stateMachine.ChangeState(player.guard);
         }
 
-        // ダッシュの入力処理
+        //ダッシュ
         CheckForDashInput();
 
-        // 空中状態への移行
+        //空中への移行
         if (!player.IsGroundDetectedFore() && !player.IsGroundDetectedBack() && !player.IsThroughGroundDetected())
             stateMachine.ChangeState(player.airState);
+
+        // チャージ攻撃処理。攻撃ボタンが離されたタイミングで、記録された押下開始時刻があれば処理する
+        //if (player.attackButtonPressTime > 0 && !joystickInputManager.Button2())
+        //{
+        //    float holdDuration = Time.time - player.attackButtonPressTime;
+        //    // 一定時間以上保持されていたならチャージ攻撃状態に遷移
+        //    if (holdDuration >= chargeTransitionThreshold)
+        //    {
+        //        float attackDir = horizontalInput;
+        //        attackDir = (attackDir == 0 ? player.facingDir : Mathf.Sign(attackDir));
+        //        player.primaryAttackCharge.SetAttackDirection(attackDir);
+        //        player.primaryAttackCharge.SetChargeTime(holdDuration);
+        //        player.attackButtonPressTime = 0;
+        //        stateMachine.ChangeState(player.primaryAttackCharge);
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        // 押下時間が短い場合は記録をリセットする
+        //        player.attackButtonPressTime = 0;
+        //    }
+        //}
     }
 
-    // ダッシュ入力チェック（地上）
     protected void CheckForDashInput()
     {
         if (player.IsWallDetected())
@@ -102,26 +134,24 @@ public class PlayerGroundedState : PlayerState
             (player.IsGroundDetectedFore() || player.IsGroundDetectedBack() || player.IsThroughGroundDetected()))
         {
             player.dashDir = horizontalInput;
-            player.dashDir = player.dashDir == 0 ? player.facingDir : player.dashDir;
+            player.dashDir = (player.dashDir == 0 ? player.facingDir : player.dashDir);
             stateMachine.ChangeState(player.dashState);
         }
     }
 
-    // 一時的にThroughGroundのコライダーを無視する処理
     public void IgnoreThroughGroundCollision()
     {
         Collider2D throughGroundCollider = Physics2D.OverlapCircle(player.throughGroundCheck.position, player.throughGroundCheckDistance, player.whatIsThroughGround);
         if (throughGroundCollider != null)
         {
             Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), throughGroundCollider, true);
-            player.StartCoroutine(RestoreThroughGroundCollision(throughGroundCollider));  // すり抜け後にコライダーを再有効化
+            player.StartCoroutine(RestoreThroughGroundCollision(throughGroundCollider));
         }
     }
 
-    // すり抜けが完了した後にコライダーを再有効化する処理
     private IEnumerator RestoreThroughGroundCollision(Collider2D throughGroundCollider)
     {
-        yield return new WaitForSeconds(0.5f);  // 任意の時間、コライダーを無効化
+        yield return new WaitForSeconds(0.5f);
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), throughGroundCollider, false);
     }
 }

@@ -187,6 +187,58 @@ public class CharacterStats : MonoBehaviour
 
     }
 
+    public virtual void DoPhysicalDamageCharge(CharacterStats _targetStats)
+    {
+        bool criticalStrike = false;
+
+        if (_targetStats.isInvincible)
+            return;
+
+        if (TargetCanAvoidAttack(_targetStats))
+            return;
+
+        _targetStats.GetComponent<Entity>().SetupKnockbackDir(transform);
+
+        // 通常は2倍の倍率
+        float multiplier = 2f;
+        // 攻撃者がPlayerの場合、ガード解除後0.5秒以内なら倍率を1.5倍アップ（＝3倍になる）
+        Player playerAttacker = GetComponent<Player>();
+        if (playerAttacker != null && playerAttacker.lastGuardExitTime > 0 &&
+            Time.time - playerAttacker.lastGuardExitTime <= 0.8f)
+        {
+            StartCoroutine(ShakeEffectCharge());
+    
+
+            multiplier *= 1.5f; // multiplier は 3.0f になる
+        }
+
+        int totalDamage = Mathf.RoundToInt((damage.GetValue() + strength.GetValue()) * multiplier);
+
+        if (CanCrit())
+        {
+            totalDamage = CalculateCriticalDamage(totalDamage);
+            criticalStrike = true;
+        }
+
+        fx.CreateHitFx(_targetStats.transform, criticalStrike);
+
+        // クライシスモードの処理
+        if (currentHealth <= GetMaxHealthValue() * crisisPercent)
+        {
+            totalDamage = Mathf.RoundToInt(totalDamage * 1.25f);
+        }
+
+        totalDamage = CheckTargetArmor(_targetStats, totalDamage);
+        _targetStats.TakeDamage(totalDamage);
+
+        DoMagicalDamage(_targetStats);
+
+        IncreaseOverDriveValue();
+
+        StartCoroutine(TriggerHitStopCharge());
+    }
+
+
     protected IEnumerator TriggerHitStop()
     {
         if (isHitStopping)
@@ -202,6 +254,46 @@ public class CharacterStats : MonoBehaviour
 
         StartCoroutine(ShakeEffect());
     }
+
+    protected IEnumerator TriggerHitStopCharge()
+    {
+        if (isHitStopping)
+            yield break;
+
+        isHitStopping = true;
+        Time.timeScale = 0f;
+
+        float chargeStopDuration = hitStopDuration * 5;
+
+        yield return new WaitForSecondsRealtime(chargeStopDuration);
+
+        Time.timeScale = 1f;
+        isHitStopping = false;
+
+        StartCoroutine(ShakeEffectCharge());
+    }
+
+    // ヒットストップが発生したとき、対象オブジェクトのAnimatorコンポーネントのspeedを0にする
+    IEnumerator TriggerLocalHitStop(GameObject target, float duration)
+    {
+        // Animator を一時停止
+        Animator anim = target.GetComponent<Animator>();
+        float originalSpeed = anim.speed;
+        anim.speed = 0f;
+
+        // 必要なら、対象のスクリプトも一時的に停止（例：enabled を false にする）
+        // target.GetComponent<YourMovementScript>().enabled = false;
+
+        // duration 秒待つ（物理演算は通常通り進む）
+        yield return new WaitForSecondsRealtime(duration);
+
+        // Animator の速度を復帰
+        anim.speed = originalSpeed;
+
+        // 対象のスクリプトも再有効化する
+        // target.GetComponent<YourMovementScript>().enabled = true;
+    }
+
 
     private IEnumerator ShakeEffect()
     {
@@ -220,6 +312,25 @@ public class CharacterStats : MonoBehaviour
         }
 
     }
+
+    private IEnumerator ShakeEffectCharge()
+    {
+        Vector3 originalPosition = transform.position;
+        float elasped = 0.0f;
+
+        while (elasped < hitStopDuration)
+        {
+            float x = UnityEngine.Random.Range(-10f, 10f) * shakeMagnitude;
+            float y = UnityEngine.Random.Range(-10f, 10f) * shakeMagnitude;
+
+            transform.position = new Vector3(originalPosition.x + x, originalPosition.y + y, originalPosition.z);
+
+            elasped += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+    }
+
 
     protected IEnumerator ApplyHitStopAndShake(CharacterStats target, Action onHitStopComplete = null)
     {

@@ -66,9 +66,9 @@ public class Inventory : MonoBehaviour, ISaveManager
         statSlot = statSlotParent.GetComponentsInChildren<UI_StatSlot>();
 
         // デバッグ用にスロットの初期化状態を確認
-        Debug.Log($"Inventory slots initialized: {inventoryItemSlot.Length}");
-        Debug.Log($"Stash slots initialized: {stashItemSlot.Length}");
-        Debug.Log($"Equipment slots initialized: {equipmentSlot.Length}");
+        //Debug.Log($"Inventory slots initialized: {inventoryItemSlot.Length}");
+        //Debug.Log($"Stash slots initialized: {stashItemSlot.Length}");
+        //Debug.Log($"Equipment slots initialized: {equipmentSlot.Length}");
 
         AddStartingItems();
     }
@@ -83,7 +83,7 @@ public class Inventory : MonoBehaviour, ISaveManager
             }
             else
             {
-                Debug.LogWarning("AddStartingItems: loadedEquipment contains null item");
+                //Debug.LogWarning("AddStartingItems: loadedEquipment contains null item");
             }
         }
 
@@ -100,7 +100,7 @@ public class Inventory : MonoBehaviour, ISaveManager
                 }
                 else
                 {
-                    Debug.LogWarning("AddStartingItems: loadedItems contains null item or item.data");
+                   // Debug.LogWarning("AddStartingItems: loadedItems contains null item or item.data");
                 }
             }
             return;
@@ -114,7 +114,7 @@ public class Inventory : MonoBehaviour, ISaveManager
             }
             else
             {
-                Debug.LogWarning($"AddStartingItems: startingItems[{i}] is null");
+                //Debug.LogWarning($"AddStartingItems: startingItems[{i}] is null");
             }
         }
     }
@@ -168,19 +168,19 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public void EquipItem(ItemData _item)
     {
-        Debug.Log("[EquipItem] Called with item: " + _item.itemName);
+        //Debug.Log("[EquipItem] Called with item: " + _item.itemName);
 
         // 装備用アイテムとしてキャスト
         ItemData_Equipment newEquipment = _item as ItemData_Equipment;
         if (newEquipment == null)
         {
-            Debug.LogWarning("[EquipItem] Item is not of type ItemData_Equipment.");
+            //Debug.LogWarning("[EquipItem] Item is not of type ItemData_Equipment.");
             return;
         }
 
         // 新規装備用の InventoryItem を作成
         InventoryItem newItem = new InventoryItem(newEquipment);
-        Debug.Log("[EquipItem] New InventoryItem created for: " + newEquipment.itemName);
+        //Debug.Log("[EquipItem] New InventoryItem created for: " + newEquipment.itemName);
 
         // 同じカテゴリー（EquipmentType）の既存装備を検索
         ItemData_Equipment oldEquipment = null;
@@ -196,7 +196,7 @@ public class Inventory : MonoBehaviour, ISaveManager
         // 既に同カテゴリーの装備がセットされている場合は、アンイコップしてインベントリに戻す
         if (oldEquipment != null)
         {
-            Debug.Log("[EquipItem] Existing equipment found of same type: " + oldEquipment.itemName + ". Unequipping it.");
+            //Debug.Log("[EquipItem] Existing equipment found of same type: " + oldEquipment.itemName + ". Unequipping it.");
             UnequipItem(oldEquipment);    // 装備解除処理（例：モディファイア解除）
             AddItem(oldEquipment);          // 古い装備をインベントリに戻す
         }
@@ -204,19 +204,19 @@ public class Inventory : MonoBehaviour, ISaveManager
         // 新しい装備を装備リストに追加し、辞書に登録
         equipment.Add(newItem);
         equipmentDictionary.Add(newEquipment, newItem);
-        Debug.Log("[EquipItem] Equipment added: " + newEquipment.itemName);
+        //Debug.Log("[EquipItem] Equipment added: " + newEquipment.itemName);
 
         // 新しい装備のステータスモディファイアをプレイヤーに適用
         newEquipment.AddModifiers();
-        Debug.Log("[EquipItem] Modifiers applied for: " + newEquipment.itemName);
+        //Debug.Log("[EquipItem] Modifiers applied for: " + newEquipment.itemName);
 
         // 新しい装備アイテムはインベントリから除外する
         RemoveItem(_item);
-        Debug.Log("[EquipItem] Item removed from inventory: " + _item.itemName);
+        //Debug.Log("[EquipItem] Item removed from inventory: " + _item.itemName);
 
         // UIのスロット表示更新
         UpdateSlotUI();
-        Debug.Log("[EquipItem] UI slots updated.");
+        //Debug.Log("[EquipItem] UI slots updated.");
     }
 
 
@@ -263,7 +263,7 @@ public class Inventory : MonoBehaviour, ISaveManager
             }
             else
             {
-                Debug.LogWarning("Not enough slots to display all inventory items!");
+                //Debug.LogWarning("Not enough slots to display all inventory items!");
                 break;
             }
         }
@@ -283,7 +283,7 @@ public class Inventory : MonoBehaviour, ISaveManager
             }
             else
             {
-                Debug.LogWarning("Not enough slots to display all stash items!");
+                //Debug.LogWarning("Not enough slots to display all stash items!");
                 break;
             }
         }
@@ -373,7 +373,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     {
         if (inventory.Count >= inventoryItemSlot.Length)
         {
-            Debug.Log("No more space");
+            //Debug.Log("No more space");
             return false;
         }
 
@@ -390,13 +390,13 @@ public class Inventory : MonoBehaviour, ISaveManager
             {
                 if (stashItem.stackSize < requiredItem.stackSize)
                 {
-                    Debug.Log("Not enough materials: " + requiredItem.data.name);
+                    //Debug.Log("Not enough materials: " + requiredItem.data.name);
                     return false;
                 }
             }
             else
             {
-                Debug.Log("Materials not found in stash: " + requiredItem.data.name);
+                //Debug.Log("Materials not found in stash: " + requiredItem.data.name);
                 return false;
             }
         }
@@ -412,7 +412,7 @@ public class Inventory : MonoBehaviour, ISaveManager
         }
 
         AddItem(_itemToCraft);
-        Debug.Log("Craft is successful: " + _itemToCraft.name);
+        //Debug.Log("Craft is successful: " + _itemToCraft.name);
         return true;
     }
 
@@ -448,8 +448,8 @@ public class Inventory : MonoBehaviour, ISaveManager
             currentFlask.Effect(null);
             lastTimeUsedFlask = Time.time;
         }
-        else
-            Debug.Log("Flask on cooldown;");
+        //else
+            //Debug.Log("Flask on cooldown;");
     }
 
     public bool CanUseArmor()
@@ -463,7 +463,7 @@ public class Inventory : MonoBehaviour, ISaveManager
             return true;
         }
 
-        Debug.Log("Armor on cooldown");
+        //Debug.Log("Armor on cooldown");
         return false;
     }
 

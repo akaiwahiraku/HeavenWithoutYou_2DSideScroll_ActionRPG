@@ -13,14 +13,17 @@ public class PlayerStats : CharacterStats
     [SerializeField] public GameObject ScreenFlashBlackoutFX;
     public ScreenFlashBlackoutFX screenFlashBlackout;
 
-    [SerializeField] public GameObject OverDrive1stTextFX;
-    public OverDriveTextFX overDrive1stText;
+    [SerializeField] public GameObject OverDriveDreamtideTextFX;
+    public OverDriveTextFX overDriveDreamtideText;
 
-    [SerializeField] public GameObject OverDrive2ndTextFX;
-    public OverDriveTextFX overDrive2ndText;
+    [SerializeField] public GameObject OverDrivePhantasmNightTextFX;
+    public OverDriveTextFX overDrivePhantasmNightText;
 
-    [SerializeField] public GameObject OverDrive2ndShatteredTextFX;
-    public OverDriveTextFX overDrive2ndShatteredText;
+    [SerializeField] public GameObject OverDriveShatteredSunTextFX;
+    public OverDriveTextFX overDriveShatteredSunText;
+
+    [SerializeField] public GameObject OverDriveUnleashedTextFX;
+    public OverDriveTextFX overDriveUnleashedText;
 
     [SerializeField] private float flashDuration = 0.1f; // フラッシュの持続時間
 
@@ -211,6 +214,22 @@ public class PlayerStats : CharacterStats
         {
             rb.velocity = Vector2.zero;  // クローンの速度をリセット
         }
+    }
+
+    public override void DoPhysicalDamageCharge(CharacterStats _targetStats)
+    {
+        base.DoPhysicalDamage(_targetStats);
+
+        AudioManager.instance.PlaySFX(1, null);
+
+        PlayerAnimationTriggers animationTriggers = player.GetComponentInChildren<PlayerAnimationTriggers>();
+        StartCoroutine(ApplyHitStopAndShake(_targetStats, animationTriggers.PushTrigger));
+        StartCoroutine(TriggerHitStop());
+
+        // 物理攻撃ヒット時、ターゲットにヒットストップとシェイクを適用
+        StartCoroutine(ApplyHitStopAndShake(_targetStats));
+        player.fx.ScreenShake(player.fx.shakeNormalAttack);
+
     }
 
 
