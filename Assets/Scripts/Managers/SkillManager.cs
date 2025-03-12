@@ -6,19 +6,20 @@ public class SkillManager : MonoBehaviour
     public static SkillManager instance;
 
     // 各スキルコンポーネントの参照
-    public Move_Skill move { get; private set; }
     public Clone_Skill clone { get; private set; }
+    public Pyre_Skill pyre { get; private set; }
+    public Surge_Skill surge { get; private set; }
     public DarkCircle_Skill darkCircle { get; private set; }
     public ShadowFlare_Skill shadowFlare { get; private set; }
     public Force_Skill force { get; private set; }
+    public DreamtideDriving_Skill dreamtideDriving { get; private set; }
     public ShatteredSun_Skill shatteredSun { get; private set; }
-    public Pyre_Skill pyre { get; private set; }
-
+    public Blackhole_Skill blackhole { get; private set; }
+    public Unleashed_Skill unleashed { get; private set; }
 
     public Heal_Skill heal { get; private set; }
-    public Blackhole_Skill blackhole { get; private set; }
     public Guard_Skill guard { get; private set; }
-    public DreamtideDriving_Skill dreamtideDriving { get; private set; }
+    public Move_Skill move { get; private set; }
 
     [Header("Selected Skills (Set via Inspector)")]
     public Skill primaryAttackSkill;
@@ -34,12 +35,12 @@ public class SkillManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("[SkillManager] Another instance already exists, destroying this one.");
+            //Debug.LogWarning("[SkillManager] Another instance already exists, destroying this one.");
             Destroy(gameObject);
             return;
         }
         instance = this;
-        Debug.Log("[SkillManager] instance set to this object.");
+        //Debug.Log("[SkillManager] instance set to this object.");
     }
 
     private void Start()
@@ -51,12 +52,14 @@ public class SkillManager : MonoBehaviour
         force = GetComponent<Force_Skill>();
         shatteredSun = GetComponent<ShatteredSun_Skill>();
         pyre = GetComponent<Pyre_Skill>();
+        surge = GetComponent<Surge_Skill>();
         guard = GetComponent<Guard_Skill>();
         heal = GetComponent<Heal_Skill>();
         dreamtideDriving = GetComponent<DreamtideDriving_Skill>();
         blackhole = GetComponent<Blackhole_Skill>();
+        unleashed = GetComponent<Unleashed_Skill>();
 
-        Debug.Log("[SkillManager] Start() - Finished scanning skill components attached to this GameObject.");
+        //Debug.Log("[SkillManager] Start() - Finished scanning skill components attached to this GameObject.");
     }
 
     /// <summary>
@@ -76,7 +79,7 @@ public class SkillManager : MonoBehaviour
             case SkillCategory.Overdrive1: result = overdrive1Skill; break;
             case SkillCategory.Overdrive2: result = overdrive2Skill; break;
         }
-        Debug.Log($"[SkillManager.GetSelectedSkill] category={category} => {(result != null ? result.skillName : "null")}");
+        //Debug.Log($"[SkillManager.GetSelectedSkill] category={category} => {(result != null ? result.skillName : "null")}");
         return result;
     }
 
@@ -86,18 +89,18 @@ public class SkillManager : MonoBehaviour
     public List<Skill> GetUnlockedSkills(SkillCategory category)
     {
         Skill[] allSkills = FindObjectsOfType<Skill>();
-        Debug.Log($"[SkillManager.GetUnlockedSkills] Searching for unlocked skills in category={category}. totalSkillComponents={allSkills.Length}");
+        //Debug.Log($"[SkillManager.GetUnlockedSkills] Searching for unlocked skills in category={category}. totalSkillComponents={allSkills.Length}");
 
         List<Skill> result = new List<Skill>();
         foreach (Skill s in allSkills)
         {
-            Debug.Log($"   Checking skill: {s.skillName}, category={s.category}, isUnlocked={s.isUnlocked}");
+            //Debug.Log($"   Checking skill: {s.skillName}, category={s.category}, isUnlocked={s.isUnlocked}");
             if (s.category == category && s.isUnlocked)
             {
                 result.Add(s);
             }
         }
-        Debug.Log($"[SkillManager.GetUnlockedSkills] => returning {result.Count} unlocked skills for category={category}");
+        //Debug.Log($"[SkillManager.GetUnlockedSkills] => returning {result.Count} unlocked skills for category={category}");
         return result;
     }
 
@@ -106,7 +109,7 @@ public class SkillManager : MonoBehaviour
     /// </summary>
     public void SetSelectedSkill(SkillCategory category, Skill newSkill)
     {
-        Debug.Log($"[SkillManager.SetSelectedSkill] Trying to set skill for category={category} => {newSkill?.skillName}, isUnlocked={newSkill?.isUnlocked}");
+        //Debug.Log($"[SkillManager.SetSelectedSkill] Trying to set skill for category={category} => {newSkill?.skillName}, isUnlocked={newSkill?.isUnlocked}");
 
         if (newSkill != null && newSkill.isUnlocked)
         {
@@ -121,11 +124,11 @@ public class SkillManager : MonoBehaviour
                 case SkillCategory.Overdrive1: overdrive1Skill = newSkill; break;
                 case SkillCategory.Overdrive2: overdrive2Skill = newSkill; break;
             }
-            Debug.Log($"[SkillManager] {category} skill set to: {newSkill.skillName}");
+            //Debug.Log($"[SkillManager] {category} skill set to: {newSkill.skillName}");
         }
         else
         {
-            Debug.LogWarning($"[SkillManager] Invalid or locked skill for {category} => newSkill={newSkill?.skillName}, isUnlocked={newSkill?.isUnlocked}");
+            //Debug.LogWarning($"[SkillManager] Invalid or locked skill for {category} => newSkill={newSkill?.skillName}, isUnlocked={newSkill?.isUnlocked}");
         }
     }
 }

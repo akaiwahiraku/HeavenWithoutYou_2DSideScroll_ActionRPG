@@ -57,6 +57,36 @@ public class PlayerAnimationTriggers : MonoBehaviour
         }
     }
 
+    private void ChargeAttackTrigger()
+    {
+        //AudioManager.instance.PlaySFX(2, null);
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);
+
+        foreach (var hit in colliders)
+        {
+            if (hit.GetComponent<Enemy>() != null)
+            {
+                EnemyStats _target = hit.GetComponent<EnemyStats>();
+
+                if (_target != null)
+                {
+                    player.stats.DoPhysicalDamageCharge(_target);                }
+
+                ItemData_Equipment weaponData = Inventory.instance.GetEquipment(EquipmentType.Weapon);
+
+                if (weaponData != null)
+                    weaponData.Effect(_target.transform);
+            }
+        }
+    }
+
+    private void ZeroVelocityTrigger()
+    {
+        player.SetZeroVelocity();
+        player.rb.gravityScale = 0;
+    }
+
     public void PushTrigger()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);
@@ -77,6 +107,13 @@ public class PlayerAnimationTriggers : MonoBehaviour
             }
         }
     }
+
+
+    public void DashTrigger()
+    {
+        player.SetVelocity(player.facingDir * 12.5f, 3);
+    }
+
 
 
     //private void ThrowSword()

@@ -43,11 +43,11 @@ public class Clone_Skill_Controller : MonoBehaviour
     {
         cloneTimer -= Time.deltaTime;
 
-        if (followPlayer && player != null)
-        {
-            // プレイヤーの動きを追従
-            FollowPlayerMovement();
-        }
+        //if (followPlayer && player != null)
+        //{
+        //    // プレイヤーの動きを追従
+        //    FollowPlayerMovement();
+        //}
 
         if (cloneTimer < 0)
         {
@@ -92,10 +92,10 @@ public class Clone_Skill_Controller : MonoBehaviour
     {
         if (player != null)
         {
-            // プレイヤーの動きを追従（速度と位置）
+            //プレイヤーの動きを追従（速度と位置）
             rb.velocity = player.rb.velocity;
 
-            // プレイヤーの向きに応じてクローンの向きを調整
+            //プレイヤーの向きに応じてクローンの向きを調整
             if (player.facingDir != facingDir)
             {
                 facingDir = player.facingDir;

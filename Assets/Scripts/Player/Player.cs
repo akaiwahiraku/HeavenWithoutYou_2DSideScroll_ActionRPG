@@ -7,8 +7,11 @@ using UnityEngine.InputSystem;
 public class Player : Entity
 {
     [Header("Attack details")]
+    public float attackButtonPressTime; // çUåÇÉ{É^ÉìÇâüÇµÇΩéûçèÇãLò^Ç∑ÇÈïœêî
     public Vector2[] attackMovement;
     public float counterAttackDuration = .2f;
+    public float lastGuardExitTime;
+
     public bool isBusy { get; private set; }
 
     [Header("Move info")]
@@ -38,6 +41,7 @@ public class Player : Entity
     public GameObject force { get; private set; }
     public GameObject shatteredSun { get; private set; }
     public GameObject pyre { get; private set; }
+    public GameObject surge { get; private set; }
 
 
     public PlayerFX fx { get; private set; }
@@ -56,20 +60,23 @@ public class Player : Entity
     public PlayerWallJumpState wallJump { get; private set; }
     public PlayerDashState dashState { get; private set; }
     public PlayerPrimaryAttackState primaryAttack { get; private set; }
+    public PlayerPrimaryAttackChargeState primaryAttackCharge { get; private set; }
     public PlayerGuardState guard { get; private set; }
     public PlayerCounterAttackState counterAttack { get; private set; }
     public PlayerJumpAttackState jumpAttack { get; private set; }
+    public PlayerJumpAttackChargeState jumpAttackCharge { get; private set; }
 
     public PlayerAimSwordState aimSword { get; private set; }
     public PlayerAimDarkCircleState aimDarkCircle { get; private set; }
     public PlayerAimShadowFlareState aimShadowFlare { get; private set; }
     public PlayerAimForceState aimForce { get; private set; }
-    public PlayerAimShatteredSunState aimShatteredSun { get; private set; }
 
     public PlayerHealState heal { get; private set; }
 
-    public PlayerShadowBringerOverDrive2ndState shadowBringerOverDrive2nd { get; private set; }
     public PlayerShadowBringerOverDrive1stState shadowBringerOverDrive1st { get; private set; }
+    public PlayerAimShatteredSunState aimShatteredSun { get; private set; }
+    public PlayerShadowBringerOverDrive2ndState shadowBringerOverDrive2nd { get; private set; }
+    public PlayerAimUnleashedState aimUnleashed { get; private set; }
     public PlayerDeadState deadState { get; private set; }
     #endregion
 
@@ -86,7 +93,9 @@ public class Player : Entity
         wallSlide = new PlayerWallSlideState(this, stateMachine, "WallSlide");
         wallJump = new PlayerWallJumpState(this, stateMachine, "Jump");
         primaryAttack = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
+        primaryAttackCharge = new PlayerPrimaryAttackChargeState(this, stateMachine, "AttackCharge");
         jumpAttack = new PlayerJumpAttackState(this, stateMachine, "JumpAttack");
+        jumpAttackCharge = new PlayerJumpAttackChargeState(this, stateMachine, "JumpAttackCharge");
         guard = new PlayerGuardState(this, stateMachine, "Guard");
         counterAttack = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
         aimSword = new PlayerAimSwordState(this, stateMachine, "AimSword");
@@ -94,6 +103,7 @@ public class Player : Entity
         aimShadowFlare = new PlayerAimShadowFlareState(this, stateMachine, "AimShadowFlare");
         aimForce = new PlayerAimForceState(this, stateMachine, "AimForce");
         aimShatteredSun = new PlayerAimShatteredSunState(this, stateMachine, "AimShatteredSun");
+        aimUnleashed = new PlayerAimUnleashedState(this, stateMachine, "AimUnleashed");
         heal = new PlayerHealState(this, stateMachine, "Heal");
         shadowBringerOverDrive1st = new PlayerShadowBringerOverDrive1stState(this, stateMachine, "ShadowBringerOverDrive1st");
         shadowBringerOverDrive2nd = new PlayerShadowBringerOverDrive2ndState(this, stateMachine, "Blackhole");
@@ -144,6 +154,7 @@ public class Player : Entity
         rushSpeed = defaultRushSpeed;
     }
 
+    #region Set Skill
     public void AssignNewSword(GameObject _newSword)
     {
         sword = _newSword;
@@ -153,7 +164,7 @@ public class Player : Entity
     {
         darkCircle = _newDarkCircle;
     }
-    
+
     public void AssignNewShadowFlare(GameObject _newShadowFlare)
     {
         shadowFlare = _newShadowFlare;
@@ -173,6 +184,12 @@ public class Player : Entity
     {
         pyre = _newPyre;
     }
+    public void AssignNewSurge(GameObject _newSurge)
+    {
+        surge = _newSurge;
+    }
+
+    #endregion
 
     public IEnumerator BusyFor(float _seconds)
     {

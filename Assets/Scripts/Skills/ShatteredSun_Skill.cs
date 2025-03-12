@@ -19,7 +19,7 @@ public class ShatteredSun_Skill : Skill
     [SerializeField, Tooltip("持続時間（秒）")]
     private float sustainedDamageDuration = 2.0f;
     [SerializeField, Tooltip("ダメージの間隔（秒）")]
-    private float damageInterval = 0.5f;
+    private float damageInterval = 0.4f;
 
     public bool shatteredSunUnlocked { get; private set; }
 

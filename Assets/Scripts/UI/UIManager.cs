@@ -123,7 +123,7 @@ public class UIManager : MonoBehaviour, ISaveManager
         // シングルトン初期化
         if (instance != null)
         {
-            Debug.LogWarning("[UIManager] Another instance already exists, destroying this one.");
+            //Debug.LogWarning("[UIManager] Another instance already exists, destroying this one.");
             Destroy(gameObject);
             return;
         }
@@ -259,7 +259,7 @@ public class UIManager : MonoBehaviour, ISaveManager
     /// </summary>
     public void SwitchTo(GameObject panel)
     {
-        Debug.Log("SwitchTo() called. Target panel: " + panel.name);
+        //Debug.Log("SwitchTo() called. Target panel: " + panel.name);
 
         // 全パネルを非表示に
         if (characterUI != null) characterUI.SetActive(false);
@@ -289,11 +289,11 @@ public class UIManager : MonoBehaviour, ISaveManager
         }
         else
         {
-            Debug.LogWarning("Unknown panel passed to SwitchTo: " + panel.name);
+            //Debug.LogWarning("Unknown panel passed to SwitchTo: " + panel.name);
         }
 
         lastActivePanel = panel;
-        Debug.Log("LastActivePanel updated to: " + lastActivePanel.name);
+        //Debug.Log("LastActivePanel updated to: " + lastActivePanel.name);
     }
 
     /// <summary>
@@ -417,7 +417,7 @@ public class UIManager : MonoBehaviour, ISaveManager
 
     public void ShowStatPreview(ItemData_Equipment hoveredEquipment)
     {
-        Debug.Log("[UIManager] ShowStatPreview called for: " + hoveredEquipment.itemName);
+        //Debug.Log("[UIManager] ShowStatPreview called for: " + hoveredEquipment.itemName);
         if (hoveredEquipment == null)
             return;
 
@@ -469,7 +469,7 @@ public class UIManager : MonoBehaviour, ISaveManager
         lightningDamagePreviewText.text = FormatDiff(diffLightningDamage);
 
         statPreviewPanel.SetActive(true);
-        Debug.Log("[UIManager] statPreviewPanel active: " + statPreviewPanel.activeSelf);
+        //Debug.Log("[UIManager] statPreviewPanel active: " + statPreviewPanel.activeSelf);
     }
 
     private string FormatDiff(int diff)
@@ -517,7 +517,7 @@ public class UIManager : MonoBehaviour, ISaveManager
         }
         else
         {
-            Debug.LogWarning("[UIManager] skillSelectionPanel is not assigned.");
+           // Debug.LogWarning("[UIManager] skillSelectionPanel is not assigned.");
         }
     }
 
@@ -530,7 +530,7 @@ public class UIManager : MonoBehaviour, ISaveManager
         }
         else
         {
-            Debug.LogWarning("EquipmentSelectionPanel is not assigned in UIManager.");
+            //Debug.LogWarning("EquipmentSelectionPanel is not assigned in UIManager.");
         }
     }
 

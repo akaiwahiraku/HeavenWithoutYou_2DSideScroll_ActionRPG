@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow_Controller : MonoBehaviour
+public class Arrow_Controller : MonoBehaviour, ISlowable
 {
     private SpriteRenderer sr;
 
@@ -31,20 +31,36 @@ public class Arrow_Controller : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        // Unleashedスキルが発動中なら、スロー効果を適用する
+        if (Unleashed_Skill.IsUnleashedActive)
+        {
+            // Unleashed_Skill のインスタンスを取得
+            Unleashed_Skill unleashedSkill = FindObjectOfType<Unleashed_Skill>();
+            if (unleashedSkill != null)
+            {
+                // スキル側の slowFactor と duration を使用してスロー効果を適用
+                ApplySlow(unleashedSkill.slowFactor, unleashedSkill.duration);
+            }
+            else
+            {
+                Debug.LogWarning("Unleashed_Skill インスタンスが見つかりません。");
+            }
+        }
+    }
+
     public void SetupArrow(float _speed, CharacterStats _myStats)
     {
         sr = GetComponent<SpriteRenderer>();
         xVelocity = _speed;
         myStats = _myStats;
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer(targetLayerName))
         {
-            //collision.GetComponent<CharacterStats>()?.TakeDamage(damage);
-
             myStats.DoPhysicalDamage(collision.GetComponent<CharacterStats>());
             StuckInto(collision);
         }
@@ -55,7 +71,6 @@ public class Arrow_Controller : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
 
         if (collision.GetComponent<Blackhole_Skill_Controller>() != null)
         {
@@ -89,5 +104,34 @@ public class Arrow_Controller : MonoBehaviour
         flipped = true;
         transform.Rotate(0, 180, 0);
         targetLayerName = "Enemy";
+    }
+
+    // ▼ ISlowable インターフェース実装 ▼
+
+    /// <summary>
+    /// スロー効果を適用します。
+    /// </summary>
+    /// <param name="slowFactor">速度に掛ける倍率（例：0.5f なら半分の速さ）</param>
+    /// <param name="slowDuration">スロー効果の持続時間</param>
+    public void ApplySlow(float slowFactor, float slowDuration)
+    {
+        // xVelocity にスロー効果を適用
+        xVelocity *= slowFactor;
+        // 現在の rb.velocity にも同じ倍率を適用
+        rb.velocity = new Vector2(rb.velocity.x * slowFactor, rb.velocity.y);
+        // 指定時間後に元の速度に戻す処理を開始
+        StartCoroutine(RestoreSpeedAfter(slowFactor, slowDuration));
+    }
+
+    /// <summary>
+    /// スロー効果終了後に元の速度に戻すためのコルーチン
+    /// </summary>
+    private IEnumerator RestoreSpeedAfter(float slowFactor, float slowDuration)
+    {
+        // 現在の xVelocity はすでに slowFactor 倍になっているので、元の値を計算しておく
+        float originalXVelocity = xVelocity / slowFactor;
+        yield return new WaitForSeconds(slowDuration);
+        xVelocity = originalXVelocity;
+        // 次の Update() で rb.velocity が xVelocity に合わせて更新されるため、追加処理は不要
     }
 }

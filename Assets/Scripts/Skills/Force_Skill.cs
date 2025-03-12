@@ -13,7 +13,7 @@ public class Force_Skill : Skill
     [SerializeField, Tooltip("爆発が拡大するのにかかる時間（秒）")]
     private float forceExpansionDuration = 0.25f;
     [SerializeField, Tooltip("爆発によるノックバックの威力")]
-    private float knockbackForce = 75f;
+    private float knockbackPower = 75f;
 
     public bool forceUnlocked { get; private set; }
 
@@ -22,7 +22,7 @@ public class Force_Skill : Skill
     protected override void Start()
     {
         base.Start();
-        forceUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockExplosion);
+        forceUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockForce);
     }
 
     protected override void Update()
@@ -32,10 +32,10 @@ public class Force_Skill : Skill
 
     protected override void CheckUnlock()
     {
-        UnlockExplosion();
+        UnlockForce();
     }
 
-    private void UnlockExplosion()
+    private void UnlockForce()
     {
         if (forceUnlockButton.unlocked)
         {
@@ -60,7 +60,7 @@ public class Force_Skill : Skill
         if (currentForce != null)
         {
             // インスペクタで設定された各パラメータを渡す
-            currentForce.SetupForce(player, freezeTimeDuration, damageMultiplier, forceScaleMultiplier, forceExpansionDuration, knockbackForce);
+            currentForce.SetupForce(player, freezeTimeDuration, damageMultiplier, forceScaleMultiplier, forceExpansionDuration, knockbackPower);
         }
         else
         {

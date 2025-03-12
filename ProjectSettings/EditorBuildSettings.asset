@@ -21,4 +21,5 @@ EditorBuildSettings:
     path: Assets/Scenes/CastleStageScene.unity
     guid: 6834af718e0390e469272a284a3828e0
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 32ac1d85a66897046a171ed15e598ba3, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 7112f8a20e27c8b40b7d88af1d172068, type: 2}

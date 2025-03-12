@@ -33,13 +33,14 @@ public class PlayerAirState : PlayerState
 
         stateTimer = 0f;
         playerAirStateTimer = 0f;
-        //timerEventTriggered = false;
     }
 
     public override void Exit()
     {
         base.Exit();
         player.GetComponent<Collider2D>().sharedMaterial = originalMaterial;
+        canDoubleJump = true;
+        player.canAirDash = true;
         SetDashingTransition(false);
     }
 
@@ -54,7 +55,7 @@ public class PlayerAirState : PlayerState
         // タイマーの更新
         playerAirStateTimer += Time.deltaTime;
 
-        //下ボタンを押すと急降下
+        // 下ボタンを押すと急降下
         if (verticalInput < 0 && (playerAirStateTimer >= timeThreshold || player.canAirDash == false))
         {
             player.rb.velocity = new Vector2(player.rb.velocity.x, fastFallSpeed);
@@ -74,26 +75,33 @@ public class PlayerAirState : PlayerState
             player.SetVelocity(player.moveSpeed * 0.8f * horizontalInput, player.rb.velocity.y);
         }
 
-        //通常攻撃
+        // ジャンプアタック入力時の処理
         if (joystickInputManager.Button2Down())
         {
-            //stateMachine.ChangeState(player.primaryAttack);
-            stateMachine.ChangeState(player.jumpAttack);
+            // 攻撃開始時刻を記録
+            //player.attackButtonPressTime = Time.time;
+            if (SkillManager.instance.surge != null && SkillManager.instance.surge.CanUseSkill())
+            {
+                float attackDir = horizontalInput;
+                attackDir = (attackDir == 0 ? player.facingDir : Mathf.Sign(attackDir));
+                player.primaryAttackCharge.SetAttackDirection(attackDir);
+                stateMachine.ChangeState(player.jumpAttackCharge);
+            }
+            else
+                stateMachine.ChangeState(player.jumpAttack);
         }
 
-        // 特殊スキル（SkillManager の specialSkill にセットされている && スキルが解放済み）
+
+        // 特殊スキル（例：ダークサークル、フォース）
         if (joystickInputManager.Button3Down() && !joystickInputManager.Button5())
         {
             if (SkillManager.instance.darkCircle != null && SkillManager.instance.darkCircle.CanUseSkill())
                 stateMachine.ChangeState(player.aimDarkCircle);
-            //if (SkillManager.instance.shadowFlare != null && SkillManager.instance.shadowFlare.CanUseSkill())
-            //    stateMachine.ChangeState(player.aimShadowFlare);
             if (SkillManager.instance.force != null && SkillManager.instance.force.CanUseSkill())
                 stateMachine.ChangeState(player.aimForce);
-
         }
 
-        //二段ジャンプ
+        // 二段ジャンプ
         if (canDoubleJump && joystickInputManager.Button0Down())
         {
             player.rb.velocity = new Vector2(player.rb.velocity.x, player.jumpForce);
@@ -101,20 +109,20 @@ public class PlayerAirState : PlayerState
             playerAirStateTimer = 0f; // ジャンプ後、タイマーをリセット
         }
 
-        //壁スライドに移行
+        // 壁スライドに移行
         if (player.IsWallDetected())
         {
             stateMachine.ChangeState(player.wallSlide);
         }
 
-        //接地判定
+        // 接地判定
         if (player.IsGroundDetectedFore() || player.IsGroundDetectedBack() || (player.IsThroughGroundDetected() && player.rb.velocity.y <= 0))
         {
             player.GetComponent<Collider2D>().sharedMaterial = originalMaterial;
             stateMachine.ChangeState(player.idleState);
         }
 
-        //二段ジャンプ、エアダッシュのリセット
+        // 二段ジャンプ、エアダッシュのリセット
         if (player.IsGroundDetectedFore() || player.IsGroundDetectedBack() || (player.IsThroughGroundDetected() && player.rb.velocity.y <= 0) || player.IsWallDetected())
         {
             canDoubleJump = true;
@@ -158,8 +166,8 @@ public class PlayerAirState : PlayerState
     {
         if (joystickInputManager.Button1Down() && (!player.IsGroundDetectedFore() || !player.IsGroundDetectedBack() || !player.IsThroughGroundDetected()) && player.canAirDash)
         {
-            player.dashDir = horizontalInput;
-            player.dashDir = player.dashDir == 0 ? player.facingDir : player.dashDir;
+            player.dashDir = joystickInputManager.Horizontal;
+            player.dashDir = (player.dashDir == 0 ? player.facingDir : player.dashDir);
             stateMachine.ChangeState(player.dashState);
             player.canAirDash = false;
         }
@@ -169,8 +177,8 @@ public class PlayerAirState : PlayerState
     {
         if (joystickInputManager.Button2Down() && joystickInputManager.Button5() && (!player.IsGroundDetectedFore() || !player.IsGroundDetectedBack() || !player.IsThroughGroundDetected()))
         {
-            player.rushDir = horizontalInput;
-            player.rushDir = player.rushDir == 0 ? player.facingDir : player.rushDir;
+            player.rushDir = joystickInputManager.Horizontal;
+            player.rushDir = (player.rushDir == 0 ? player.facingDir : player.rushDir);
             stateMachine.ChangeState(player.shadowBringerOverDrive1st);
             player.canAirRush = false;
         }

@@ -193,15 +193,31 @@ public class PlayerDashState : PlayerState
             // GroundedState‚©AirState‚©‚Å‘JˆÚæ‚ğØ‚è‘Ö‚¦‚é
             if (player.IsGroundDetectedFore() || player.IsGroundDetectedBack() || player.IsThroughGroundDetected())
             {
-                // GroundedState‚Ìê‡‚ÍPrimaryAttackState‚Ö‘JˆÚ
-                player.primaryAttack.SetAttackDirection(attackDir); // UŒ‚•ûŒü‚ğİ’è
-                stateMachine.ChangeState(player.primaryAttack);
+
+                if (SkillManager.instance.surge != null && SkillManager.instance.surge.CanUseSkill())
+                {
+                    player.primaryAttackCharge.SetAttackDirection(attackDir); // UŒ‚•ûŒü‚ğİ’è
+                    stateMachine.ChangeState(player.primaryAttackCharge);
+                }
+                else
+                {
+                    player.primaryAttack.SetAttackDirection(attackDir); // UŒ‚•ûŒü‚ğİ’è
+                    stateMachine.ChangeState(player.primaryAttack);
+                }
             }
             else
             {
-                // AirState‚Ìê‡‚ÍJumpAttackState‚Ö‘JˆÚ
-                player.jumpAttack.SetAttackDirection(attackDir); // UŒ‚•ûŒü‚ğİ’è
-                stateMachine.ChangeState(player.jumpAttack);
+                if (SkillManager.instance.surge != null && SkillManager.instance.surge.CanUseSkill())
+                {
+                    player.jumpAttackCharge.SetAttackDirection(attackDir); // UŒ‚•ûŒü‚ğİ’è
+                    stateMachine.ChangeState(player.jumpAttackCharge);
+                }
+                else
+                {
+                    player.jumpAttack.SetAttackDirection(attackDir); // UŒ‚•ûŒü‚ğİ’è
+                    stateMachine.ChangeState(player.jumpAttack);
+                }
+               
             }
         }
 

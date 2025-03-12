@@ -28,7 +28,7 @@ public class UI_SkillSelectionPanel : MonoBehaviour
     {
         uiManager = FindObjectOfType<UIManager>();
         gameObject.SetActive(false);
-        Debug.Log("[UI_SkillSelectionPanel] Awake() called.");
+        //Debug.Log("[UI_SkillSelectionPanel] Awake() called.");
     }
 
     private void Update()
@@ -37,7 +37,7 @@ public class UI_SkillSelectionPanel : MonoBehaviour
         if (!gameObject.activeInHierarchy) return;
 
         GameObject currentSelected = EventSystem.current.currentSelectedGameObject;
-        Debug.Log($"[UI_SkillSelectionPanel] Update: currentSelected = {(currentSelected != null ? currentSelected.name : "null")}");
+        //Debug.Log($"[UI_SkillSelectionPanel] Update: currentSelected = {(currentSelected != null ? currentSelected.name : "null")}");
 
         // 強制選択チェックは一定時間間隔ごとに実施
         if (Time.unscaledTime - lastForceTime < 0.2f) return;
@@ -72,7 +72,7 @@ public class UI_SkillSelectionPanel : MonoBehaviour
             {
                 if (firstOption != null && firstOption.activeInHierarchy)
                 {
-                    Debug.LogWarning($"[UI_SkillSelectionPanel] Update: Current selection is invalid or outside panel; forcing selection to firstOption: {firstOption.name}");
+                    //Debug.LogWarning($"[UI_SkillSelectionPanel] Update: Current selection is invalid or outside panel; forcing selection to firstOption: {firstOption.name}");
                     Button btn = firstOption.GetComponent<Button>();
                     if (btn != null)
                         btn.Select();
@@ -81,7 +81,7 @@ public class UI_SkillSelectionPanel : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("[UI_SkillSelectionPanel] Update: firstOption is not valid for selection.");
+                    //Debug.LogWarning("[UI_SkillSelectionPanel] Update: firstOption is not valid for selection.");
                 }
             }
         }
@@ -90,7 +90,7 @@ public class UI_SkillSelectionPanel : MonoBehaviour
             // 候補が空の場合、選択がnullならcurrentSlotに戻す
             if (currentSelected == null && currentSlot != null && currentSlot.gameObject.activeInHierarchy)
             {
-                Debug.LogWarning($"[UI_SkillSelectionPanel] Update: No selection; forcing selection to currentSlot: {currentSlot.gameObject.name}");
+                //Debug.LogWarning($"[UI_SkillSelectionPanel] Update: No selection; forcing selection to currentSlot: {currentSlot.gameObject.name}");
                 Button btn = currentSlot.GetComponent<Button>();
                 if (btn != null)
                     btn.Select();
@@ -108,7 +108,7 @@ public class UI_SkillSelectionPanel : MonoBehaviour
     {
         currentCategory = category;
         currentSlot = slot;
-        Debug.Log($"[UI_SkillSelectionPanel] Open() called. Category: {category}, currentSlot: {(currentSlot != null ? currentSlot.gameObject.name : "null")}");
+        //Debug.Log($"[UI_SkillSelectionPanel] Open() called. Category: {category}, currentSlot: {(currentSlot != null ? currentSlot.gameObject.name : "null")}");
         EventSystem.current.SetSelectedGameObject(null);
         isClosing = false;
         gameObject.SetActive(true);
@@ -118,7 +118,7 @@ public class UI_SkillSelectionPanel : MonoBehaviour
         // 候補スキルがある場合のみ初期選択設定を行う
         if (firstOption != null)
         {
-            Debug.Log($"[UI_SkillSelectionPanel] firstOption is set to: {firstOption.name}. Starting SetInitialSelection().");
+            //Debug.Log($"[UI_SkillSelectionPanel] firstOption is set to: {firstOption.name}. Starting SetInitialSelection().");
             StartCoroutine(SetInitialSelection());
         }
     }
@@ -135,10 +135,10 @@ public class UI_SkillSelectionPanel : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        Debug.Log("[UI_SkillSelectionPanel] Cleared existing children in skillListContainer.");
+        //Debug.Log("[UI_SkillSelectionPanel] Cleared existing children in skillListContainer.");
 
         List<Skill> unlocked = SkillManager.instance.GetUnlockedSkills(currentCategory);
-        Debug.Log($"[UI_SkillSelectionPanel] Number of unlocked skills for {currentCategory}: {unlocked.Count}");
+        //Debug.Log($"[UI_SkillSelectionPanel] Number of unlocked skills for {currentCategory}: {unlocked.Count}");
 
         if (unlocked.Count > 0)
         {
@@ -150,8 +150,8 @@ public class UI_SkillSelectionPanel : MonoBehaviour
 
                 if (label != null)
                     label.text = skill.skillName;
-                else
-                    Debug.LogWarning("[UI_SkillSelectionPanel] Missing TextMeshProUGUI on skill button prefab.");
+                //else
+                    //Debug.LogWarning("[UI_SkillSelectionPanel] Missing TextMeshProUGUI on skill button prefab.");
 
                 candidateButtons.Add(btnObj);
                 btn.onClick.AddListener(() => OnSkillSelected(skill));
@@ -166,7 +166,7 @@ public class UI_SkillSelectionPanel : MonoBehaviour
                 {
                     if (UIManager.instance != null && skill != null)
                     {
-                        Debug.Log($"[UI_SkillSelectionPanel] (OnSelect) Showing tool tip for skill '{skill.skillName}'");
+                        //Debug.Log($"[UI_SkillSelectionPanel] (OnSelect) Showing tool tip for skill '{skill.skillName}'");
                         UIManager.instance.skillToolTipInCharacter.ShowToolTip(skill.skillName, skill.description);
                     }
                 });
@@ -177,14 +177,14 @@ public class UI_SkillSelectionPanel : MonoBehaviour
                 {
                     if (UIManager.instance != null)
                     {
-                        Debug.Log("[UI_SkillSelectionPanel] (OnDeselect) Hiding tool tip");
+                        //Debug.Log("[UI_SkillSelectionPanel] (OnDeselect) Hiding tool tip");
                         UIManager.instance.skillToolTipInCharacter.HideToolTip();
                     }
                 });
                 trigger.triggers.Add(deselectEntry);
             }
             firstOption = candidateButtons[0];
-            Debug.Log($"[UI_SkillSelectionPanel] PopulateSkillList: firstOption set to candidate button: {firstOption.name}");
+            //Debug.Log($"[UI_SkillSelectionPanel] PopulateSkillList: firstOption set to candidate button: {firstOption.name}");
         }
         else
         {
@@ -192,12 +192,12 @@ public class UI_SkillSelectionPanel : MonoBehaviour
             if (currentSlot != null)
             {
                 firstOption = currentSlot.gameObject;
-                Debug.Log($"[UI_SkillSelectionPanel] No candidate skills: firstOption set to currentSlot: {firstOption.name}");
+                //Debug.Log($"[UI_SkillSelectionPanel] No candidate skills: firstOption set to currentSlot: {firstOption.name}");
                 StartCoroutine(CloseAndReturnFocus());
             }
             else
             {
-                Debug.LogWarning("[UI_SkillSelectionPanel] No candidate skills and currentSlot is null.");
+                //Debug.LogWarning("[UI_SkillSelectionPanel] No candidate skills and currentSlot is null.");
             }
         }
     }
@@ -207,7 +207,7 @@ public class UI_SkillSelectionPanel : MonoBehaviour
     /// </summary>
     private void OnSkillSelected(Skill skill)
     {
-        Debug.Log($"[UI_SkillSelectionPanel] Skill selected: {skill.skillName}");
+        //Debug.Log($"[UI_SkillSelectionPanel] Skill selected: {skill.skillName}");
         SkillManager.instance.SetSelectedSkill(currentCategory, skill);
 
         if (currentSlot != null)
@@ -216,7 +216,7 @@ public class UI_SkillSelectionPanel : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[UI_SkillSelectionPanel] currentSlot is null.");
+            //Debug.LogWarning("[UI_SkillSelectionPanel] currentSlot is null.");
         }
 
         Close();
@@ -227,7 +227,7 @@ public class UI_SkillSelectionPanel : MonoBehaviour
     /// </summary>
     public void Close()
     {
-        Debug.Log("[UI_SkillSelectionPanel] Close() called.");
+        //Debug.Log("[UI_SkillSelectionPanel] Close() called.");
         if (gameObject.activeInHierarchy && !isClosing)
         {
             isClosing = true;
@@ -235,7 +235,7 @@ public class UI_SkillSelectionPanel : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[UI_SkillSelectionPanel] Close() called when panel is inactive or already closing.");
+            //Debug.LogWarning("[UI_SkillSelectionPanel] Close() called when panel is inactive or already closing.");
         }
     }
 
@@ -254,12 +254,12 @@ public class UI_SkillSelectionPanel : MonoBehaviour
         Button btn = currentSlot.GetComponent<Button>();
         if (btn != null)
         {
-            Debug.Log($"[UI_SkillSelectionPanel] Returning focus to {currentSlot.gameObject.name} using Button.Select().");
+            //Debug.Log($"[UI_SkillSelectionPanel] Returning focus to {currentSlot.gameObject.name} using Button.Select().");
             btn.Select();
         }
         else
         {
-            Debug.Log($"[UI_SkillSelectionPanel] No Button component on {currentSlot.gameObject.name}. Using SetSelectedGameObject().");
+            //Debug.Log($"[UI_SkillSelectionPanel] No Button component on {currentSlot.gameObject.name}. Using SetSelectedGameObject().");
             EventSystem.current.SetSelectedGameObject(currentSlot.gameObject);
         }
 
@@ -271,7 +271,7 @@ public class UI_SkillSelectionPanel : MonoBehaviour
         gameObject.SetActive(false);
         isClosing = false;
 
-        Debug.Log("[UI_SkillSelectionPanel] CloseAndReturnFocus: Panel is now inactive.");
+        //Debug.Log("[UI_SkillSelectionPanel] CloseAndReturnFocus: Panel is now inactive.");
     }
 
 
@@ -280,17 +280,17 @@ public class UI_SkillSelectionPanel : MonoBehaviour
         yield return new WaitForSeconds(0.1f); // EventSystem の状態安定のため少し待つ
         if (firstOption != null && firstOption.activeInHierarchy)
         {
-            Debug.Log($"[UI_SkillSelectionPanel] SetInitialSelection: firstOption is valid: {firstOption.name}");
+            //Debug.Log($"[UI_SkillSelectionPanel] SetInitialSelection: firstOption is valid: {firstOption.name}");
             EventSystem.current.SetSelectedGameObject(firstOption);
         }
         else if (currentSlot != null && currentSlot.gameObject.activeInHierarchy)
         {
-            Debug.LogWarning($"[UI_SkillSelectionPanel] SetInitialSelection: firstOption invalid; using currentSlot: {currentSlot.gameObject.name}");
+            //Debug.LogWarning($"[UI_SkillSelectionPanel] SetInitialSelection: firstOption invalid; using currentSlot: {currentSlot.gameObject.name}");
             EventSystem.current.SetSelectedGameObject(currentSlot.gameObject);
         }
         else
         {
-            Debug.LogWarning("[UI_SkillSelectionPanel] SetInitialSelection: No valid initial selection target.");
+            //Debug.LogWarning("[UI_SkillSelectionPanel] SetInitialSelection: No valid initial selection target.");
         }
     }
 

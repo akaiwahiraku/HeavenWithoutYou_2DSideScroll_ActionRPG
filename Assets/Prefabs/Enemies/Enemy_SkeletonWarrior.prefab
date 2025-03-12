@@ -366,7 +366,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 886084069
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 4723107735738678597, guid: fb8d9a79047e05f4283d00db3f1b3655, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -483,7 +483,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 886084069
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: -10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 0}
@@ -618,6 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ca3976a5bf6104d8395ce06457d526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 0}
   popUpTextPrefab: {fileID: 7165065164423441034, guid: 54837bf1409501f44b0d6198feaaab7f, type: 3}
   flashDuration: 0.2
   hitMat: {fileID: 2100000, guid: ef0d027b1b5211a43b17332dc3a74fac, type: 2}
@@ -636,6 +637,7 @@ MonoBehaviour:
   hitFx: {fileID: 3395541089546449899, guid: 99e51c2ab23e0044c9bde8e65d1bca6c, type: 3}
   criticalHitFx: {fileID: 4360476751330544660, guid: 7d3bfae4e7d9b284e91adfeec942ada3, type: 3}
   cloneHitFx: {fileID: 0}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &8563033226113335441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,13 +830,13 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  stunDuration: 1.09
+  stunDuration: 1.1
   stunDirection: {x: 10, y: 12}
   counterImage: {fileID: 1903826222763997359}
-  moveSpeed: 3
+  moveSpeed: 4
   idleTime: 2
   battleTime: 7
-  agroDistance: 5
+  agroDistance: 10
   attackDistance: 2
   attackCooldown: 0
   minAttackCooldown: 1
