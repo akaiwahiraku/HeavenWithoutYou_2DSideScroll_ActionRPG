@@ -2,9 +2,9 @@
 #if UNITY_2017_1_OR_NEWER
 // Copyright (c) Pixel Crushers. All rights reserved.
 
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
-using System.Collections.Generic;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -28,7 +28,7 @@ namespace PixelCrushers.DialogueSystem
                     ScriptPlayable<ShowAlertBehaviour> inputPlayable = (ScriptPlayable<ShowAlertBehaviour>)playable.GetInput(i);
                     ShowAlertBehaviour input = inputPlayable.GetBehaviour();
                     var message = input.message;
-                    var duration = input.useTextLengthForDuration ? 0 : (float) inputPlayable.GetDuration();
+                    var duration = input.useTextLengthForDuration ? 0 : (float)inputPlayable.GetDuration();
                     if (Application.isPlaying)
                     {
                         DialogueManager.ShowAlert(message, duration);

@@ -1,12 +1,11 @@
 ﻿#if USE_ARTICY
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using System.Text;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Xml.Serialization;
-using System;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.Articy.Articy_3_1
 {

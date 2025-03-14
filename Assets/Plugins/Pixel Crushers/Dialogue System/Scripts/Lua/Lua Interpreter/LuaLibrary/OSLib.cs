@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 
 namespace Language.Lua.Library
 {
@@ -30,7 +27,7 @@ namespace Language.Lua.Library
         public static LuaValue clock(LuaValue[] values)
         {
             int seconds = Environment.TickCount / 1000;
-            return new LuaNumber (seconds );
+            return new LuaNumber(seconds);
         }
 
         public static LuaValue date(LuaValue[] values)
@@ -42,14 +39,14 @@ namespace Language.Lua.Library
                 {
                     LuaTable table = new LuaTable();
                     DateTime now = DateTime.Now;
-                    table.SetNameValue("year", new LuaNumber (now.Year));
-                    table.SetNameValue("month", new LuaNumber (now.Month ));
-                    table.SetNameValue("day", new LuaNumber (now.Day));
-                    table.SetNameValue("hour", new LuaNumber (now.Hour));
-                    table.SetNameValue("min", new LuaNumber (now.Minute));
-                    table.SetNameValue("sec", new LuaNumber (now.Second));
-                    table.SetNameValue("wday", new LuaNumber ((int)now.DayOfWeek));
-                    table.SetNameValue("yday", new LuaNumber (now.DayOfYear));
+                    table.SetNameValue("year", new LuaNumber(now.Year));
+                    table.SetNameValue("month", new LuaNumber(now.Month));
+                    table.SetNameValue("day", new LuaNumber(now.Day));
+                    table.SetNameValue("hour", new LuaNumber(now.Hour));
+                    table.SetNameValue("min", new LuaNumber(now.Minute));
+                    table.SetNameValue("sec", new LuaNumber(now.Second));
+                    table.SetNameValue("wday", new LuaNumber((int)now.DayOfWeek));
+                    table.SetNameValue("yday", new LuaNumber(now.DayOfYear));
                     table.SetNameValue("isdst", LuaBoolean.From(now.IsDaylightSavingTime()));
                 }
                 else
@@ -58,34 +55,34 @@ namespace Language.Lua.Library
                 }
             }
 
-			return new LuaString (DateTime.Now.ToString ());//[PixelCrushers].ToShortDateString());
+            return new LuaString(DateTime.Now.ToString());//[PixelCrushers].ToShortDateString());
         }
 
         public static LuaValue time(LuaValue[] values)
         {
-            return new LuaNumber (new TimeSpan(DateTime.Now.Ticks).TotalSeconds);
+            return new LuaNumber(new TimeSpan(DateTime.Now.Ticks).TotalSeconds);
         }
 
         public static LuaValue execute(LuaValue[] values)
         {
             if (values.Length > 0)
             {
-				//[PixelCrushers]LuaString command = values[0] as LuaString;
-				//[PixelCrushers]System.Diagnostics.Process.Start(command.Text);
+                //[PixelCrushers]LuaString command = values[0] as LuaString;
+                //[PixelCrushers]System.Diagnostics.Process.Start(command.Text);
             }
-            return new LuaNumber (1);
+            return new LuaNumber(1);
         }
 
         public static LuaValue exit(LuaValue[] values)
         {
-			//[PixelCrushers]System.Threading.Thread.CurrentThread.Abort();
+            //[PixelCrushers]System.Threading.Thread.CurrentThread.Abort();
             return new LuaNumber(0);
         }
 
         public static LuaValue getenv(LuaValue[] values)
         {
-			//[PixelCrushers]LuaString name = values[0] as LuaString;
-			string variable = null;//[PixelCrushers]Environment.GetEnvironmentVariable(name.Text);
+            //[PixelCrushers]LuaString name = values[0] as LuaString;
+            string variable = null;//[PixelCrushers]Environment.GetEnvironmentVariable(name.Text);
             if (variable == null)
             {
                 return LuaNil.Nil;
@@ -98,8 +95,8 @@ namespace Language.Lua.Library
 
         public static LuaValue remove(LuaValue[] values)
         {
-			return LuaNil.Nil;
-			//[PixelCrushers]
+            return LuaNil.Nil;
+            //[PixelCrushers]
             //LuaString file = values[0] as LuaString;
             //if (File.Exists(file.Text))
             //{
@@ -126,8 +123,8 @@ namespace Language.Lua.Library
 
         public static LuaValue rename(LuaValue[] values)
         {
-			return LuaNil.Nil;
-			//[PixelCrushers]
+            return LuaNil.Nil;
+            //[PixelCrushers]
             //LuaString oldName = values[0] as LuaString;
             //LuaString newName = values[1] as LuaString;
 
@@ -149,7 +146,7 @@ namespace Language.Lua.Library
 
         public static LuaValue tmpname(LuaValue[] values)
         {
-			return LuaNil.Nil;//[PixelCrushers]new LuaString(Path.GetTempFileName());
+            return LuaNil.Nil;//[PixelCrushers]new LuaString(Path.GetTempFileName());
         }
     }
 }

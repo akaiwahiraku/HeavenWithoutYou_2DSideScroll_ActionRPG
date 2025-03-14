@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// UIの状態を表す抽象クラス
 /// </summary>
 public abstract class UIState

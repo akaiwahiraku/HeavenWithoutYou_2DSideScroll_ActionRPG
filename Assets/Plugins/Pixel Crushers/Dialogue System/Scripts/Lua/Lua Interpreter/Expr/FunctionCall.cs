@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Language.Lua
 {
@@ -12,7 +10,7 @@ namespace Language.Lua
 
             if (function != null)
             {
-				//[PixelCrushers] Removed (not WinRT compatible, and not needed for Dialogue System)
+                //[PixelCrushers] Removed (not WinRT compatible, and not needed for Dialogue System)
                 //if (function.Function.Method.DeclaringType.FullName == "Language.Lua.Library.BaseLib" &&
                 //    (function.Function.Method.Name == "loadstring" || function.Function.Method.Name == "dofile"))
                 //{
@@ -32,13 +30,13 @@ namespace Language.Lua
                 }
                 else if (this.Args.String != null)
                 {
-					return function.Function.Invoke(new LuaValue[] { this.Args.String.Evaluate(enviroment) });
+                    return function.Function.Invoke(new LuaValue[] { this.Args.String.Evaluate(enviroment) });
                 }
                 else
                 {
-					//[PixelCrushers] Was: List<LuaValue> args = this.Args.ArgList.ConvertAll(arg => arg.Evaluate(enviroment));
-					List<LuaValue> args = LuaInterpreterExtensions.EvaluateAll(this.Args.ArgList, enviroment);
-					return function.Function.Invoke(LuaMultiValue.UnWrapLuaValues(args.ToArray()));
+                    //[PixelCrushers] Was: List<LuaValue> args = this.Args.ArgList.ConvertAll(arg => arg.Evaluate(enviroment));
+                    List<LuaValue> args = LuaInterpreterExtensions.EvaluateAll(this.Args.ArgList, enviroment);
+                    return function.Function.Invoke(LuaMultiValue.UnWrapLuaValues(args.ToArray()));
                 }
             }
             else

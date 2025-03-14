@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class Explosive_Controller : MonoBehaviour, ISlowable
 {

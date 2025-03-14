@@ -1,9 +1,9 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditorInternal;
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.DialogueEditor
 {
@@ -798,7 +798,7 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
                 settings.includeInvalidEntries = EditorGUILayout.Toggle("Include Invalid Entries", settings.includeInvalidEntries);
                 settings.responseTimeout = EditorGUILayout.FloatField("Response Timeout", settings.responseTimeout);
                 settings.emTagForOldResponses = (EmTag)EditorGUILayout.EnumPopup("Em Tag For Old Responses", settings.emTagForOldResponses);
-                settings.emTagForInvalidResponses= (EmTag)EditorGUILayout.EnumPopup("Em Tag For Invalid Responses", settings.emTagForInvalidResponses);
+                settings.emTagForInvalidResponses = (EmTag)EditorGUILayout.EnumPopup("Em Tag For Invalid Responses", settings.emTagForInvalidResponses);
                 settings.cancelSubtitle.key = (KeyCode)EditorGUILayout.EnumPopup("Cancel Subtitle Key", settings.cancelSubtitle.key);
                 settings.cancelSubtitle.buttonName = EditorGUILayout.TextField("Cancel Subtitle Button", settings.cancelSubtitle.buttonName);
                 settings.cancelConversation.key = (KeyCode)EditorGUILayout.EnumPopup("Cancel Conversation Key", settings.cancelConversation.key);

@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using UnityEngine;
-
 public class PlayerAimDarkCircleState : PlayerState
 {
 
@@ -50,5 +46,5 @@ public class PlayerAimDarkCircleState : PlayerState
         }
     }
 
-    
+
 }

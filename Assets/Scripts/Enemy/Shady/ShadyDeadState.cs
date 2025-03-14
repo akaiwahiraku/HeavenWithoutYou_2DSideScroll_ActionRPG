@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class ShadyDeadState : EnemyState
 {
     private Enemy_Shady enemy;

@@ -1,8 +1,7 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using UnityEditor;
-using System;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {

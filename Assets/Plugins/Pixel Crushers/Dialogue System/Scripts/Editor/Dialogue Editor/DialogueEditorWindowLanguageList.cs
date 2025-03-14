@@ -1,10 +1,9 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
-using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.DialogueEditor
 {
@@ -50,7 +49,8 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
                         {
                             language = field.title.Substring(prefix.Length);
                         }
-                        else {
+                        else
+                        {
                             // Handle "Entry X Language":
                             Match match = Regex.Match(field.title, @"Entry [0-9]+ .*");
                             if (match.Success)

@@ -1,7 +1,7 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -15,13 +15,13 @@ namespace PixelCrushers.DialogueSystem
 
         public override void OnInspectorGUI()
         {
-            
+
             serializedObject.Update();
             EditorTools.DrawReferenceDatabase();
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("checkOnStart"), true);
             EditorGUILayout.Space();
-            
+
 
             SerializedProperty targetsAndConditions = serializedObject.FindProperty("targetsAndConditions");
 
@@ -52,7 +52,7 @@ namespace PixelCrushers.DialogueSystem
                 script.targetsAndConditions.Add(new PersistentActiveDataMultiple.TargetConditionPair());
             }
 
-            
+
             serializedObject.ApplyModifiedProperties();
         }
     }

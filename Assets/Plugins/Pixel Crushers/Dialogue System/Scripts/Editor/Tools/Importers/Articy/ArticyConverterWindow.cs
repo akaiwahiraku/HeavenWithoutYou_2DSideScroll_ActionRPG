@@ -1,10 +1,10 @@
 #if USE_ARTICY
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.Articy
 {
@@ -310,7 +310,7 @@ namespace PixelCrushers.DialogueSystem.Articy
                 prefs.TrimWhitespace);
             }
             prefs.ReorderIDs = EditorGUILayout.Toggle(new GUIContent("Reorder IDs",
-                "Reorder internal dialogue entry IDs depth-first after importing."), 
+                "Reorder internal dialogue entry IDs depth-first after importing."),
                 prefs.ReorderIDs);
             prefs.DelayEvaluation = EditorGUILayout.Toggle(new GUIContent("Delay Evaluation",
                 "If Dialogue Manager's Other Settings > Reevaluate Links After Subtitle ticked, you can generally untick this unless you're using SimStatus. If ticked, it will add <Delay Evaluation> nodes between nodes with Scripts and nodes with Conditions."),
@@ -830,16 +830,16 @@ namespace PixelCrushers.DialogueSystem.Articy
             DialogueDatabaseEditorTools.ReorderIDsInConversationsDepthFirst(database);
         }
 
-    /// <summary>
-    /// Loads the dialogue database if it already exists and overwrite is ticked; otherwise creates a new one.
-    /// </summary>
-    /// <returns>
-    /// The database.
-    /// </returns>
-    /// <param name='filename'>
-    /// Asset filename.
-    /// </param>
-    private DialogueDatabase LoadOrCreateDatabase(string filename)
+        /// <summary>
+        /// Loads the dialogue database if it already exists and overwrite is ticked; otherwise creates a new one.
+        /// </summary>
+        /// <returns>
+        /// The database.
+        /// </returns>
+        /// <param name='filename'>
+        /// Asset filename.
+        /// </param>
+        private DialogueDatabase LoadOrCreateDatabase(string filename)
         {
             var assetPath = prefs.OutputFolder;
             if (!assetPath.EndsWith("/")) assetPath += "/";

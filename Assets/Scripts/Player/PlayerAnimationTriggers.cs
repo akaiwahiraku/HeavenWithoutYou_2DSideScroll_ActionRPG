@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimationTriggers : MonoBehaviour
@@ -23,7 +21,7 @@ public class PlayerAnimationTriggers : MonoBehaviour
             {
                 EnemyStats _target = hit.GetComponent<EnemyStats>();
 
-                if(_target != null)
+                if (_target != null)
                     player.stats.DoPhysicalDamage(_target);
 
                 ItemData_Equipment weaponData = Inventory.instance.GetEquipment(EquipmentType.Weapon);
@@ -71,7 +69,8 @@ public class PlayerAnimationTriggers : MonoBehaviour
 
                 if (_target != null)
                 {
-                    player.stats.DoPhysicalDamageCharge(_target);                }
+                    player.stats.DoPhysicalDamageCharge(_target);
+                }
 
                 ItemData_Equipment weaponData = Inventory.instance.GetEquipment(EquipmentType.Weapon);
 
@@ -125,7 +124,7 @@ public class PlayerAnimationTriggers : MonoBehaviour
     {
         SkillManager.instance.darkCircle.CreateDarkCircle();
     }
-    
+
     private void ReleaseShadowFlare()
     {
         SkillManager.instance.shadowFlare.CreateShadowFlare();

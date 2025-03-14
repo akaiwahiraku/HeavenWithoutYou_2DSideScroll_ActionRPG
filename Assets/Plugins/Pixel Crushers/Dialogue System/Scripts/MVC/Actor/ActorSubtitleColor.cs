@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Text.RegularExpressions;
 
 namespace PixelCrushers.DialogueSystem
 {

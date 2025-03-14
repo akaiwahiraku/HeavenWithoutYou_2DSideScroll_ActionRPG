@@ -1,8 +1,5 @@
 ﻿#if !USE_OPENAI
 
-using UnityEngine;
-using UnityEditor;
-
 namespace PixelCrushers.DialogueSystem.DialogueEditor
 {
 

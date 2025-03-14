@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Text;
 
 namespace Language.Lua.Library
@@ -40,7 +38,7 @@ namespace Language.Lua.Library
             LuaValue[] numbers = new LuaValue[end - start + 1];
             for (int i = 0; i < numbers.Length; i++)
             {
-                numbers[i] = new LuaNumber (char.ConvertToUtf32(str.Text, start - 1 + i) );
+                numbers[i] = new LuaNumber(char.ConvertToUtf32(str.Text, start - 1 + i));
             }
 
             return new LuaMultiValue(numbers);

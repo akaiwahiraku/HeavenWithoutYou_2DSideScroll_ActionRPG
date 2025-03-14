@@ -1,6 +1,3 @@
-using UnityEngine;
-using System.Collections.Generic;
-
 namespace PixelCrushers.DialogueSystem.UnityGUI
 {
 

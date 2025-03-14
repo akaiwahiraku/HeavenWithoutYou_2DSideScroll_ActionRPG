@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerDashState : PlayerState
@@ -217,7 +216,7 @@ public class PlayerDashState : PlayerState
                     player.jumpAttack.SetAttackDirection(attackDir); // UŒ‚•ûŒü‚ğİ’è
                     stateMachine.ChangeState(player.jumpAttack);
                 }
-               
+
             }
         }
 

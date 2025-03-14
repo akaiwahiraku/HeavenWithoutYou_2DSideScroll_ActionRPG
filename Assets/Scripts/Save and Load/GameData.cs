@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Cinemachine.PostFX;
-using UnityEngine;
 
 [System.Serializable]
 public class GameData

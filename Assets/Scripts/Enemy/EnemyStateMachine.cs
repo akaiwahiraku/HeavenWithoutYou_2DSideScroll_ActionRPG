@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class EnemyStateMachine
 {
 
@@ -12,7 +8,7 @@ public class EnemyStateMachine
         currentState = _startState;
         currentState.Enter();
     }
-    
+
     public void ChangeState(EnemyState _newState)
     {
         currentState.Exit();

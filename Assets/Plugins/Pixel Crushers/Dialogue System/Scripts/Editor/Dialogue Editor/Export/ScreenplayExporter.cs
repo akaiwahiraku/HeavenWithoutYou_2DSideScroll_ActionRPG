@@ -1,9 +1,7 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using System.IO;
-using System.Text;
 using System.Collections.Generic;
+using System.IO;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -141,7 +139,7 @@ namespace PixelCrushers.DialogueSystem
                     if (show) file.WriteLine(string.Empty);
                 }
                 else if ((siblingIndex == 0 && !string.IsNullOrEmpty(entry.conditionsString)) ||
-                    (siblingIndex > 0)  ||
+                    (siblingIndex > 0) ||
                     (numLinksToEntry.ContainsKey(entry.id) && numLinksToEntry[entry.id] > 1))
                 {
                     if (string.IsNullOrEmpty(entry.conditionsString))

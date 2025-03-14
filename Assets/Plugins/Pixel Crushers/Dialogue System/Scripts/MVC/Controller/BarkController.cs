@@ -1,8 +1,8 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -192,7 +192,7 @@ namespace PixelCrushers.DialogueSystem
             IBarkUI barkUI = DialogueActor.GetBarkUI(speaker); //speaker.GetComponentInChildren(typeof(IBarkUI)) as IBarkUI;
             if ((barkUI == null) && DialogueDebug.logWarnings) Debug.LogWarning(string.Format("{0}: Bark (speaker={1}, listener={2}): '{3}' speaker has no bark UI", new System.Object[] { DialogueDebug.Prefix, speaker, listener, conversationTitle }), speaker);
             var firstValid = stopAtFirstValid || ((barkHistory == null) ? false : barkHistory.order == (BarkOrder.FirstValid));
-            ConversationModel conversationModel = new ConversationModel(database ?? DialogueManager.masterDatabase, conversationTitle, speaker, listener, DialogueManager.allowLuaExceptions, 
+            ConversationModel conversationModel = new ConversationModel(database ?? DialogueManager.masterDatabase, conversationTitle, speaker, listener, DialogueManager.allowLuaExceptions,
                 DialogueManager.isDialogueEntryValid, -1, firstValid, false, DialogueManager.useLinearGroupMode);
             ConversationState firstState = conversationModel.firstState;
             if ((firstState == null) && DialogueDebug.logWarnings) Debug.LogWarning(string.Format("{0}: Bark (speaker={1}, listener={2}): '{3}' has no START entry", new System.Object[] { DialogueDebug.Prefix, speaker, listener, conversationTitle }), speaker);

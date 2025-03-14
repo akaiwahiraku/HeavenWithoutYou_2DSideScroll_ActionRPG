@@ -1,7 +1,5 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using System;
-
 namespace PixelCrushers.DialogueSystem
 {
 

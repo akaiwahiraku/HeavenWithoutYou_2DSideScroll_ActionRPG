@@ -1,10 +1,7 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
-using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.DialogueEditor
 {
@@ -70,7 +67,8 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
                 if (itemAssetList == null) itemAssetList = MakeAssetList<T>(assets);
                 return itemAssetList;
             }
-            else {
+            else
+            {
                 if (typeof(T) != typeof(Location)) Debug.LogError(string.Format("{0}: Internal error: Unexpected type for asset list popup: {1}", DialogueDebug.Prefix, typeof(T).Name));
                 if (locationAssetList == null) locationAssetList = MakeAssetList<T>(assets);
                 return locationAssetList;

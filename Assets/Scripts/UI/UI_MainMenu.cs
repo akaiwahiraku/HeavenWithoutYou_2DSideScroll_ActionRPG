@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +10,7 @@ public class UI_MainMenu : MonoBehaviour
 
     private void Start()
     {
-        if(SaveManager.instance.HasSavedData() == false)
+        if (SaveManager.instance.HasSavedData() == false)
             continueButton.SetActive(false);
     }
 

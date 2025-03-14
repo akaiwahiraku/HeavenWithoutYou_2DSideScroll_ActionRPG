@@ -236,7 +236,7 @@ namespace PixelCrushers.DialogueSystem
                 DisableInput();
                 if (InputDeviceManager.autoFocus) SetFocus(firstSelected);
                 if (Mathf.Approximately(0, Time.timeScale))
-                { 
+                {
                     StartCoroutine(EnableInputAfterDuration(blockInputDuration));
                 }
                 else

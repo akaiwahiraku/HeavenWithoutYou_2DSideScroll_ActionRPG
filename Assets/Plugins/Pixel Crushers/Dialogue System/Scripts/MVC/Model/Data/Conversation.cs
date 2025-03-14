@@ -1,7 +1,7 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -203,7 +203,7 @@ namespace PixelCrushers.DialogueSystem
         /// </param>
         /// <param name="trimWhitespace">Trim whitespace such as newlines.</param>
         /// <param name="uniqueFieldTitle">If specified, add "-1", "-2", etc., to this field.</param>
-        public void SplitPipesIntoEntries(bool putEndSequenceOnLastSplit = true, 
+        public void SplitPipesIntoEntries(bool putEndSequenceOnLastSplit = true,
             bool trimWhitespace = false, string uniqueFieldTitle = null)
         {
             if (dialogueEntries != null)
@@ -223,7 +223,7 @@ namespace PixelCrushers.DialogueSystem
             }
         }
 
-        private void SplitEntryAtPipes(int originalEntryIndex, string dialogueText, 
+        private void SplitEntryAtPipes(int originalEntryIndex, string dialogueText,
             bool putEndSequenceOnLastSplit, bool trimWhitespace, string uniqueFieldTitle = null)
         {
             // Split by Dialogue Text:

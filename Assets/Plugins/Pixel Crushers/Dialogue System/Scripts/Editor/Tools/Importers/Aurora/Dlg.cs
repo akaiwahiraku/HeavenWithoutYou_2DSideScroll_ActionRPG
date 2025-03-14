@@ -1,11 +1,11 @@
 ﻿#if USE_AURORA
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using System.Text;
-using System.IO;
-using System.Xml.Serialization;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Xml.Serialization;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.Aurora
 {

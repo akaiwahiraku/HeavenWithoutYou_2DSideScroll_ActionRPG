@@ -2,9 +2,9 @@
 
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.DialogueEditor
 {
@@ -248,7 +248,7 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
         private void ToggleSyncVariablesFromDB()
         {
             database.syncInfo.syncVariables = !database.syncInfo.syncVariables;
-            if (!database.syncInfo.syncVariables && database.syncInfo.syncVariablesDatabase!= null)
+            if (!database.syncInfo.syncVariables && database.syncInfo.syncVariablesDatabase != null)
             {
                 if (EditorUtility.DisplayDialog("Disconnect Synced DB",
                     "Also delete synced variables from this database?", "Yes", "No"))
@@ -413,7 +413,7 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             public CreateNewVariableDelegate createNewVariable = null;
 
             public VariableGroup(DialogueDatabase database, string group, List<Variable> variableList,
-                List<string> variableGroupFoldouts, HashSet<string> conflictedVariableNames, 
+                List<string> variableGroupFoldouts, HashSet<string> conflictedVariableNames,
                 bool canShowRuntimeValues, Dictionary<string, RuntimeValue> runtimeValues,
                 System.Action refreshVariablesView, CreateNewVariableDelegate createNewVariable, HashSet<int> syncedVariableIDs)
             {
@@ -609,6 +609,6 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             }
         }
 
-     }
+    }
 
 }

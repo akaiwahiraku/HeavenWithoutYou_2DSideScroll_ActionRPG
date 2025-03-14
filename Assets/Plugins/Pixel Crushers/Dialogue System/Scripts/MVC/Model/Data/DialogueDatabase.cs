@@ -1,8 +1,8 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -943,7 +943,7 @@ namespace PixelCrushers.DialogueSystem
             }
             else if (asset is Variable)
             {
-                return database.variableNameCache.ContainsKey(asset.Name);            
+                return database.variableNameCache.ContainsKey(asset.Name);
             }
             else if (asset is Conversation)
             {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Freeze enemies effect", menuName = "Data/Item effect/Freeze enemies")]
@@ -16,7 +14,7 @@ public class FreezeEnemies_Effect : ItemEffect
         if (playerStats.currentHealth > playerStats.GetMaxHealthValue() * .1f)
             return;
 
-        if(!Inventory.instance.CanUseArmor())
+        if (!Inventory.instance.CanUseArmor())
             return;
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(_transform.position, 2);

@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers
 {
@@ -21,7 +21,7 @@ namespace PixelCrushers
             var textTableProperty = property.FindPropertyRelative("m_textTable");
             if (textProperty == null || stringAssetProperty == null || textTableProperty == null) return base.GetPropertyHeight(property, label);
             var isTextAssigned = (textProperty != null && !string.IsNullOrEmpty(textProperty.stringValue));
-            var isStringAssetAssigned = (stringAssetProperty != null &&  stringAssetProperty.objectReferenceValue != null);
+            var isStringAssetAssigned = (stringAssetProperty != null && stringAssetProperty.objectReferenceValue != null);
             var isTextTableAssigned = (textTableProperty != null && textTableProperty.objectReferenceValue != null);
             var isContentAssigned = isTextAssigned || isStringAssetAssigned || isTextTableAssigned;
 

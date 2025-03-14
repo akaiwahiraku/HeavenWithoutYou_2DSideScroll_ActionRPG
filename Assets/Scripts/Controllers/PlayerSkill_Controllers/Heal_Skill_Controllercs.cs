@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Heal_Skill_Controller : MonoBehaviour
@@ -13,11 +12,11 @@ public class Heal_Skill_Controller : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
     }
 
-    
+
     private void Update()
     {
-       
+
     }
 
-    
+
 }

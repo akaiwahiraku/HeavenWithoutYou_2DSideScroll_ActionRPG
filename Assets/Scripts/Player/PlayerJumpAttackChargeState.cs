@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerJumpAttackChargeState : PlayerState
@@ -53,7 +52,7 @@ public class PlayerJumpAttackChargeState : PlayerState
 
         // 攻撃方向をリセットして他のステートに影響しないようにする
         attackDir = 0;
-        
+
     }
 
     public override void Update()

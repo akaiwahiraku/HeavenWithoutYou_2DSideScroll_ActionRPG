@@ -1,7 +1,7 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -57,13 +57,13 @@ namespace PixelCrushers.DialogueSystem
 
         public Sequencer sequencer { get { return m_sequencer; } }
 
-        public IDialogueUI dialogueUI 
-        { 
-            get 
-            { 
-                return ui; 
-            } 
-            set 
+        public IDialogueUI dialogueUI
+        {
+            get
+            {
+                return ui;
+            }
+            set
             {
                 if (ui != value)
                 {
@@ -73,7 +73,7 @@ namespace PixelCrushers.DialogueSystem
                     ui.Open();
                     ui.SelectedResponseHandler += OnSelectedResponse;
                 }
-            } 
+            }
         }
 
         /// <summary>
@@ -360,11 +360,11 @@ namespace PixelCrushers.DialogueSystem
         {
             if ((subtitle != null) && (settings != null) && (settings.subtitleSettings != null))
             {
-                if (subtitle.formattedText.noSubtitle || 
-                    string.Equals(subtitle.sequence, "None()") || 
+                if (subtitle.formattedText.noSubtitle ||
+                    string.Equals(subtitle.sequence, "None()") ||
                     string.Equals(subtitle.sequence, "None();") ||
-                    (!settings.cameraSettings.showSubtitleOnEmptyContinue && 
-                        (string.Equals(subtitle.sequence, "Continue()") || 
+                    (!settings.cameraSettings.showSubtitleOnEmptyContinue &&
+                        (string.Equals(subtitle.sequence, "Continue()") ||
                         string.Equals(subtitle.sequence, "Continue();"))))
                 {
                     return false;

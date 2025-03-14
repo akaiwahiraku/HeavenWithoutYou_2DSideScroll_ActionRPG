@@ -1,9 +1,8 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
-using UnityEditorInternal;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.DialogueEditor
 {
@@ -439,7 +438,7 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
                             List<DialogueEntry> copyOfExistingBranch = new List<DialogueEntry>();
                             copyOfExistingBranch.AddRange(existingBranch);
                             List<List<DialogueEntry>> newBranchesCreated;
-                            fullBranch = RecursiveContinueBranch(conversation, GetNodeByID(conversation, branchNode.outgoingLinks[0].destinationDialogueID), 
+                            fullBranch = RecursiveContinueBranch(conversation, GetNodeByID(conversation, branchNode.outgoingLinks[0].destinationDialogueID),
                                 copyOfExistingBranch, out newBranchesCreated);
                             additionalBranches.AddRange(newBranchesCreated);
                         }
@@ -503,7 +502,7 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
                 List<DialogueEntry> copyOfExistingBranch = new List<DialogueEntry>();
                 copyOfExistingBranch.AddRange(existingBranch);
                 List<List<DialogueEntry>> additionalNewBranchesCreated;
-                outList = RecursiveContinueBranch(conversation, GetNodeByID(conversation, branchNode.outgoingLinks[0].destinationDialogueID), 
+                outList = RecursiveContinueBranch(conversation, GetNodeByID(conversation, branchNode.outgoingLinks[0].destinationDialogueID),
                     copyOfExistingBranch, out additionalNewBranchesCreated);
                 newBranchesCreated.AddRange(additionalNewBranchesCreated);
             }

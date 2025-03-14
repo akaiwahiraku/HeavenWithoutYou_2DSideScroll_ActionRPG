@@ -1,11 +1,10 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
-using UnityEditorInternal;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+using UnityEditor;
+using UnityEditorInternal;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.DialogueEditor
 {
@@ -120,7 +119,7 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
                 filteredItems = database.items;
                 itemReorderableList = new ReorderableList(database.items, typeof(Item), true, true, true, true);
             }
-            
+
             itemReorderableList.drawHeaderCallback = DrawItemListHeader;
             itemReorderableList.drawElementCallback = DrawItemListElement;
             itemReorderableList.drawElementBackgroundCallback = DrawItemListElementBackground;
@@ -131,7 +130,7 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             else
             {
                 itemReorderableList.onAddCallback = OnItemListAdd;
-            }            
+            }
             itemReorderableList.onRemoveCallback = OnItemListRemove;
             itemReorderableList.onSelectCallback = OnItemListSelect;
             itemReorderableList.onReorderCallback = OnItemListReorder;
@@ -403,7 +402,7 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
 
         private void DrawOtherItemPrimaryFields(Item item)
         {
-            if (item == null || item.fields == null || template.itemPrimaryFieldTitles== null) return;
+            if (item == null || item.fields == null || template.itemPrimaryFieldTitles == null) return;
             foreach (var field in item.fields)
             {
                 var fieldTitle = field.title;

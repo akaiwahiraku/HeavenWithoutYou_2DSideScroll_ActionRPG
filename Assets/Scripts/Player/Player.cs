@@ -1,8 +1,5 @@
-using JetBrains.Annotations;
 using System.Collections;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : Entity
 {

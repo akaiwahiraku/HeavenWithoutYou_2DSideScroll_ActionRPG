@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -28,7 +28,7 @@ namespace PixelCrushers.DialogueSystem
             EditorGUILayout.PropertyField(accumulateTextProperty, true);
             if (accumulateTextProperty.boolValue)
             {
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("maxLines"), true); 
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("maxLines"), true);
             }
             EditorGUILayout.PropertyField(serializedObject.FindProperty("addSpeakerName"), true);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("addSpeakerNameFormat"), true);
@@ -62,7 +62,7 @@ namespace PixelCrushers.DialogueSystem
             EditorGUILayout.PropertyField(serializedObject.FindProperty("onFocus"), true);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("onUnfocus"), true);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("onBackButtonDown"), true);
-            
+
             serializedObject.ApplyModifiedProperties();
         }
 

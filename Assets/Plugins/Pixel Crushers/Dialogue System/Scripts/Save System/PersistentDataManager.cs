@@ -1053,7 +1053,7 @@ namespace PixelCrushers.DialogueSystem
             var sb = new StringBuilder(16384, System.Int32.MaxValue);
             for (int i = 0; i < conversationTable.List.Count; i++)
             {
-                var conversationID = i + 1;                
+                var conversationID = i + 1;
                 var fieldTable = conversationTable.List[i] as Language.Lua.LuaTable;
                 if (ExpandSimStatusForConversation(sb, conversationID, conversationID.ToString(), fieldTable, luaStringSimX, dialogueEntryCache))
                 {
@@ -1064,11 +1064,11 @@ namespace PixelCrushers.DialogueSystem
             {
                 if (kvp.Key == null || kvp.Value == null || !(kvp.Value is Language.Lua.LuaTable)) continue;
                 var conversationIDString = kvp.Key.ToString();
-                var conversationID = Tools.StringToInt(conversationIDString);                
+                var conversationID = Tools.StringToInt(conversationIDString);
                 var fieldTable = kvp.Value as Language.Lua.LuaTable;
                 if (ExpandSimStatusForConversation(sb, conversationID, conversationIDString, fieldTable, luaStringSimX, dialogueEntryCache))
                 {
-                    conversationsLeft.Remove(conversationID); 
+                    conversationsLeft.Remove(conversationID);
                 }
             }
             Lua.Run(sb.ToString());
@@ -1085,7 +1085,7 @@ namespace PixelCrushers.DialogueSystem
 #if SAFE_SIMSTATUS
                     if (DialogueDebug.logInfo) Debug.Log("DEBUG: Add SimStatus for new conversation [" + conversationID + "]: " + conversation.Title);
 #endif
-                        DialogueLua.AddToConversationTable(conversationTable, conversation, true);
+                    DialogueLua.AddToConversationTable(conversationTable, conversation, true);
                 }
             }
         }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShadowFlare_Skill_Controller : MonoBehaviour
@@ -71,7 +69,7 @@ public class ShadowFlare_Skill_Controller : MonoBehaviour
         int baseMagicalDamage = _fireDamage + _iceDamage + _lightningDamage + player.stats.intelligence.GetValue();
 
         // ターゲットの耐性などを考慮する処理（元の DoMagicalDamage 内の処理に準じる）
-        baseMagicalDamage = player.stats.ChechTargetResistance(enemyStats, baseMagicalDamage);
+        baseMagicalDamage = player.stats.CheckTargetResistance(enemyStats, baseMagicalDamage);
         // ここで damageMultiplier を掛け合わせた最終ダメージを算出
         int finalDamage = Mathf.RoundToInt(baseMagicalDamage * damageMultiplier);
         enemyStats.TakeDamage(finalDamage);

@@ -43,7 +43,7 @@ namespace PixelCrushers
 
         protected virtual void OnDestroy()
         {
-            UILocalizationManager.languageChanged -= OnLanguageChanged; 
+            UILocalizationManager.languageChanged -= OnLanguageChanged;
         }
 
         protected virtual void OnEnable()

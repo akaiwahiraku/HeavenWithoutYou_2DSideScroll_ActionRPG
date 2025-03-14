@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public class PlayerPrimaryAttackChargeState : PlayerState
@@ -35,7 +33,7 @@ public class PlayerPrimaryAttackChargeState : PlayerState
 
         player.StartCoroutine(DelayedReleaseSurge(0.5f));
 
-        player.SetVelocity(attackDir,0);
+        player.SetVelocity(attackDir, 0);
 
         // このステートに入っている間、armor を 2 倍にする
         // 現在のarmor値を取得して同じ数値をモディファイアとして追加

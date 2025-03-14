@@ -62,7 +62,7 @@ namespace PixelCrushers
         {
             if (!monitorInput) return;
             if (!(m_selectable.enabled && m_selectable.interactable && m_selectable.gameObject.activeInHierarchy)) return;
-            if (InputDeviceManager.IsKeyDown(key) || 
+            if (InputDeviceManager.IsKeyDown(key) ||
                 (!string.IsNullOrEmpty(buttonName) && InputDeviceManager.IsButtonDown(buttonName)) ||
                 (anyKeyOrButton && InputDeviceManager.IsAnyKeyDown()))
             {
@@ -73,7 +73,7 @@ namespace PixelCrushers
 
         protected virtual bool IsBeingClickedBySubmit()
         {
-            return eventSystem  != null &&
+            return eventSystem != null &&
                 eventSystem.currentSelectedGameObject == m_selectable.gameObject &&
                 InputDeviceManager.instance != null &&
                 InputDeviceManager.IsButtonDown(InputDeviceManager.instance.submitButton);
@@ -93,16 +93,16 @@ namespace PixelCrushers
 
         protected IEnumerator SimulateButtonClick()
         {
-            m_selectable.OnPointerDown(new PointerEventData(eventSystem ));
+            m_selectable.OnPointerDown(new PointerEventData(eventSystem));
             var timeLeft = simulateButtonDownDuration;
             while (timeLeft > 0)
             {
                 yield return null;
                 timeLeft -= Time.unscaledDeltaTime;
             }
-            m_selectable.OnPointerUp(new PointerEventData(eventSystem ));
+            m_selectable.OnPointerUp(new PointerEventData(eventSystem));
             m_selectable.OnDeselect(null);
-            ExecuteEvents.Execute(m_selectable.gameObject, new PointerEventData(eventSystem ), ExecuteEvents.submitHandler);
+            ExecuteEvents.Execute(m_selectable.gameObject, new PointerEventData(eventSystem), ExecuteEvents.submitHandler);
         }
 
     }

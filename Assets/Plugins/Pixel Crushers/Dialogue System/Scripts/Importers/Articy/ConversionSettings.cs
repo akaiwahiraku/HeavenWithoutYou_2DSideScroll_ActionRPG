@@ -2,8 +2,8 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml.Serialization;
 
 namespace PixelCrushers.DialogueSystem.Articy

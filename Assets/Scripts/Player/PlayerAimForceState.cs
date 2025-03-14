@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using UnityEngine;
-
 public class PlayerAimForceState : PlayerState
 {
 
@@ -54,5 +50,5 @@ public class PlayerAimForceState : PlayerState
         }
     }
 
-    
+
 }

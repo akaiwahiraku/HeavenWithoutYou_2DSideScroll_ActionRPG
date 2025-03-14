@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace Language.Lua
@@ -29,9 +28,9 @@ namespace Language.Lua
                 return parsingResult.Item1 as Chunk;
             }
 
-			//[PixelCrushers]int errorCount = Errors.Count;
+            //[PixelCrushers]int errorCount = Errors.Count;
             Chunk chunk = new Chunk();
-			//[PixelCrushers]int start_position = position;
+            //[PixelCrushers]int start_position = position;
 
             ParseSpOpt(out success);
 
@@ -39,9 +38,9 @@ namespace Language.Lua
             {
                 while (true)
                 {
-					//[PixelCrushers] Don't consume end/else/elseif because control blocks need to see them.
-					if (PeekTerminalString("end") || PeekTerminalString("else") || PeekTerminalString("elseif")) 
-					{ return chunk; }
+                    //[PixelCrushers] Don't consume end/else/elseif because control blocks need to see them.
+                    if (PeekTerminalString("end") || PeekTerminalString("else") || PeekTerminalString("elseif"))
+                    { return chunk; }
 
                     //[PixelCrushers] Handle empty statements (i.e., nothing) ended with semicolon.
                     var semiSuccess = true;
@@ -68,7 +67,7 @@ namespace Language.Lua
 
                     while (true)
                     {
-						//[PixelCrushers]int seq_start_position2 = position;
+                        //[PixelCrushers]int seq_start_position2 = position;
                         MatchTerminal(';', out success);
                         if (!success) { break; }
 
@@ -101,43 +100,43 @@ namespace Language.Lua
             Statement statement = null;
 
             statement = ParseAssignment(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position);return statement; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position); return statement; }
 
             statement = ParseFunction(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position);return statement; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position); return statement; }
 
             statement = ParseLocalVar(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position);return statement; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position); return statement; }
 
             statement = ParseLocalFunc(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position);return statement; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position); return statement; }
 
             statement = ParseReturnStmt(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position);return statement; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position); return statement; }
 
             statement = ParseBreakStmt(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position);return statement; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position); return statement; }
 
             statement = ParseDoStmt(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position);return statement; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position); return statement; }
 
             statement = ParseIfStmt(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position);return statement; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position); return statement; }
 
             statement = ParseForStmt(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position);return statement; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position); return statement; }
 
             statement = ParseForInStmt(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position);return statement; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position); return statement; }
 
             statement = ParseWhileStmt(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position);return statement; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position); return statement; }
 
             statement = ParseRepeatStmt(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position);return statement; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position); return statement; }
 
             statement = ParseExprStmt(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position);return statement; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(statement, success, position); return statement; }
 
             return statement;
         }
@@ -161,7 +160,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(assignment, success, position);return assignment;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(assignment, success, position); return assignment;
             }
 
             ParseSpOpt(out success);
@@ -171,7 +170,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse '=' of Assignment.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(assignment, success, position);return assignment;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(assignment, success, position); return assignment;
             }
 
             ParseSpOpt(out success);
@@ -207,7 +206,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(function, success, position);return function;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(function, success, position); return function;
             }
 
             ParseSpReq(out success);
@@ -215,7 +214,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of Function.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(function, success, position);return function;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(function, success, position); return function;
             }
 
             function.Name = ParseFunctionName(out success);
@@ -223,7 +222,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Name of Function.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(function, success, position);return function;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(function, success, position); return function;
             }
 
             ParseSpOpt(out success);
@@ -251,7 +250,7 @@ namespace Language.Lua
                 return parsingResult.Item1 as LocalVar;
             }
 
-			//[PixelCrushers]int errorCount = Errors.Count;
+            //[PixelCrushers]int errorCount = Errors.Count;
             LocalVar localVar = new LocalVar();
             int start_position = position;
 
@@ -259,7 +258,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(localVar, success, position);return localVar;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(localVar, success, position); return localVar;
             }
 
             ParseSpReq(out success);
@@ -267,7 +266,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of LocalVar.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(localVar, success, position);return localVar;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(localVar, success, position); return localVar;
             }
 
             localVar.NameList = ParseNameList(out success);
@@ -275,7 +274,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse NameList of LocalVar.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(localVar, success, position);return localVar;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(localVar, success, position); return localVar;
             }
 
             ParseSpOpt(out success);
@@ -321,7 +320,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(localFunc, success, position);return localFunc;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(localFunc, success, position); return localFunc;
             }
 
             ParseSpReq(out success);
@@ -329,7 +328,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of LocalFunc.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(localFunc, success, position);return localFunc;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(localFunc, success, position); return localFunc;
             }
 
             MatchTerminalString("function", out success);
@@ -337,7 +336,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse 'function' of LocalFunc.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(localFunc, success, position);return localFunc;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(localFunc, success, position); return localFunc;
             }
 
             ParseSpReq(out success);
@@ -345,7 +344,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of LocalFunc.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(localFunc, success, position);return localFunc;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(localFunc, success, position); return localFunc;
             }
 
             localFunc.Name = ParseName(out success);
@@ -353,7 +352,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Name of LocalFunc.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(localFunc, success, position);return localFunc;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(localFunc, success, position); return localFunc;
             }
 
             ParseSpOpt(out success);
@@ -402,7 +401,7 @@ namespace Language.Lua
                 return parsingResult.Item1 as ReturnStmt;
             }
 
-			//[PixelCrushers]int errorCount = Errors.Count;
+            //[PixelCrushers]int errorCount = Errors.Count;
             ReturnStmt returnStmt = new ReturnStmt();
             int start_position = position;
 
@@ -410,7 +409,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(returnStmt, success, position);return returnStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(returnStmt, success, position); return returnStmt;
             }
 
             ParseSpReq(out success);
@@ -418,7 +417,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of ReturnStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(returnStmt, success, position);return returnStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(returnStmt, success, position); return returnStmt;
             }
 
             returnStmt.ExprList = ParseExprList(out success);
@@ -447,7 +446,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(breakStmt, success, position);return breakStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(breakStmt, success, position); return breakStmt;
             }
 
             ParseSpOpt(out success);
@@ -476,7 +475,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(doStmt, success, position);return doStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(doStmt, success, position); return doStmt;
             }
 
             ParseSpReq(out success);
@@ -484,7 +483,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of DoStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(doStmt, success, position);return doStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(doStmt, success, position); return doStmt;
             }
 
             doStmt.Body = ParseChunk(out success);
@@ -492,7 +491,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Body of DoStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(doStmt, success, position);return doStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(doStmt, success, position); return doStmt;
             }
 
             MatchTerminalString("end", out success);
@@ -500,7 +499,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse 'end' of DoStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(doStmt, success, position);return doStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(doStmt, success, position); return doStmt;
             }
 
             ParseSpReq(out success);
@@ -534,7 +533,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(ifStmt, success, position);return ifStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(ifStmt, success, position); return ifStmt;
             }
 
             ParseSpReq(out success);
@@ -542,7 +541,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of IfStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(ifStmt, success, position);return ifStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(ifStmt, success, position); return ifStmt;
             }
 
             ifStmt.Condition = ParseExpr(out success);
@@ -550,7 +549,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Condition of IfStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(ifStmt, success, position);return ifStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(ifStmt, success, position); return ifStmt;
             }
 
             MatchTerminalString("then", out success);
@@ -558,7 +557,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse 'then' of IfStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(ifStmt, success, position);return ifStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(ifStmt, success, position); return ifStmt;
             }
 
             ParseSpReq(out success);
@@ -566,7 +565,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of IfStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(ifStmt, success, position);return ifStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(ifStmt, success, position); return ifStmt;
             }
 
             ifStmt.ThenBlock = ParseChunk(out success);
@@ -574,7 +573,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse ThenBlock of IfStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(ifStmt, success, position);return ifStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(ifStmt, success, position); return ifStmt;
             }
 
             while (true)
@@ -614,7 +613,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse 'end' of IfStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(ifStmt, success, position);return ifStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(ifStmt, success, position); return ifStmt;
             }
 
             bool optionalSuccess = false; //[PixelCrushers] Handle optional trailing semicolon.
@@ -651,7 +650,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(elseifBlock, success, position);return elseifBlock;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(elseifBlock, success, position); return elseifBlock;
             }
 
             ParseSpReq(out success);
@@ -659,7 +658,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of ElseifBlock.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(elseifBlock, success, position);return elseifBlock;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(elseifBlock, success, position); return elseifBlock;
             }
 
             elseifBlock.Condition = ParseExpr(out success);
@@ -667,7 +666,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Condition of ElseifBlock.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(elseifBlock, success, position);return elseifBlock;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(elseifBlock, success, position); return elseifBlock;
             }
 
             MatchTerminalString("then", out success);
@@ -675,7 +674,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse 'then' of ElseifBlock.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(elseifBlock, success, position);return elseifBlock;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(elseifBlock, success, position); return elseifBlock;
             }
 
             ParseSpReq(out success);
@@ -683,7 +682,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of ElseifBlock.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(elseifBlock, success, position);return elseifBlock;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(elseifBlock, success, position); return elseifBlock;
             }
 
             elseifBlock.ThenBlock = ParseChunk(out success);
@@ -717,7 +716,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position);return forStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position); return forStmt;
             }
 
             ParseSpReq(out success);
@@ -725,7 +724,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of ForStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position);return forStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position); return forStmt;
             }
 
             forStmt.VarName = ParseName(out success);
@@ -733,7 +732,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse VarName of ForStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position);return forStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position); return forStmt;
             }
 
             ParseSpOpt(out success);
@@ -743,7 +742,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse '=' of ForStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position);return forStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position); return forStmt;
             }
 
             ParseSpOpt(out success);
@@ -753,7 +752,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Start of ForStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position);return forStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position); return forStmt;
             }
 
             MatchTerminal(',', out success);
@@ -761,7 +760,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse ',' of ForStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position);return forStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position); return forStmt;
             }
 
             ParseSpOpt(out success);
@@ -771,7 +770,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse End of ForStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position);return forStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position); return forStmt;
             }
 
             while (true)
@@ -797,7 +796,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse 'do' of ForStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position);return forStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position); return forStmt;
             }
 
             ParseSpReq(out success);
@@ -805,7 +804,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of ForStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position);return forStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position); return forStmt;
             }
 
             forStmt.Body = ParseChunk(out success);
@@ -813,7 +812,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Body of ForStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position);return forStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position); return forStmt;
             }
 
             MatchTerminalString("end", out success);
@@ -821,7 +820,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse 'end' of ForStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position);return forStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forStmt, success, position); return forStmt;
             }
 
             ParseSpReq(out success);
@@ -855,7 +854,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position);return forInStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position); return forInStmt;
             }
 
             ParseSpReq(out success);
@@ -863,7 +862,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of ForInStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position);return forInStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position); return forInStmt;
             }
 
             forInStmt.NameList = ParseNameList(out success);
@@ -871,7 +870,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse NameList of ForInStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position);return forInStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position); return forInStmt;
             }
 
             ParseSpReq(out success);
@@ -879,7 +878,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of ForInStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position);return forInStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position); return forInStmt;
             }
 
             MatchTerminalString("in", out success);
@@ -887,7 +886,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse 'in' of ForInStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position);return forInStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position); return forInStmt;
             }
 
             ParseSpReq(out success);
@@ -895,7 +894,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of ForInStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position);return forInStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position); return forInStmt;
             }
 
             forInStmt.ExprList = ParseExprList(out success);
@@ -903,7 +902,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse ExprList of ForInStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position);return forInStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position); return forInStmt;
             }
 
             MatchTerminalString("do", out success);
@@ -911,7 +910,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse 'do' of ForInStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position);return forInStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position); return forInStmt;
             }
 
             ParseSpReq(out success);
@@ -919,7 +918,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of ForInStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position);return forInStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position); return forInStmt;
             }
 
             forInStmt.Body = ParseChunk(out success);
@@ -927,7 +926,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Body of ForInStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position);return forInStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position); return forInStmt;
             }
 
             MatchTerminalString("end", out success);
@@ -935,7 +934,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse 'end' of ForInStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position);return forInStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(forInStmt, success, position); return forInStmt;
             }
 
             ParseSpReq(out success);
@@ -969,7 +968,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(whileStmt, success, position);return whileStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(whileStmt, success, position); return whileStmt;
             }
 
             ParseSpReq(out success);
@@ -977,7 +976,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of WhileStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(whileStmt, success, position);return whileStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(whileStmt, success, position); return whileStmt;
             }
 
             whileStmt.Condition = ParseExpr(out success);
@@ -985,7 +984,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Condition of WhileStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(whileStmt, success, position);return whileStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(whileStmt, success, position); return whileStmt;
             }
 
             MatchTerminalString("do", out success);
@@ -993,7 +992,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse 'do' of WhileStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(whileStmt, success, position);return whileStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(whileStmt, success, position); return whileStmt;
             }
 
             ParseSpReq(out success);
@@ -1001,7 +1000,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of WhileStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(whileStmt, success, position);return whileStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(whileStmt, success, position); return whileStmt;
             }
 
             whileStmt.Body = ParseChunk(out success);
@@ -1009,7 +1008,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Body of WhileStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(whileStmt, success, position);return whileStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(whileStmt, success, position); return whileStmt;
             }
 
             MatchTerminalString("end", out success);
@@ -1017,7 +1016,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse 'end' of WhileStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(whileStmt, success, position);return whileStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(whileStmt, success, position); return whileStmt;
             }
 
             ParseSpReq(out success);
@@ -1051,7 +1050,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(repeatStmt, success, position);return repeatStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(repeatStmt, success, position); return repeatStmt;
             }
 
             ParseSpReq(out success);
@@ -1059,7 +1058,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of RepeatStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(repeatStmt, success, position);return repeatStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(repeatStmt, success, position); return repeatStmt;
             }
 
             repeatStmt.Body = ParseChunk(out success);
@@ -1067,7 +1066,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Body of RepeatStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(repeatStmt, success, position);return repeatStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(repeatStmt, success, position); return repeatStmt;
             }
 
             MatchTerminalString("until", out success);
@@ -1075,7 +1074,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse 'until' of RepeatStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(repeatStmt, success, position);return repeatStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(repeatStmt, success, position); return repeatStmt;
             }
 
             ParseSpReq(out success);
@@ -1083,7 +1082,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse SpReq of RepeatStmt.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(repeatStmt, success, position);return repeatStmt;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(repeatStmt, success, position); return repeatStmt;
             }
 
             repeatStmt.Condition = ParseExpr(out success);
@@ -1109,7 +1108,7 @@ namespace Language.Lua
                 return parsingResult.Item1 as List<Var>;
             }
 
-			//[PixelCrushers]int errorCount = Errors.Count;
+            //[PixelCrushers]int errorCount = Errors.Count;
             List<Var> list_Var = new List<Var>();
             int start_position = position;
 
@@ -1118,7 +1117,7 @@ namespace Language.Lua
             else
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(list_Var, success, position);return list_Var;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(list_Var, success, position); return list_Var;
             }
 
             while (true)
@@ -1166,7 +1165,7 @@ namespace Language.Lua
                 return parsingResult.Item1 as List<Expr>;
             }
 
-			//[PixelCrushers]int errorCount = Errors.Count;
+            //[PixelCrushers]int errorCount = Errors.Count;
             List<Expr> list_Expr = new List<Expr>();
             int start_position = position;
 
@@ -1175,7 +1174,7 @@ namespace Language.Lua
             else
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(list_Expr, success, position);return list_Expr;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(list_Expr, success, position); return list_Expr;
             }
 
             while (true)
@@ -1230,7 +1229,7 @@ namespace Language.Lua
             if (success) { return expr.Simplify(); }
 
             expr = ParseTerm(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(expr, success, position);return expr; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(expr, success, position); return expr; }
 
             return expr;
         }
@@ -1250,28 +1249,28 @@ namespace Language.Lua
             Term term = null;
 
             term = ParseNilLiteral(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position);return term; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position); return term; }
 
             term = ParseBoolLiteral(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position);return term; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position); return term; }
 
             term = ParseNumberLiteral(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position);return term; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position); return term; }
 
             term = ParseStringLiteral(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position);return term; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position); return term; }
 
             term = ParseFunctionValue(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position);return term; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position); return term; }
 
             term = ParseTableConstructor(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position);return term; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position); return term; }
 
             term = ParseVariableArg(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position);return term; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position); return term; }
 
             term = ParsePrimaryExpr(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position);return term; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(term, success, position); return term; }
 
             return term;
         }
@@ -1344,10 +1343,10 @@ namespace Language.Lua
             NumberLiteral numberLiteral = new NumberLiteral();
 
             numberLiteral.HexicalText = ParseHexicalNumber(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(numberLiteral, success, position);return numberLiteral; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(numberLiteral, success, position); return numberLiteral; }
 
             numberLiteral.Text = ParseFloatNumber(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(numberLiteral, success, position);return numberLiteral; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(numberLiteral, success, position); return numberLiteral; }
 
             return numberLiteral;
         }
@@ -1382,7 +1381,7 @@ namespace Language.Lua
                 }
                 break;
             }
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(stringLiteral, success, position);return stringLiteral; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(stringLiteral, success, position); return stringLiteral; }
 
             while (true)
             {
@@ -1400,10 +1399,10 @@ namespace Language.Lua
                 }
                 break;
             }
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(stringLiteral, success, position);return stringLiteral; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(stringLiteral, success, position); return stringLiteral; }
 
             stringLiteral.Text = ParseLongString(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(stringLiteral, success, position);return stringLiteral; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(stringLiteral, success, position); return stringLiteral; }
 
             return stringLiteral;
         }
@@ -1448,7 +1447,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(functionValue, success, position);return functionValue;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(functionValue, success, position); return functionValue;
             }
 
             ParseSpOpt(out success);
@@ -1484,14 +1483,14 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(functionBody, success, position);return functionBody;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(functionBody, success, position); return functionBody;
             }
 
             ParseSpOpt(out success);
 
             while (true)
             {
-				//[PixelCrushers]int seq_start_position1 = position;
+                //[PixelCrushers]int seq_start_position1 = position;
                 functionBody.ParamList = ParseParamList(out success);
                 if (!success) { break; }
 
@@ -1505,7 +1504,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse ')' of FunctionBody.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(functionBody, success, position);return functionBody;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(functionBody, success, position); return functionBody;
             }
 
             functionBody.Chunk = ParseChunk(out success);
@@ -1513,7 +1512,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Chunk of FunctionBody.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(functionBody, success, position);return functionBody;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(functionBody, success, position); return functionBody;
             }
 
             MatchTerminalString("end", out success);
@@ -1521,7 +1520,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse 'end' of FunctionBody.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(functionBody, success, position);return functionBody;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(functionBody, success, position); return functionBody;
             }
 
             ParseSpOpt(out success);
@@ -1546,16 +1545,16 @@ namespace Language.Lua
             Access access = null;
 
             access = ParseNameAccess(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(access, success, position);return access; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(access, success, position); return access; }
 
             access = ParseKeyAccess(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(access, success, position);return access; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(access, success, position); return access; }
 
             access = ParseMethodCall(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(access, success, position);return access; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(access, success, position); return access; }
 
             access = ParseFunctionCall(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(access, success, position);return access; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(access, success, position); return access; }
 
             return access;
         }
@@ -1575,10 +1574,10 @@ namespace Language.Lua
             BaseExpr baseExpr = null;
 
             baseExpr = ParseGroupExpr(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(baseExpr, success, position);return baseExpr; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(baseExpr, success, position); return baseExpr; }
 
             baseExpr = ParseVarName(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(baseExpr, success, position);return baseExpr; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(baseExpr, success, position); return baseExpr; }
 
             return baseExpr;
         }
@@ -1602,7 +1601,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(keyAccess, success, position);return keyAccess;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(keyAccess, success, position); return keyAccess;
             }
 
             ParseSpOpt(out success);
@@ -1612,7 +1611,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Key of KeyAccess.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(keyAccess, success, position);return keyAccess;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(keyAccess, success, position); return keyAccess;
             }
 
             MatchTerminal(']', out success);
@@ -1646,7 +1645,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(nameAccess, success, position);return nameAccess;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(nameAccess, success, position); return nameAccess;
             }
 
             ParseSpOpt(out success);
@@ -1682,7 +1681,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(methodCall, success, position);return methodCall;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(methodCall, success, position); return methodCall;
             }
 
             ParseSpOpt(out success);
@@ -1692,7 +1691,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Method of MethodCall.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(methodCall, success, position);return methodCall;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(methodCall, success, position); return methodCall;
             }
 
             ParseSpOpt(out success);
@@ -1749,7 +1748,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(var, success, position);return var;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(var, success, position); return var;
             }
 
             while (true)
@@ -1811,7 +1810,7 @@ namespace Language.Lua
                 return parsingResult.Item1 as PrimaryExpr;
             }
 
-			//[PixelCrushers]int errorCount = Errors.Count;
+            //[PixelCrushers]int errorCount = Errors.Count;
             PrimaryExpr primaryExpr = new PrimaryExpr();
             int start_position = position;
 
@@ -1819,7 +1818,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(primaryExpr, success, position);return primaryExpr;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(primaryExpr, success, position); return primaryExpr;
             }
 
             while (true)
@@ -1878,7 +1877,7 @@ namespace Language.Lua
                 return parsingResult.Item1 as FunctionName;
             }
 
-			//[PixelCrushers]int errorCount = Errors.Count;
+            //[PixelCrushers]int errorCount = Errors.Count;
             FunctionName functionName = new FunctionName();
             int start_position = position;
 
@@ -1886,7 +1885,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(functionName, success, position);return functionName;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(functionName, success, position); return functionName;
             }
 
             while (true)
@@ -1937,7 +1936,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(groupExpr, success, position);return groupExpr;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(groupExpr, success, position); return groupExpr;
             }
 
             ParseSpOpt(out success);
@@ -1947,7 +1946,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Expr of GroupExpr.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(groupExpr, success, position);return groupExpr;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(groupExpr, success, position); return groupExpr;
             }
 
             MatchTerminal(')', out success);
@@ -1981,7 +1980,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(tableConstructor, success, position);return tableConstructor;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(tableConstructor, success, position); return tableConstructor;
             }
 
             ParseSpOpt(out success);
@@ -2012,7 +2011,7 @@ namespace Language.Lua
                 return parsingResult.Item1 as List<Field>;
             }
 
-			//[PixelCrushers]int errorCount = Errors.Count;
+            //[PixelCrushers]int errorCount = Errors.Count;
             List<Field> list_Field = new List<Field>();
             int start_position = position;
 
@@ -2021,7 +2020,7 @@ namespace Language.Lua
             else
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(list_Field, success, position);return list_Field;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(list_Field, success, position); return list_Field;
             }
 
             while (true)
@@ -2049,7 +2048,7 @@ namespace Language.Lua
 
             while (true)
             {
-				//[PixelCrushers]int seq_start_position2 = position;
+                //[PixelCrushers]int seq_start_position2 = position;
                 ParseFieldSep(out success);
                 if (!success) { break; }
 
@@ -2077,13 +2076,13 @@ namespace Language.Lua
             Field field = null;
 
             field = ParseKeyValue(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(field, success, position);return field; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(field, success, position); return field; }
 
             field = ParseNameValue(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(field, success, position);return field; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(field, success, position); return field; }
 
             field = ParseItemValue(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(field, success, position);return field; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(field, success, position); return field; }
 
             return field;
         }
@@ -2107,7 +2106,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(keyValue, success, position);return keyValue;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(keyValue, success, position); return keyValue;
             }
 
             ParseSpOpt(out success);
@@ -2117,7 +2116,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Key of KeyValue.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(keyValue, success, position);return keyValue;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(keyValue, success, position); return keyValue;
             }
 
             MatchTerminal(']', out success);
@@ -2125,7 +2124,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse ']' of KeyValue.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(keyValue, success, position);return keyValue;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(keyValue, success, position); return keyValue;
             }
 
             ParseSpOpt(out success);
@@ -2135,7 +2134,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse '=' of KeyValue.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(keyValue, success, position);return keyValue;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(keyValue, success, position); return keyValue;
             }
 
             ParseSpOpt(out success);
@@ -2171,7 +2170,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(nameValue, success, position);return nameValue;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(nameValue, success, position); return nameValue;
             }
 
             ParseSpOpt(out success);
@@ -2181,7 +2180,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse '=' of NameValue.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(nameValue, success, position);return nameValue;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(nameValue, success, position); return nameValue;
             }
 
             ParseSpOpt(out success);
@@ -2230,13 +2229,13 @@ namespace Language.Lua
                 return parsingResult.Item1 as OperatorExpr;
             }
 
-			//[PixelCrushers]int errorCount = Errors.Count;
+            //[PixelCrushers]int errorCount = Errors.Count;
             OperatorExpr operatorExpr = new OperatorExpr();
             int start_position = position;
 
             while (true)
             {
-				//[PixelCrushers]int seq_start_position1 = position;
+                //[PixelCrushers]int seq_start_position1 = position;
                 string unaryOper = ParseUnaryOperator(out success);
                 if (success) { operatorExpr.Add(unaryOper); }
                 else { break; }
@@ -2252,7 +2251,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse firstTerm of OperatorExpr.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(operatorExpr, success, position);return operatorExpr;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(operatorExpr, success, position); return operatorExpr;
             }
 
             ParseSpOpt(out success);
@@ -2320,13 +2319,13 @@ namespace Language.Lua
             Args args = new Args();
 
             args.ArgList = ParseArgList(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(args, success, position);return args; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(args, success, position); return args; }
 
             args.String = ParseStringLiteral(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(args, success, position);return args; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(args, success, position); return args; }
 
             args.Table = ParseTableConstructor(out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(args, success, position);return args; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(args, success, position); return args; }
 
             return args;
         }
@@ -2350,14 +2349,14 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(list_Expr, success, position);return list_Expr;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(list_Expr, success, position); return list_Expr;
             }
 
             ParseSpOpt(out success);
 
             while (true)
             {
-				//[PixelCrushers]int seq_start_position1 = position;
+                //[PixelCrushers]int seq_start_position1 = position;
                 list_Expr = ParseExprList(out success);
                 if (!success) { break; }
 
@@ -2394,7 +2393,7 @@ namespace Language.Lua
 
             while (true)
             {
-				//[PixelCrushers]int seq_start_position1 = position;
+                //[PixelCrushers]int seq_start_position1 = position;
                 paramList.NameList = ParseNameList(out success);
                 if (!success) { break; }
 
@@ -2418,10 +2417,10 @@ namespace Language.Lua
                 success = true;
                 break;
             }
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(paramList, success, position);return paramList; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(paramList, success, position); return paramList; }
 
             paramList.IsVarArg = MatchTerminalString("...", out success);
-            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(paramList, success, position);return paramList; }
+            if (success) { ClearError(errorCount); ParsingResults[reskey] = new Tuple<object, bool, int>(paramList, success, position); return paramList; }
 
             return paramList;
         }
@@ -2437,7 +2436,7 @@ namespace Language.Lua
                 return parsingResult.Item1 as List<string>;
             }
 
-			//[PixelCrushers]int errorCount = Errors.Count;
+            //[PixelCrushers]int errorCount = Errors.Count;
             List<string> list_string = new List<string>();
             int start_position = position;
 
@@ -2446,7 +2445,7 @@ namespace Language.Lua
             else
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(list_string, success, position);return list_string;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(list_string, success, position); return list_string;
             }
 
             while (true)
@@ -2494,7 +2493,7 @@ namespace Language.Lua
                 return parsingResult.Item1 as List<string>;
             }
 
-			//[PixelCrushers]int errorCount = Errors.Count;
+            //[PixelCrushers]int errorCount = Errors.Count;
             List<string> list_string = new List<string>();
             int start_position = position;
 
@@ -2503,7 +2502,7 @@ namespace Language.Lua
             else
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(list_string, success, position);return list_string;
+                ParsingResults[reskey] = new Tuple<object, bool, int>(list_string, success, position); return list_string;
             }
 
             while (true)
@@ -2569,7 +2568,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             char ch = ParseLetter(out success);
@@ -2578,7 +2577,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse Letter of Name.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             while (true)
@@ -2645,7 +2644,7 @@ namespace Language.Lua
             {
                 Error("Failed to parse (Digit)+ of FloatNumber.");
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             while (true)
@@ -2747,7 +2746,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             int counter = 0;
@@ -2871,7 +2870,7 @@ namespace Language.Lua
                 return parsingResult.Item1 as string;
             }
 
-			//[PixelCrushers]int errorCount = Errors.Count;
+            //[PixelCrushers]int errorCount = Errors.Count;
             StringBuilder text = new StringBuilder();
             int start_position = position;
 
@@ -2903,7 +2902,7 @@ namespace Language.Lua
             if (!success)
             {
                 position = start_position;
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             ParseEol(out success);
@@ -2998,7 +2997,7 @@ namespace Language.Lua
             char ch = MatchTerminalRange('0', '9', out success);
             if (success) { ClearError(errorCount); }
             else { Error("Failed to parse '0'...'9' of Digit."); }
-            
+
             return ch;
         }
 
@@ -3008,7 +3007,7 @@ namespace Language.Lua
             char ch = MatchTerminalSet("0123456789ABCDEFabcdef", false, out success);
             if (success) { ClearError(errorCount); }
             else { Error("Failed to parse \"0123456789ABCDEFabcdef\" of HexDigit."); }
-            
+
             return ch;
         }
 
@@ -3048,7 +3047,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(ch);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             ch = MatchTerminal('-', out success);
@@ -3056,7 +3055,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(ch);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             string str = MatchTerminalString("not", out success);
@@ -3064,7 +3063,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(str);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             return text.ToString();
@@ -3089,7 +3088,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(ch);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             ch = MatchTerminal('-', out success);
@@ -3097,7 +3096,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(ch);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             ch = MatchTerminal('*', out success);
@@ -3105,7 +3104,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(ch);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             ch = MatchTerminal('/', out success);
@@ -3113,7 +3112,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(ch);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             ch = MatchTerminal('%', out success);
@@ -3121,7 +3120,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(ch);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             ch = MatchTerminal('^', out success);
@@ -3129,7 +3128,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(ch);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             string str = MatchTerminalString("..", out success);
@@ -3137,7 +3136,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(str);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             str = MatchTerminalString("==", out success);
@@ -3145,7 +3144,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(str);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             str = MatchTerminalString("~=", out success);
@@ -3153,7 +3152,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(str);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             str = MatchTerminalString("<=", out success);
@@ -3161,7 +3160,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(str);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             str = MatchTerminalString(">=", out success);
@@ -3169,7 +3168,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(str);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             ch = MatchTerminal('<', out success);
@@ -3177,7 +3176,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(ch);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             ch = MatchTerminal('>', out success);
@@ -3185,7 +3184,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(ch);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             str = MatchTerminalString("and", out success);
@@ -3193,7 +3192,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(str);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             str = MatchTerminalString("or", out success);
@@ -3201,7 +3200,7 @@ namespace Language.Lua
             {
                 ClearError(errorCount);
                 text.Append(str);
-                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position);return text.ToString();
+                ParsingResults[reskey] = new Tuple<object, bool, int>(text.ToString(), success, position); return text.ToString();
             }
 
             return text.ToString();
@@ -3374,7 +3373,7 @@ namespace Language.Lua
 
         private char ParseEscapeChar(out bool success)
         {
-			//[PixelCrushers]int errorCount = Errors.Count;
+            //[PixelCrushers]int errorCount = Errors.Count;
             char ch = default(char);
 
             MatchTerminalString("\\\\", out success);

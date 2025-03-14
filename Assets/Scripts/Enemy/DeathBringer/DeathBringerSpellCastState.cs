@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DeathBringerSpellCastState : EnemyState
@@ -32,8 +30,8 @@ public class DeathBringerSpellCastState : EnemyState
         {
             enemy.CastSpell();
         }
-        
-        if(amountOfSpells <= 0)
+
+        if (amountOfSpells <= 0)
             stateMachine.ChangeState(enemy.teleportState);
     }
 

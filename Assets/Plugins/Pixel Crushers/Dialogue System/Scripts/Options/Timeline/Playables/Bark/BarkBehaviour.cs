@@ -2,9 +2,9 @@
 #if UNITY_2017_1_OR_NEWER
 // Copyright (c) Pixel Crushers. All rights reserved.
 
+using System;
 using UnityEngine;
 using UnityEngine.Playables;
-using System;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -34,7 +34,7 @@ namespace PixelCrushers.DialogueSystem
 
         public string GetEditorBarkText()
         {
-            return useConversation 
+            return useConversation
                 ? ("[" + conversation + "] '" + PreviewUI.GetDialogueText(conversation, -1) + "'")
                 : text;
         }

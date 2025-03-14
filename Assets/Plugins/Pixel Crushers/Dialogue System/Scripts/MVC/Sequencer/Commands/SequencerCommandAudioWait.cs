@@ -1,7 +1,7 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.SequencerCommands
 {
@@ -178,7 +178,7 @@ namespace PixelCrushers.DialogueSystem.SequencerCommands
         {
             if (audioSource != null)
             {
-                if (audioSource.isPlaying && 
+                if (audioSource.isPlaying &&
                     (audioSource.clip == currentClip) &&
                     (audioSource.clip != null))
                 {

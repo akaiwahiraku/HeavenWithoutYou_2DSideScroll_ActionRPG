@@ -19,7 +19,7 @@ namespace PixelCrushers
         }
 
         public void AssignEventSystemToHierarchy(UnityEngine.EventSystems.EventSystem eventSystem)
-        { 
+        {
             this.eventSystem = eventSystem;
             UIUtility.SetEventSystemInChildren(transform, eventSystem);
         }

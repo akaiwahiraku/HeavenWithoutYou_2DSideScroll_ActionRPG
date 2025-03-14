@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using UnityEditor;
+using UnityEngine;
 #if USE_ADDRESSABLES
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -288,7 +288,7 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
                     }
                     else
                     {
-                        report += $"Quest[{item.Name}] {duplicateFieldsReport}\n"; 
+                        report += $"Quest[{item.Name}] {duplicateFieldsReport}\n";
                     }
                 }
                 foreach (var location in database.locations)
@@ -326,8 +326,8 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
 
         private static Regex VarTagRegex = new Regex(@"\[var=[^\]]+\]");
 
-        private void CheckUndefinedVariablesInField(string assetName, Field field, 
-            HashSet<string> definedVariables, 
+        private void CheckUndefinedVariablesInField(string assetName, Field field,
+            HashSet<string> definedVariables,
             Dictionary<string, string> undefinedVariables)
         {
             foreach (Match match in VarTagRegex.Matches(field.value))

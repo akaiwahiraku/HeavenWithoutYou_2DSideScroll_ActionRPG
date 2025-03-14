@@ -10,7 +10,7 @@ namespace PixelCrushers.DialogueSystem.Wrappers
     /// compiled assembly and source code versions of the original class.
     /// </summary>
     [AddComponentMenu("")]
-    public class DialogueSystemSceneEvents: PixelCrushers.DialogueSystem.DialogueSystemSceneEvents
+    public class DialogueSystemSceneEvents : PixelCrushers.DialogueSystem.DialogueSystemSceneEvents
     {
     }
 

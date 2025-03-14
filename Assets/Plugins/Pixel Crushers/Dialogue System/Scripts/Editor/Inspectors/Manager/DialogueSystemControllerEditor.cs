@@ -1,8 +1,8 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
 using System;
+using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -417,7 +417,7 @@ namespace PixelCrushers.DialogueSystem
                     {
                         EditorGUILayout.PropertyField(serializedObject.FindProperty("dontHideImmediateDuringWarmup"), true);
                         if (warmUpProp.enumValueIndex != (int)DialogueSystemController.WarmUpMode.Extra)
-                        { 
+                        {
                             instantiateDatabaseProp.boolValue = true;
                         }
                     }

@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShockStrike_Controller : MonoBehaviour
 {
     [SerializeField] private CharacterStats targetStats;
+    [SerializeField] private AilmentManager AilmentManager;
     [SerializeField] private float speed;
     private int damage;
 
@@ -50,7 +49,7 @@ public class ShockStrike_Controller : MonoBehaviour
 
     private void DamageAndSelfDestroy()
     {
-        targetStats.ApplyShock(true);
+        //targetStats.ApplyShock(true);
         targetStats.TakeDamage(damage);
         Destroy(gameObject, .4f);
 

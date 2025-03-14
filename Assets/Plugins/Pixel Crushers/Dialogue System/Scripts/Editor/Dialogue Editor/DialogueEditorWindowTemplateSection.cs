@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.DialogueEditor
 {
@@ -169,7 +169,8 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
                     template = newTemplate;
                     SaveTemplate();
                 }
-                else {
+                else
+                {
                     EditorUtility.DisplayDialog("Import Error", "Unable to import template data from the XML file.", "OK");
                 }
             }

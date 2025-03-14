@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NPCsDialogueSystem : MonoBehaviour
@@ -13,7 +11,7 @@ public class NPCsDialogueSystem : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)

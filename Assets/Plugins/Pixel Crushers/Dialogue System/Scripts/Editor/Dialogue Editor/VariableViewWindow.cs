@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.DialogueEditor
 {
@@ -79,9 +79,9 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
                 scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
                 variableView.Draw();
             }
-            finally 
+            finally
             {
-                EditorGUILayout.EndScrollView(); 
+                EditorGUILayout.EndScrollView();
             }
         }
 

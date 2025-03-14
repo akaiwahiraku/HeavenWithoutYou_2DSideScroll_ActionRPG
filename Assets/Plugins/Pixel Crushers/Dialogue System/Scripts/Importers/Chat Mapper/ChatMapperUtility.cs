@@ -1,8 +1,8 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System.IO;
 using System.Xml.Serialization;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.ChatMapper
 {

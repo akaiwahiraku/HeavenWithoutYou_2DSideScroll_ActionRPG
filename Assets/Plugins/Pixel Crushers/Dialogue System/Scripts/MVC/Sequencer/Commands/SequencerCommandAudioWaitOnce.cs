@@ -1,17 +1,17 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.SequencerCommands
 {
-    
+
     /// <summary>
     /// Implements sequencer command: AudioWaitOnce(audioClip[, subject[, audioClips...]])
     /// This command will check for an internal lua variable of the entrytag/audioclip name, and 
     /// if it exists/is true, the audio will be skipped. after one playback, the variable
     /// will be created and marked as true.
-	/// Contributed by Franklin Kester.
+    /// Contributed by Franklin Kester.
     /// </summary>
     [AddComponentMenu("")] // Hide from menu.
     public class SequencerCommandAudioWaitOnce : SequencerCommand
@@ -22,7 +22,7 @@ namespace PixelCrushers.DialogueSystem.SequencerCommands
         private int _nextClipIndex = 2;
         private AudioClip _currentClip = null;
         private AudioClip _originalClip = null;
-		private bool _restoreOriginalClip = false; // Don't restore original; could stop next entry's AudioWait that runs same frame.
+        private bool _restoreOriginalClip = false; // Don't restore original; could stop next entry's AudioWait that runs same frame.
         protected bool isLoadingAudio = false;
 
         public IEnumerator Start()
@@ -40,7 +40,7 @@ namespace PixelCrushers.DialogueSystem.SequencerCommands
                 }
                 if (!this.hasNextClip()) { Stop(); }
             }
-            
+
             if (DialogueDebug.logInfo)
             {
                 Debug.LogFormat("{0}: Sequencer: AudioWaitOnce({1}) on {2}", DialogueDebug.Prefix, GetParameters(), subject);
@@ -54,13 +54,13 @@ namespace PixelCrushers.DialogueSystem.SequencerCommands
                     if (!this.hasNextClip()) { Stop(); }
                 }
             }
-            
+
             _audioSource = SequencerTools.GetAudioSource(subject);
             if (_audioSource == null)
             {
                 if (DialogueDebug.logWarnings)
                 {
-                    Debug.LogWarningFormat("{0}: Sequencer: AudioWaitOnce(): can't find or add AudioSource to {1}.", DialogueDebug.Prefix, subject.name );
+                    Debug.LogWarningFormat("{0}: Sequencer: AudioWaitOnce(): can't find or add AudioSource to {1}.", DialogueDebug.Prefix, subject.name);
                 }
                 //  doesn't matter if we have other clips, no audio source means no play
                 Stop();

@@ -1,10 +1,10 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
 #if !(USE_NLUA || OVERRIDE_LUA)
-using UnityEngine;
+using Language.Lua;
 using System;
 using System.Reflection;
-using Language.Lua;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -170,7 +170,7 @@ namespace PixelCrushers.DialogueSystem
         /// </example>
         public static bool IsTrue(string luaCondition, bool debug, bool allowExceptions)
         {
-            return (Tools.IsStringNullOrEmptyOrWhitespace(luaCondition) || IsOnlyComment(luaCondition)) ? true 
+            return (Tools.IsStringNullOrEmptyOrWhitespace(luaCondition) || IsOnlyComment(luaCondition)) ? true
                 : Run("return " + luaCondition, debug, allowExceptions).asBool;
         }
 

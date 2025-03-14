@@ -1,11 +1,10 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
-using UnityEngine.SceneManagement;
 using System.Linq;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 #if USE_ADDRESSABLES
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -960,7 +959,7 @@ namespace PixelCrushers.DialogueSystem
             var prevCurrentConversant = currentConversant;
             currentActor = actor;
             currentConversant = conversant;
-            var model = new ConversationModel(m_databaseManager.masterDatabase, title, actor, conversant, allowLuaExceptions, 
+            var model = new ConversationModel(m_databaseManager.masterDatabase, title, actor, conversant, allowLuaExceptions,
                 isDialogueEntryValid, initialDialogueEntryID, true, true, useLinearGroupMode);
             currentActor = prevCurrentActor;
             currentConversant = prevCurrentConversant;
@@ -1090,7 +1089,7 @@ namespace PixelCrushers.DialogueSystem
 
                 m_calledRandomizeNextEntry = false;
                 m_conversationController = new ConversationController();
-                var model = new ConversationModel(m_databaseManager.masterDatabase, title, actor, conversant, allowLuaExceptions, isDialogueEntryValid, 
+                var model = new ConversationModel(m_databaseManager.masterDatabase, title, actor, conversant, allowLuaExceptions, isDialogueEntryValid,
                     initialDialogueEntryID, stopEvaluationAtFirstValid, false, useLinearGroupMode);
                 var needToSetRandomizeNextEntryAgain = m_calledRandomizeNextEntry; // Special case when START node leads to group node with RandomizeNextEntry().
                 m_calledRandomizeNextEntry = false;
@@ -1739,7 +1738,7 @@ namespace PixelCrushers.DialogueSystem
                 return;
             }
             var barkUI = speaker.GetComponentInChildren(typeof(IBarkUI)) as IBarkUI;
-            ConversationModel conversationModel = new ConversationModel(DialogueManager.masterDatabase, conversationTitle, speaker, listener, DialogueManager.allowLuaExceptions, DialogueManager.isDialogueEntryValid, entryID, 
+            ConversationModel conversationModel = new ConversationModel(DialogueManager.masterDatabase, conversationTitle, speaker, listener, DialogueManager.allowLuaExceptions, DialogueManager.isDialogueEntryValid, entryID,
                 stopEvaluationAtFirstValid, useLinearGroupMode);
             var state = conversationModel.firstState;
             StartCoroutine(BarkController.Bark(state.subtitle, speaker, listener, barkUI));

@@ -1,8 +1,8 @@
 ﻿#if USE_ARTICY
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.Articy
 {
@@ -18,9 +18,9 @@ namespace PixelCrushers.DialogueSystem.Articy
         public class LocalizableText
         {
             public Dictionary<string, string> localizedString = new Dictionary<string, string>();
-            public string DefaultText 
-            { 
-                get 
+            public string DefaultText
+            {
+                get
                 {
                     string text;
                     if (localizedString.TryGetValue(string.Empty, out text) && !string.IsNullOrEmpty(text)) return text;
@@ -30,7 +30,7 @@ namespace PixelCrushers.DialogueSystem.Articy
                         if (!string.IsNullOrEmpty(kvp.Value)) return kvp.Value;
                     }
                     return string.Empty;
-                } 
+                }
             }
         }
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Language.Lua
+﻿namespace Language.Lua
 {
     public partial class NameValue : Field
     {

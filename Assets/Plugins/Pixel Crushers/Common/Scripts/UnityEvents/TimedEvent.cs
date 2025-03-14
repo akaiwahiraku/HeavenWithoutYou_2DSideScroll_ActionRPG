@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections;
 
 namespace PixelCrushers
 {
@@ -45,7 +45,7 @@ namespace PixelCrushers
         /// </summary>
         public TimingMode mode
         {
-            get { return m_mode; }            
+            get { return m_mode; }
             set { m_mode = value; }
         }
 

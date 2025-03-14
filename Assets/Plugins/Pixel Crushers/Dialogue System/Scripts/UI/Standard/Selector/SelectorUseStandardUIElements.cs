@@ -74,7 +74,7 @@ namespace PixelCrushers.DialogueSystem
                 started = true;
                 ConnectDelegates();
                 for (int i = StandardUISelectorElements.instances.Count - 1; i >= 0; i--)
-                { 
+                {
                     elements = StandardUISelectorElements.instances[i];
                     if (elements != null) DeactivateControls();
                 }
@@ -304,7 +304,7 @@ namespace PixelCrushers.DialogueSystem
         }
 
         protected void ShowControlsOrUsableUI()
-        { 
+        {
             if (usableUI != null)
             {
                 usableUI.Show(GetUseMessage());

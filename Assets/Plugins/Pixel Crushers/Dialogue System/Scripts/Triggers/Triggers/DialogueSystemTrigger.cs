@@ -1,8 +1,8 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -539,7 +539,7 @@ namespace PixelCrushers.DialogueSystem
                 (activeConversation == null) || !activeConversation.conversationController.isActive;
             if (didMyConversationEnd)
             {
-                DialogueManager.instance.conversationEnded -= OnConversationEndAnywhere;                
+                DialogueManager.instance.conversationEnded -= OnConversationEndAnywhere;
                 StopMonitoringConversationDistance();
                 if (showCursorDuringConversation)
                 {
@@ -910,7 +910,7 @@ namespace PixelCrushers.DialogueSystem
                             }
                             else
                             {
-                                barkGroupMember.GroupBark(barkConversation, Tools.Select(barkTarget, actor), entryID); 
+                                barkGroupMember.GroupBark(barkConversation, Tools.Select(barkTarget, actor), entryID);
                             }
                         }
                         else
@@ -980,7 +980,7 @@ namespace PixelCrushers.DialogueSystem
         protected void PopulateCache(Transform speaker, Transform listener)
         {
             if (string.IsNullOrEmpty(barkConversation) && DialogueDebug.logWarnings) Debug.Log(string.Format("{0}: Bark (speaker={1}, listener={2}): conversation title is blank", new System.Object[] { DialogueDebug.Prefix, speaker, listener }), speaker);
-            ConversationModel conversationModel = new ConversationModel(DialogueManager.masterDatabase, barkConversation, speaker, listener, DialogueManager.allowLuaExceptions, DialogueManager.isDialogueEntryValid, 
+            ConversationModel conversationModel = new ConversationModel(DialogueManager.masterDatabase, barkConversation, speaker, listener, DialogueManager.allowLuaExceptions, DialogueManager.isDialogueEntryValid,
                 barkEntryID, false, DialogueManager.useLinearGroupMode);
             cachedState = conversationModel.firstState;
             if ((cachedState == null) && DialogueDebug.logWarnings) Debug.Log(string.Format("{0}: Bark (speaker={1}, listener={2}): '{3}' has no START entry", new System.Object[] { DialogueDebug.Prefix, speaker, listener, barkConversation }), speaker);

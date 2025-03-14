@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -72,8 +72,8 @@ namespace PixelCrushers.DialogueSystem
         }
 
         private static void DetermineNewEntryID(
-            DialogueDatabase database, 
-            Conversation conversation, 
+            DialogueDatabase database,
+            Conversation conversation,
             DialogueEntry entry,
             Dictionary<int, int> newIDs, ref int nextID)
         {

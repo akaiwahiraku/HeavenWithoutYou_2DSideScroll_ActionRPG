@@ -151,8 +151,9 @@ namespace PixelCrushers.DialogueSystem
         /// Gets the current usable.
         /// </summary>
         /// <value>The usable.</value>
-        public Usable CurrentUsable { 
-            get { return currentUsable; } 
+        public Usable CurrentUsable
+        {
+            get { return currentUsable; }
             set { SetCurrentUsable(value); }
         }
 
@@ -443,7 +444,7 @@ namespace PixelCrushers.DialogueSystem
             if (usable != null)
             {
                 usable.disabled -= OnUsableDisabled;
-                usable.disabled += OnUsableDisabled; 
+                usable.disabled += OnUsableDisabled;
                 currentHeading = currentUsable.GetName();
                 currentUseMessage = DialogueManager.GetLocalizedText(string.IsNullOrEmpty(currentUsable.overrideUseMessage) ? defaultUseMessage : currentUsable.overrideUseMessage);
             }

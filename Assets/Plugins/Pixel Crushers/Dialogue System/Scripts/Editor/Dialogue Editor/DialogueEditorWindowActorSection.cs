@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
-using UnityEditorInternal;
 using System;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEditorInternal;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.DialogueEditor
 {
@@ -225,9 +225,9 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             database.syncInfo.syncActors = !database.syncInfo.syncActors;
             if (!database.syncInfo.syncActors && database.syncInfo.syncActorsDatabase != null)
             {
-                if (EditorUtility.DisplayDialog("Disconnect Synced DB", 
+                if (EditorUtility.DisplayDialog("Disconnect Synced DB",
                     "Also delete synced actors from this database?\n(Will not delete ID 1, typically Player.)", "Yes", "No"))
-                { 
+                {
                     database.actors.RemoveAll(x => syncedActorIDs.Contains(x.id) && x.id != 1);
                 }
             }

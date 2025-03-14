@@ -148,8 +148,8 @@ namespace PixelCrushers.DialogueSystem
         }
 
         protected virtual void ShowTouchScreenKeyboard()
-        { 
-            m_touchScreenKeyboard = TouchScreenKeyboard.Open(inputField.text); 
+        {
+            m_touchScreenKeyboard = TouchScreenKeyboard.Open(inputField.text);
         }
 
         protected virtual void Hide()

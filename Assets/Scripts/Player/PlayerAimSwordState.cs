@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class PlayerAimSwordState : PlayerState
@@ -29,10 +27,10 @@ public class PlayerAimSwordState : PlayerState
         if (Input.GetKeyUp(KeyCode.JoystickButton3))
         {
             player.StartCoroutine("BusyFor", .5f);
-            
+
             stateMachine.ChangeState(player.idleState);
         }
     }
 
-    
+
 }

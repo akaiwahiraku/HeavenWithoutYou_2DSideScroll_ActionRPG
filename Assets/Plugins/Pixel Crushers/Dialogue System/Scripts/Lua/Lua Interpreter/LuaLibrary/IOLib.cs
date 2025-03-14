@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Language.Lua.Library
 {
@@ -25,8 +24,8 @@ namespace Language.Lua.Library
             module.Register("tmpfile", tmpfile);
         }
 
-		private static TextReader DefaultInput = null;//[PixelCrushers]Console.In;
-		private static TextWriter DefaultOutput = null;//[PixelCrushers]Console.Out;
+        private static TextReader DefaultInput = null;//[PixelCrushers]Console.In;
+        private static TextWriter DefaultOutput = null;//[PixelCrushers]Console.Out;
 
         public static LuaValue input(LuaValue[] values)
         {
@@ -39,7 +38,7 @@ namespace Language.Lua.Library
                 LuaString file = values[0] as LuaString;
                 if (file != null)
                 {
-					//[PixelCrushers]DefaultInput = File.OpenText(file.Text);
+                    //[PixelCrushers]DefaultInput = File.OpenText(file.Text);
                     return null;
                 }
 
@@ -63,7 +62,7 @@ namespace Language.Lua.Library
                 LuaString file = values[0] as LuaString;
                 if (file != null)
                 {
-					//[PixelCrushers]DefaultOutput = File.CreateText(file.Text);
+                    //[PixelCrushers]DefaultOutput = File.CreateText(file.Text);
                     return null;
                 }
 
@@ -78,7 +77,7 @@ namespace Language.Lua.Library
 
         public static LuaValue open(LuaValue[] values)
         {
-			//[PixelCrushers]LuaString file = values[0] as LuaString;
+            //[PixelCrushers]LuaString file = values[0] as LuaString;
             LuaString modeStr = values.Length > 1 ? values[1] as LuaString : null;
             string mode = modeStr == null ? "r" : modeStr.Text;
 
@@ -86,19 +85,19 @@ namespace Language.Lua.Library
             {
                 case "r":
                 case "r+":
-				//[PixelCrushers]StreamReader reader = File.OpenText(file.Text);
-				//[PixelCrushers]return new LuaUserdata(reader, FileLib.CreateMetaTable());
-				return null;
+                    //[PixelCrushers]StreamReader reader = File.OpenText(file.Text);
+                    //[PixelCrushers]return new LuaUserdata(reader, FileLib.CreateMetaTable());
+                    return null;
                 case "w":
                 case "w+":
-				//[PixelCrushers]StreamWriter writer = File.CreateText(file.Text);
-				//[PixelCrushers]return new LuaUserdata(writer, FileLib.CreateMetaTable());
-				return null;
+                    //[PixelCrushers]StreamWriter writer = File.CreateText(file.Text);
+                    //[PixelCrushers]return new LuaUserdata(writer, FileLib.CreateMetaTable());
+                    return null;
                 case "a":
                 case "a+":
-				//[PixelCrushers]writer = File.AppendText(file.Text);
-				//[PixelCrushers]return new LuaUserdata(writer, FileLib.CreateMetaTable());
-				return null;
+                    //[PixelCrushers]writer = File.AppendText(file.Text);
+                    //[PixelCrushers]return new LuaUserdata(writer, FileLib.CreateMetaTable());
+                    return null;
                 default:
                     throw new ArgumentException("Invalid file open mode " + mode);
             }
@@ -127,9 +126,9 @@ namespace Language.Lua.Library
 
         public static LuaValue tmpfile(LuaValue[] values)
         {
-			//[PixelCrushers]StreamWriter writer = File.CreateText(Path.GetTempFileName());
-			//[PixelCrushers]return new LuaUserdata(writer);
-			return null;
+            //[PixelCrushers]StreamWriter writer = File.CreateText(Path.GetTempFileName());
+            //[PixelCrushers]return new LuaUserdata(writer);
+            return null;
         }
     }
 }

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 
 public enum EquipmentType
@@ -63,7 +62,7 @@ public class ItemData_Equipment : ItemData
         playerStats.agility.AddModifier(agility);
         playerStats.intelligence.AddModifier(intelligence);
         playerStats.vitality.AddModifier(vitality);
-        
+
         playerStats.damage.AddModifier(damage);
         playerStats.critChance.AddModifier(critChance);
         playerStats.critPower.AddModifier(critPower);
@@ -72,7 +71,7 @@ public class ItemData_Equipment : ItemData
         playerStats.armor.AddModifier(armor);
         playerStats.evasion.AddModifier(evasion);
         playerStats.magicResistance.AddModifier(magicResistance);
-        
+
         playerStats.fireDamage.AddModifier(fireDamage);
         playerStats.iceDamage.AddModifier(iceDamage);
         playerStats.lightningDamage.AddModifier(lightningDamage);

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AreaSound : MonoBehaviour
@@ -18,7 +16,7 @@ public class AreaSound : MonoBehaviour
         {
             AudioManager audioManager = AudioManager.instance;
 
-            if(audioManager != null)
+            if (audioManager != null)
                 audioManager.StopSFXWithTime(areaSoundIndex);
         }
     }

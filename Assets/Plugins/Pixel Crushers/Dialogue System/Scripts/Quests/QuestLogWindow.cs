@@ -1,9 +1,9 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -380,7 +380,7 @@ namespace PixelCrushers.DialogueSystem
         }
 
         protected virtual QuestInfo GetQuestInfo(string group, string title)
-        {            
+        {
             FormattedText description = FormattedText.Parse(QuestLog.GetQuestDescription(title), DialogueManager.masterDatabase.emphasisSettings);
             FormattedText localizedTitle = FormattedText.Parse(QuestLog.GetQuestTitle(title), DialogueManager.masterDatabase.emphasisSettings);
             FormattedText heading = (questHeadingSource == QuestHeadingSource.Description) ? description : localizedTitle;

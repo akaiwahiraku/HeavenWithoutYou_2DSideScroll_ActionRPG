@@ -120,7 +120,7 @@ namespace PixelCrushers
         private Animator myAnimator
         {
             get
-            { 
+            {
                 if (m_animator == null) m_animator = GetComponent<Animator>() ?? GetComponentInChildren<Animator>();
                 return m_animator;
             }
@@ -346,7 +346,7 @@ namespace PixelCrushers
                     eventSystem.SetSelectedGameObject(null);
                 }
                 if (m_lastSelected != null)
-                {                    
+                {
                     UIUtility.Select(m_lastSelected.GetComponent<UnityEngine.UI.Selectable>(), true, eventSystem);
                 }
                 CheckFocus();

@@ -369,7 +369,7 @@ namespace PixelCrushers.DialogueSystem
             GameObject go = (subject != null) ? subject.gameObject : DialogueManager.instance.gameObject;
             AudioSource audio = go.GetComponentInChildren<AudioSource>();
             if (audio == null)
-            { 
+            {
                 audio = go.AddComponent<AudioSource>();
                 audio.playOnAwake = false;
                 audio.loop = false;

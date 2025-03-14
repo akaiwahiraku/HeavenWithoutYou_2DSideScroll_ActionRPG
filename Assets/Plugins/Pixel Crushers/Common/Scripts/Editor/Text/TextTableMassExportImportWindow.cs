@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -305,7 +304,7 @@ namespace PixelCrushers
                 content.Add(row);
                 row.Add("Field");
                 foreach (var language in languages)
-                { 
+                {
                     row.Add(language);
                 }
                 foreach (var textTable in textTables)

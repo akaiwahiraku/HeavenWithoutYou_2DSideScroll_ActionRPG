@@ -1,29 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using Language.Lua.Library;
+﻿using Language.Lua.Library;
+using System;
 
 namespace Language.Lua
 {
     public class LuaInterpreter
     {
-		public static LuaValue RunFile(string luaFile)
-		{
-			//[PixelCrushers]
-			//return Interpreter(File.ReadAllText(luaFile));
-			UnityEngine.Debug.LogWarning("LuaInterpreter.RunFile() is disabled in this version of LuaInterpreter.");
-			return LuaNil.Nil;
-		}
-		
-		public static LuaValue RunFile(string luaFile, LuaTable enviroment)
-		{
-			//[PixelCrushers]
-			//return Interpreter(File.ReadAllText(luaFile), enviroment);
-			UnityEngine.Debug.LogWarning("LuaInterpreter.RunFile() is disabled in this version of LuaInterpreter.");
-			return LuaNil.Nil;
-		}
-		
+        public static LuaValue RunFile(string luaFile)
+        {
+            //[PixelCrushers]
+            //return Interpreter(File.ReadAllText(luaFile));
+            UnityEngine.Debug.LogWarning("LuaInterpreter.RunFile() is disabled in this version of LuaInterpreter.");
+            return LuaNil.Nil;
+        }
+
+        public static LuaValue RunFile(string luaFile, LuaTable enviroment)
+        {
+            //[PixelCrushers]
+            //return Interpreter(File.ReadAllText(luaFile), enviroment);
+            UnityEngine.Debug.LogWarning("LuaInterpreter.RunFile() is disabled in this version of LuaInterpreter.");
+            return LuaNil.Nil;
+        }
+
         public static LuaValue Interpreter(string luaCode)
         {
             return Interpreter(luaCode, CreateGlobalEnviroment());

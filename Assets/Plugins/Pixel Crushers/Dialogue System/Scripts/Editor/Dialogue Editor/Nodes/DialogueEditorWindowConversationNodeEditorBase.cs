@@ -1,9 +1,5 @@
-using UnityEngine;
 using UnityEditor;
-using UnityEditor.Graphs;
-using System;
-using System.Collections.Generic;
-using System.IO;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.DialogueEditor
 {

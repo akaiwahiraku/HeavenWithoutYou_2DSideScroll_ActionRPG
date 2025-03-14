@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public enum SlimeType { big, medium, small}
+public enum SlimeType { big, medium, small }
 
 public class Enemy_Slime : Enemy
 {
@@ -15,7 +13,7 @@ public class Enemy_Slime : Enemy
 
     #region States
 
-    public SlimeIdleState idleState {  get; private set; }
+    public SlimeIdleState idleState { get; private set; }
     public SlimeMoveState moveState { get; private set; }
     public SlimeBattleState battleState { get; private set; }
     public SlimeAttackState attackState { get; private set; }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -36,7 +35,7 @@ public class Enemy : Entity
     public EnemyStateMachine stateMachine { get; private set; }
     public EntityFX fx { get; private set; }
 
-    public string lastAnimBoolName {  get; private set; }
+    public string lastAnimBoolName { get; private set; }
 
     private int freezeLevel = 0;
 
@@ -153,7 +152,7 @@ public class Enemy : Entity
 
         if (wallDetected)
         {
-            if(wallDetected.distance < playerDetected.distance)
+            if (wallDetected.distance < playerDetected.distance)
                 return default(RaycastHit2D);
         }
 

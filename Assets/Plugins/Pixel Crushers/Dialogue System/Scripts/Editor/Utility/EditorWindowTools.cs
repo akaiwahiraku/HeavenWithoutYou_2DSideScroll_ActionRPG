@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
 using System;
 using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -168,7 +168,7 @@ namespace PixelCrushers.DialogueSystem
             if (textTableProperty != null) textTableProperty.objectReferenceValue = null;
         }
 
-#endregion
+        #endregion
 
 
 

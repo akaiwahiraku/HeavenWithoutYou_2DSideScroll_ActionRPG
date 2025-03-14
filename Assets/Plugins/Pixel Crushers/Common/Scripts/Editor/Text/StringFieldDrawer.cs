@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers
 {
@@ -106,7 +106,7 @@ namespace PixelCrushers
                 }
 
                 if (isTextTableAssigned || !isContentAssigned)
-                { 
+                {
                     float fieldWidth = isTextTableAssigned ? position.width / 2 : position.width;
                     EditorGUI.PropertyField(new Rect(position.x, position.y + yOffset, fieldWidth, EditorGUIUtility.singleLineHeight), textTableProperty, GUIContent.none);
                     if (isTextTableAssigned)
@@ -158,7 +158,7 @@ namespace PixelCrushers
             {
                 var textTable = textTableProperty.objectReferenceValue as TextTable;
                 var textTableFieldIDProperty = stringFieldProperty.FindPropertyRelative("m_textTableFieldID");
-                return textTable.GetFieldTextForLanguage(textTableFieldIDProperty.intValue, 
+                return textTable.GetFieldTextForLanguage(textTableFieldIDProperty.intValue,
                     (UILocalizationManager.instance != null) ? UILocalizationManager.instance.currentLanguage : string.Empty);
             }
             return string.Empty;

@@ -1,9 +1,8 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -108,11 +107,11 @@ namespace PixelCrushers.DialogueSystem
         {
             get
             {
-                if (m_showHideController == null) 
-				{
-					m_showHideController = new UIShowHideController(null, panel, animationTransitions.transitionMode, animationTransitions.debug);
-					m_showHideController.state = UIShowHideController.State.Hidden;
-				}
+                if (m_showHideController == null)
+                {
+                    m_showHideController = new UIShowHideController(null, panel, animationTransitions.transitionMode, animationTransitions.debug);
+                    m_showHideController.state = UIShowHideController.State.Hidden;
+                }
                 return m_showHideController;
             }
         }
@@ -393,7 +392,7 @@ namespace PixelCrushers.DialogueSystem
                 var button = instantiatedButtons[i].GetComponent<UnityUIResponseButton>().button;
                 var above = (i == 0) ? (loopExplicitNavigation ? instantiatedButtons[instantiatedButtons.Count - 1].GetComponent<UnityUIResponseButton>().button : null)
                     : instantiatedButtons[i - 1].GetComponent<UnityUIResponseButton>().button;
-                var below = (i == instantiatedButtons.Count - 1) ? (loopExplicitNavigation ? instantiatedButtons[0].GetComponent<UnityUIResponseButton>().button : null) 
+                var below = (i == instantiatedButtons.Count - 1) ? (loopExplicitNavigation ? instantiatedButtons[0].GetComponent<UnityUIResponseButton>().button : null)
                     : instantiatedButtons[i + 1].GetComponent<UnityUIResponseButton>().button;
                 var navigation = new UnityEngine.UI.Navigation();
 

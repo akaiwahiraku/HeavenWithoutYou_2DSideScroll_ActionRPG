@@ -1,7 +1,5 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-
 namespace PixelCrushers.DialogueSystem
 {
 
@@ -31,7 +29,7 @@ namespace PixelCrushers.DialogueSystem
         public static float GetTypewriterSpeed(UITextField textField)
         {
             return GetTypewriterSpeed(GetTypewriter(textField));
-            
+
         }
 
         public static void SetTypewriterSpeed(UITextField textField, float charactersPerSecond)

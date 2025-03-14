@@ -1,7 +1,5 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-
 namespace PixelCrushers.DialogueSystem
 {
 
@@ -14,7 +12,7 @@ namespace PixelCrushers.DialogueSystem
         public static SubtitlePanelNumber IntToSubtitlePanelNumber(int i)
         {
             // First three enum values are special, so increment 3:
-            return (0 <= i && i <= 31) ? (SubtitlePanelNumber)(i+3) : SubtitlePanelNumber.Default;
+            return (0 <= i && i <= 31) ? (SubtitlePanelNumber)(i + 3) : SubtitlePanelNumber.Default;
         }
 
         public static MenuPanelNumber IntToMenuPanelNumber(int i)

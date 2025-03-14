@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using UnityEngine;
-
 public class PlayerAimShadowFlareState : PlayerState
 {
 
@@ -50,5 +46,5 @@ public class PlayerAimShadowFlareState : PlayerState
         }
     }
 
-    
+
 }

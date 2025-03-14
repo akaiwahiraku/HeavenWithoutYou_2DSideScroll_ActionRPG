@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Language.Lua.Library
 {
@@ -31,11 +28,12 @@ namespace Language.Lua.Library
 
         public static LuaValue print(LuaValue[] values)
         {
-			//[PixelCrushers]
-			//Console.WriteLine(string.Join<LuaValue>("    ", values));
-			foreach (var value in values) {
-				UnityEngine.Debug.Log(value.ToString());
-			}
+            //[PixelCrushers]
+            //Console.WriteLine(string.Join<LuaValue>("    ", values));
+            foreach (var value in values)
+            {
+                UnityEngine.Debug.Log(value.ToString());
+            }
             return null;
         }
 
@@ -156,7 +154,7 @@ namespace Language.Lua.Library
 
         public static LuaValue assert(LuaValue[] values)
         {
-			//[PixelCrushers]bool condition = values[0].GetBooleanValue();
+            //[PixelCrushers]bool condition = values[0].GetBooleanValue();
             LuaString message = values.Length > 1 ? values[1] as LuaString : null;
             if (message != null)
             {

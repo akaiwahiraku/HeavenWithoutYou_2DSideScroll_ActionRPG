@@ -1,7 +1,7 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -145,7 +145,7 @@ namespace PixelCrushers.DialogueSystem
             else
             {
                 var sprite = GetPortraitSprite(imageName);
-                return (sprite != null) ? sprite 
+                return (sprite != null) ? sprite
                     : UITools.CreateSprite(DialogueManager.LoadAsset(imageName) as Texture2D);
             }
         }

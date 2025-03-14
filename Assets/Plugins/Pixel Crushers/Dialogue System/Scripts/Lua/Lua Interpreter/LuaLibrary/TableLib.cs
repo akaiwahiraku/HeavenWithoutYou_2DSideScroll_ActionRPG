@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace Language.Lua.Library
@@ -21,9 +19,9 @@ namespace Language.Lua.Library
             module.Register("remove", remove);
             module.Register("removeitem", removeitem);
             module.Register("maxn", maxn);
-			module.Register("getn", getn); //[PixelCrushers]
-			module.Register("setn", getn); //[PixelCrushers]
-			module.Register("sort", sort);
+            module.Register("getn", getn); //[PixelCrushers]
+            module.Register("setn", getn); //[PixelCrushers]
+            module.Register("sort", sort);
         }
 
         public static LuaValue concat(LuaValue[] values)
@@ -104,7 +102,7 @@ namespace Language.Lua.Library
             foreach (var key in table.Keys)
             {
                 LuaNumber number = key as LuaNumber;
-                if (number != null && number.Number >0)
+                if (number != null && number.Number > 0)
                 {
                     if (number.Number > maxIndex)
                     {
@@ -130,66 +128,66 @@ namespace Language.Lua.Library
             return null;
         }
 
-		public static LuaValue getn(LuaValue[] values) //[PixelCrushers]
-		{
-			int count = 0;
-			if (values.Length >= 1)
-			{
-				LuaTable table = values[0] as LuaTable;
-				if (table != null) 
-				{
-					if (table.Count > 0) // dictionary
-					{
-						foreach (KeyValuePair<LuaValue, LuaValue> kvp in table.KeyValuePairs) 
-						{
-							LuaString key = kvp.Key as LuaString;
-							LuaValue value = kvp.Value;
-							if ((key != null) && string.Equals(key.Text, "n"))
-							{
-								if (value is LuaNumber) return (value as LuaNumber);
-							}
-							else if (value == LuaNil.Nil)
-							{
-								return new LuaNumber(count);
-							} 
-							else
-							{
-								count++;
-							}
-						}
-					}
-					else
-					{
-						foreach (LuaValue listValue in table.ListValues) 
-						{
-							if (listValue == LuaNil.Nil)
-							{
-								return new LuaNumber(count);
-							} 
-							else
-							{
-								count++;
-							}
-						}
-					}
-				}
-			}
-			return new LuaNumber(count);
-		}
-		
-		public static LuaValue setn(LuaValue[] values) //[PixelCrushers]
-		{
-			if (values.Length >= 2)
-			{
-				LuaTable table = values[0] as LuaTable;
-				LuaNumber number = values[1] as LuaNumber;
-				if (table != null && number != null)
-				{
-					table.SetNameValue("n", number);
-				}
-			}
-			return LuaNil.Nil;
-		}
-		
-	}
+        public static LuaValue getn(LuaValue[] values) //[PixelCrushers]
+        {
+            int count = 0;
+            if (values.Length >= 1)
+            {
+                LuaTable table = values[0] as LuaTable;
+                if (table != null)
+                {
+                    if (table.Count > 0) // dictionary
+                    {
+                        foreach (KeyValuePair<LuaValue, LuaValue> kvp in table.KeyValuePairs)
+                        {
+                            LuaString key = kvp.Key as LuaString;
+                            LuaValue value = kvp.Value;
+                            if ((key != null) && string.Equals(key.Text, "n"))
+                            {
+                                if (value is LuaNumber) return (value as LuaNumber);
+                            }
+                            else if (value == LuaNil.Nil)
+                            {
+                                return new LuaNumber(count);
+                            }
+                            else
+                            {
+                                count++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (LuaValue listValue in table.ListValues)
+                        {
+                            if (listValue == LuaNil.Nil)
+                            {
+                                return new LuaNumber(count);
+                            }
+                            else
+                            {
+                                count++;
+                            }
+                        }
+                    }
+                }
+            }
+            return new LuaNumber(count);
+        }
+
+        public static LuaValue setn(LuaValue[] values) //[PixelCrushers]
+        {
+            if (values.Length >= 2)
+            {
+                LuaTable table = values[0] as LuaTable;
+                LuaNumber number = values[1] as LuaNumber;
+                if (table != null && number != null)
+                {
+                    table.SetNameValue("n", number);
+                }
+            }
+            return LuaNil.Nil;
+        }
+
+    }
 }

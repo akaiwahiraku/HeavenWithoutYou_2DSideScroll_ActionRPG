@@ -1,11 +1,9 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using PixelCrushers.DialogueSystem;
+using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {

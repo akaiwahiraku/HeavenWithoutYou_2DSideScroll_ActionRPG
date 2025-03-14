@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers
 {
@@ -18,7 +18,7 @@ namespace PixelCrushers
             {
                 AddInputDefinitions(inputDeviceManager);
             }
-            if (inputDeviceManager.joystickAxesToCheck == null || inputDeviceManager.joystickAxesToCheck.Length  == 0)
+            if (inputDeviceManager.joystickAxesToCheck == null || inputDeviceManager.joystickAxesToCheck.Length == 0)
             {
                 if (GUILayout.Button(new GUIContent("Check Default Joystick Axes", "Check joystick axis movement to detect switch to joystick mode.")))
                 {

@@ -1,6 +1,6 @@
 ﻿// Code by takatok: https://forum.unity.com/threads/vector3-is-not-marked-serializable.435303/#post-2814558
-using UnityEngine;
 using System.Runtime.Serialization;
+using UnityEngine;
 
 namespace PixelCrushers
 {

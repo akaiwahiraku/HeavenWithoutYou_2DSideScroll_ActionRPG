@@ -1,8 +1,8 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -508,7 +508,7 @@ namespace PixelCrushers.DialogueSystem
             }
             else
             {
-                    DestroyImmediate(events);
+                DestroyImmediate(events);
             }
             EditorWindowTools.EndIndentedSection();
         }

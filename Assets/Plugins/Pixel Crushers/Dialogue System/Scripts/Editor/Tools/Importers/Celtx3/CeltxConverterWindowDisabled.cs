@@ -1,7 +1,6 @@
 ﻿#if !USE_CELTX3
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using UnityEditor;
 
 namespace PixelCrushers.DialogueSystem

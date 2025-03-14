@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using System;
-using System.Collections;
 
 namespace PixelCrushers
 {
@@ -79,7 +79,7 @@ namespace PixelCrushers
 
         public override IEnumerator EnterScene()
         {
-            if (string.IsNullOrEmpty(loadingSceneName)) yield return endOfFrame; 
+            if (string.IsNullOrEmpty(loadingSceneName)) yield return endOfFrame;
             enterSceneTransition.onTransitionStart.Invoke();
             var startTime = Time.realtimeSinceStartup;
             var minAnimationTime = startTime + enterSceneTransition.animationDuration;

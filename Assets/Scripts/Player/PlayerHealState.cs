@@ -1,6 +1,3 @@
-using System.Collections;
-using UnityEngine;
-
 public class PlayerHealState : PlayerState
 {
     public PlayerHealState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName)

@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UIElements.Experimental;
-
 public class Enemy_SkeletonWarrior : Enemy
 {
 
@@ -36,7 +31,7 @@ public class Enemy_SkeletonWarrior : Enemy
     {
         base.Start();
         stateMachine.Initialized(idleState);
-        
+
     }
 
     public override bool CanBeStunned()

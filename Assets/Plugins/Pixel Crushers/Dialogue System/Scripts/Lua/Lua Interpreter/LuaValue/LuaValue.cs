@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Language.Lua
 {
@@ -36,12 +33,12 @@ namespace Language.Lua
             return this.Value.Equals(other.Value);
         }
 
-		//[PixelCrushers] IL2CPP requires overriding Equals(object) when
-		// using LuaValues as dictionary keys.
-		public override bool Equals(object obj)
-		{
-			return (obj is LuaValue) ? Equals(obj as LuaValue) : base.Equals(obj);
-		}
+        //[PixelCrushers] IL2CPP requires overriding Equals(object) when
+        // using LuaValues as dictionary keys.
+        public override bool Equals(object obj)
+        {
+            return (obj is LuaValue) ? Equals(obj as LuaValue) : base.Equals(obj);
+        }
 
         public override int GetHashCode()
         {
@@ -84,8 +81,8 @@ namespace Language.Lua
                     }
                 }
 
-				//[PixelCrushers] Changed wording:
-				throw new Exception(string.Format("Lookup of field '{0}' in the table element failed because the table element itself isn't in the table.", key.Value));
+                //[PixelCrushers] Changed wording:
+                throw new Exception(string.Format("Lookup of field '{0}' in the table element failed because the table element itself isn't in the table.", key.Value));
             }
         }
     }
