@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Language.Lua
 {
 
-    public class LuaFunctionCallException : Exception 
+    public class LuaFunctionCallException : Exception
     {
         public LuaFunctionCallException(string message) : base(message) { }
     }
@@ -38,11 +38,11 @@ namespace Language.Lua
                     if (primaryExpr != null)
                     {
                         if (primaryExpr.Base is VarName)
-                        { 
-                            throw new Exception($"Tried to call {(primaryExpr.Base as VarName).Name}() as a function but failed. Is it a registered Lua function?"); 
+                        {
+                            throw new Exception($"Tried to call {(primaryExpr.Base as VarName).Name}() as a function but failed. Is it a registered Lua function?");
                         }
                     }
-                    throw e;                    
+                    throw e;
                 }
             }
             return values;

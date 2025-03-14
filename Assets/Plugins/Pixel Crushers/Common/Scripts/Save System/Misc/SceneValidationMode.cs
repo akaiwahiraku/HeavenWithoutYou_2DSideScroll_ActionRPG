@@ -1,9 +1,5 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace PixelCrushers
 {
 
@@ -15,13 +11,13 @@ namespace PixelCrushers
         /// <summary>
         /// Just loading a new scene.
         /// </summary>
-        LoadingScene, 
-        
+        LoadingScene,
+
         /// <summary>
         /// Loading a saved game.
         /// </summary>
-        LoadingSavedGame, 
-        
+        LoadingSavedGame,
+
         /// <summary>
         /// Resetting the game state and loading the first gameplay scene.
         /// </summary>

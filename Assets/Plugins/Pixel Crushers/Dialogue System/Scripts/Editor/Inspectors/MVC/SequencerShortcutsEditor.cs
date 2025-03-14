@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -46,12 +46,12 @@ namespace PixelCrushers.DialogueSystem
             var shortcutProperty = element.FindPropertyRelative("shortcut");
             var valueProperty = element.FindPropertyRelative("value");
             EditorGUI.LabelField(new Rect(rect.x, rect.y, LabelWidth, EditorGUIUtility.singleLineHeight), new GUIContent("Submenu", "Optional submenu in Sequence field's '+' menu to place this shortcut. Leave blank for no submenu."));
-            subMenuProperty.stringValue = EditorGUI.TextField(new Rect(rect.x + LabelWidth, rect.y, rect.width - LabelWidth, EditorGUIUtility.singleLineHeight), 
+            subMenuProperty.stringValue = EditorGUI.TextField(new Rect(rect.x + LabelWidth, rect.y, rect.width - LabelWidth, EditorGUIUtility.singleLineHeight),
                 GUIContent.none, subMenuProperty.stringValue);
             EditorGUI.LabelField(new Rect(rect.x, rect.y + EditorGUIUtility.singleLineHeight, LabelWidth, EditorGUIUtility.singleLineHeight), new GUIContent("Shortcut", "Shortcut keyword to use in sequences. Omit braces."));
             shortcutProperty.stringValue = EditorGUI.TextField(new Rect(rect.x + LabelWidth, rect.y + EditorGUIUtility.singleLineHeight, rect.width - LabelWidth, EditorGUIUtility.singleLineHeight),
                 GUIContent.none, shortcutProperty.stringValue);
-            EditorGUI.LabelField(new Rect(rect.x, rect.y + 2 * EditorGUIUtility.singleLineHeight + 2,LabelWidth, EditorGUIUtility.singleLineHeight), new GUIContent("Value", "In sequences, replace keyword (wrapped in braces) with this."));
+            EditorGUI.LabelField(new Rect(rect.x, rect.y + 2 * EditorGUIUtility.singleLineHeight + 2, LabelWidth, EditorGUIUtility.singleLineHeight), new GUIContent("Value", "In sequences, replace keyword (wrapped in braces) with this."));
             valueProperty.stringValue = EditorGUI.TextArea(new Rect(rect.x + LabelWidth, rect.y + 2 * EditorGUIUtility.singleLineHeight + 2, rect.width - LabelWidth, 5 * EditorGUIUtility.singleLineHeight), valueProperty.stringValue);
         }
 

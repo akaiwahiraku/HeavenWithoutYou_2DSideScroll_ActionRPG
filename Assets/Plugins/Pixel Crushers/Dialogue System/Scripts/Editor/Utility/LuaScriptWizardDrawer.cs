@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -58,7 +58,7 @@ namespace PixelCrushers.DialogueSystem
                             luaWizard.OpenWizard(property.stringValue);
                         }
                         if (position.width > 16) propertyWidth = position.width - 16;
-                        lastComputedHeight = luaWizard.GetHeight() + 
+                        lastComputedHeight = luaWizard.GetHeight() +
                             GUI.skin.textArea.CalcHeight(new GUIContent(property.stringValue), propertyWidth) + 2f;
                         property.stringValue = luaWizard.Draw(position, label, property.stringValue);
                         lastValue = property.stringValue;

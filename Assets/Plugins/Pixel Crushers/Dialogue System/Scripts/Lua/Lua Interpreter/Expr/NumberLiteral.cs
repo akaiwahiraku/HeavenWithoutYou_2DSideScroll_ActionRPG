@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace Language.Lua
 {
@@ -20,7 +17,7 @@ namespace Language.Lua
                 number = int.Parse(this.HexicalText, NumberStyles.HexNumber);
             }
 
-            return new LuaNumber (number);
+            return new LuaNumber(number);
         }
     }
 }

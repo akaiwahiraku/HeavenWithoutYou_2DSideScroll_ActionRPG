@@ -473,7 +473,7 @@ namespace PixelCrushers.DialogueSystem
         /// <example>
         /// StartConversation("Shopkeeper Conversation", player, shopkeeper);
         /// </example>
-        public static void StartConversation(string title, Transform actor, Transform conversant, 
+        public static void StartConversation(string title, Transform actor, Transform conversant,
             int initialDialogueEntryID, IDialogueUI overrideDialogueUI)
         {
             if (!hasInstance) return;

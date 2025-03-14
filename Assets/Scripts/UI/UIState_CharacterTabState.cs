@@ -59,24 +59,6 @@ public class UIState_CharacterTabState : UIState
             return;
         }
 
-        //// EquipmentSelectionPanel が開いている場合、CloseButtonが選択されているなら閉じる
-        //if (uiManager.equipmentSelectionPanel != null &&
-        //    selectedObj == uiManager.equipmentSelectionPanel.closeEquipmentSelectionPanel.gameObject)
-        //{
-        //    Debug.Log("[HandleCharacterSubmit] CloseButton pressed, closing EquipmentSelectionPanel.");
-        //    uiManager.equipmentSelectionPanel.OnCloseButton();
-        //    return;
-        //}
-
-        //EquipmentSelectionPanel が開いている場合、CloseButtonが選択されているなら閉じる
-        //if (uiManager.skillSelectionPanel != null &&
-        //    selectedObj == uiManager.skillSelectionPanel.closeSkillSelectionPanel.gameObject)
-        //{
-        //    Debug.Log("[HandleCharacterSubmit] CloseButton pressed, closing SkillSelectionPanel.");
-        //    uiManager.skillSelectionPanel.OnCloseButton();
-        //    return;
-        //}
-
         // UI_EquipmentSetSlot が選択されているかチェック
         UI_EquipmentSetSlot eqSlot = selectedObj.GetComponent<UI_EquipmentSetSlot>();
         if (eqSlot != null)

@@ -1,9 +1,7 @@
 using TMPro;
-using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class UI_ItemSlot : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
@@ -17,6 +15,7 @@ public class UI_ItemSlot : MonoBehaviour, ISelectHandler, IDeselectHandler
     [SerializeField] private string itemDescription;
 
     protected UIManager uiManager;
+
     public InventoryItem item;
 
     private Button button;
@@ -25,6 +24,7 @@ public class UI_ItemSlot : MonoBehaviour, ISelectHandler, IDeselectHandler
     private void Awake()
     {
         uiManager = GetComponentInParent<UIManager>();
+
     }
 
     protected virtual void Start()

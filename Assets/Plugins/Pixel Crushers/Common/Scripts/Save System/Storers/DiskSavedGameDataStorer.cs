@@ -185,8 +185,8 @@ namespace PixelCrushers
         public override bool HasDataInSlot(int slotNumber)
         {
             var slotIndex = slotNumber;
-            return 0 <= slotIndex && slotIndex < savedGameInfo.Count && 
-                !string.IsNullOrEmpty(savedGameInfo[slotIndex].sceneName) && 
+            return 0 <= slotIndex && slotIndex < savedGameInfo.Count &&
+                !string.IsNullOrEmpty(savedGameInfo[slotIndex].sceneName) &&
                 File.Exists(GetSaveGameFilename(slotNumber));
         }
 

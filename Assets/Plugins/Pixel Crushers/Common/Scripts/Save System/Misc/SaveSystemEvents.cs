@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -33,7 +32,7 @@ namespace PixelCrushers
         }
 
         private void RegisterEvents()
-        { 
+        {
             SaveSystem.saveStarted += OnSaveStarted;
             SaveSystem.saveEnded += OnSaveEnded;
             SaveSystem.loadStarted += OnLoadStarted;

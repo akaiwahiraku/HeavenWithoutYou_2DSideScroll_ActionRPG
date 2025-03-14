@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class DeathBringerTeleportState : EnemyState
 {
 
@@ -24,7 +20,7 @@ public class DeathBringerTeleportState : EnemyState
 
         if (triggerCalled)
         {
-            if(enemy.CanDoSpellCast())
+            if (enemy.CanDoSpellCast())
                 stateMachine.ChangeState(enemy.spellCastState);
             else
                 stateMachine.ChangeState(enemy.battleState);

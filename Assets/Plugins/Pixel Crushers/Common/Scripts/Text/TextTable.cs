@@ -18,8 +18,8 @@ namespace PixelCrushers
         /// <summary>
         /// If a language's field value is blank, use the default language's field value.
         /// </summary>
-        public static bool useDefaultLanguageForBlankTranslations 
-        { 
+        public static bool useDefaultLanguageForBlankTranslations
+        {
             get { return m_useDefaultLanguageForBlankTranslations; }
             set { m_useDefaultLanguageForBlankTranslations = value; }
         }

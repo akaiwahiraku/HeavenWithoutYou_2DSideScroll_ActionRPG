@@ -1,12 +1,11 @@
 ﻿#if USE_ARTICY
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using System.Text;
-using System.IO;
 using System.Collections.Generic;
-using System.Xml;
+using System.IO;
+using System.Text;
 using System.Xml.Serialization;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.Articy.Articy_2_4
 {
@@ -214,7 +213,7 @@ namespace PixelCrushers.DialogueSystem.Articy.Articy_2_4
             if (condition != null)
             {
                 articyData.conditions.Add(condition.Id, new ArticyData.Condition(condition.Id,
-                    condition.Expression, ConvertPins(condition.Pins), 
+                    condition.Expression, ConvertPins(condition.Pins),
                     new Vector2(condition.Position.X, condition.Position.Y)));
             }
         }
@@ -245,7 +244,7 @@ namespace PixelCrushers.DialogueSystem.Articy.Articy_2_4
             {
                 foreach (VariableType variable in variables.Variable)
                 {
-                    articyDataVariables.Add(new ArticyData.Variable(variable.TechnicalName, variable.DefaultValue, 
+                    articyDataVariables.Add(new ArticyData.Variable(variable.TechnicalName, variable.DefaultValue,
                         ConvertDataType(variable.DataType), GetDefaultLocalizedString(variable.Description)));
                 }
             }

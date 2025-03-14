@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class SkeletonDeadState : EnemyState
@@ -24,7 +21,7 @@ public class SkeletonDeadState : EnemyState
     {
         base.Exit();
 
-        
+
     }
 
     public override void Update()

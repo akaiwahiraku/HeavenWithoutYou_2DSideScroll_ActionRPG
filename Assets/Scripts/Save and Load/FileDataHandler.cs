@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
 using System.IO;
+using UnityEngine;
 
 public class FileDataHandler
 {
@@ -32,9 +30,9 @@ public class FileDataHandler
             if (encryptData)
                 dataToStore = EncryptDecrypt(dataToStore);
 
-            using(FileStream stream = new FileStream(fullPath, FileMode.Create))
+            using (FileStream stream = new FileStream(fullPath, FileMode.Create))
             {
-                using(StreamWriter writer = new StreamWriter(stream))
+                using (StreamWriter writer = new StreamWriter(stream))
                 {
                     writer.Write(dataToStore);
                 }
@@ -52,7 +50,7 @@ public class FileDataHandler
         string fullPath = Path.Combine(dataDirPath, dataFileName);
         GameData loadData = null;
 
-        if(File.Exists(fullPath))
+        if (File.Exists(fullPath))
         {
             try
             {
@@ -66,12 +64,12 @@ public class FileDataHandler
                     }
                 }
 
-                if(encryptData)
+                if (encryptData)
                     dataToLoad = EncryptDecrypt(dataToLoad);
 
                 loadData = JsonUtility.FromJson<GameData>(dataToLoad);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Debug.LogError("Error on trying to load data from file:" + fullPath + "\n" + e);
             }
@@ -84,7 +82,7 @@ public class FileDataHandler
     {
         string fullPath = Path.Combine(dataDirPath, dataFileName);
 
-        if(File.Exists(fullPath))
+        if (File.Exists(fullPath))
             File.Delete(fullPath);
     }
 
@@ -92,7 +90,7 @@ public class FileDataHandler
     {
         string modifiedData = "";
 
-        for (int i = 0; i < _data.Length; i++) 
+        for (int i = 0; i < _data.Length; i++)
         {
             modifiedData += (char)(_data[i] ^ codeWord[i % codeWord.Length]);
         }

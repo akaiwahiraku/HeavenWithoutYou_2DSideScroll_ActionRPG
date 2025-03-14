@@ -1,12 +1,12 @@
 #if USE_AURORA
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
-using System.IO;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
+using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.Aurora
 {

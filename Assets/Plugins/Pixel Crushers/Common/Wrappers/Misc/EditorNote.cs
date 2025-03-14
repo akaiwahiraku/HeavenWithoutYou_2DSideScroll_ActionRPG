@@ -15,7 +15,7 @@ namespace PixelCrushers.Wrappers
 
 #if UNITY_EDITOR
         [SerializeField]
-        [TextArea(1,50)]
+        [TextArea(1, 50)]
         private string m_note;
 
         public string note { get { return m_note; } set { m_note = value; } }

@@ -1168,7 +1168,7 @@ namespace PixelCrushers.DialogueSystem
         public static string GetVariable(string variable, string defaultValue)
         {
             var result = GetVariable(variable);
-            return result.isString ? result.asString: defaultValue;
+            return result.isString ? result.asString : defaultValue;
         }
 
         /// <summary>

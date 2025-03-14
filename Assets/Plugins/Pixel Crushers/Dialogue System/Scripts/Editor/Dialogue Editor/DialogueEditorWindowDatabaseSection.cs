@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.DialogueEditor
 {
@@ -327,7 +327,7 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
                     result += LogSearchResultsInAssetList<Location>(database.locations, "Location");
                     if (EditorUtility.DisplayCancelableProgressBar("Searching Database", "Searching variables for '" + globalSearchText + "'. Please wait...", (database.actors.Count + database.items.Count + database.locations.Count) / size)) return;
                     result += LogSearchResultsInAssetList<Variable>(database.variables, "Variable");
-                }                
+                }
 
                 int numConversationsDone = 0;
                 foreach (var conversation in database.conversations)
@@ -666,8 +666,8 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
                     EditorGUILayout.HelpBox("Use this feature to export your database to external text-based formats.\nThe proofreading option will export a proofreading text file for each language. After making corrections, you can reimport the proofreading files.", MessageType.None);
                     break;
             }
-            if (exportFormat != ExportFormat.LanguageText && 
-                exportFormat != ExportFormat.Screenplay && 
+            if (exportFormat != ExportFormat.LanguageText &&
+                exportFormat != ExportFormat.Screenplay &&
                 exportFormat != ExportFormat.JSON &&
                 exportFormat != ExportFormat.Proofreading)
             {

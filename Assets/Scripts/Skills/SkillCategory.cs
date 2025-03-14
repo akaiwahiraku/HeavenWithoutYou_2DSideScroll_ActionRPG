@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public enum SkillCategory
+﻿public enum SkillCategory
 {
     PrimaryAttack,
     Dash,

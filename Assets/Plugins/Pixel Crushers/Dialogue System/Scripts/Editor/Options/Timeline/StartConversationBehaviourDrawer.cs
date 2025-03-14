@@ -1,10 +1,8 @@
 #if USE_TIMELINE
 #if UNITY_2017_1_OR_NEWER
-using UnityEngine;
 using UnityEditor;
-using UnityEngine.Playables;
-using UnityEngine.Timeline;
 using UnityEditor.Timeline;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {

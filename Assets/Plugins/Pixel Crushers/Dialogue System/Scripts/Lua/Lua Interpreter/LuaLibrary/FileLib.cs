@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Language.Lua.Library
 {
@@ -45,7 +43,7 @@ namespace Language.Lua.Library
             TextWriter writer = data.Value as TextWriter;
             if (writer != null)
             {
-				//[PixelCrushers]writer.Close();
+                //[PixelCrushers]writer.Close();
             }
 
             return null;
@@ -105,11 +103,11 @@ namespace Language.Lua.Library
         public static LuaValue lines(LuaValue[] values)
         {
             LuaUserdata data = values[0] as LuaUserdata;
-			//[PixelCrushers]TextReader reader = data.Value as TextReader;
+            //[PixelCrushers]TextReader reader = data.Value as TextReader;
 
             LuaFunction func = new LuaFunction((LuaValue[] args) =>
                 {
-					//[PixelCrushers]LuaUserdata _data = values[0] as LuaUserdata;
+                    //[PixelCrushers]LuaUserdata _data = values[0] as LuaUserdata;
                     TextReader _reader = data.Value as TextReader;
 
                     string line = _reader.ReadLine();

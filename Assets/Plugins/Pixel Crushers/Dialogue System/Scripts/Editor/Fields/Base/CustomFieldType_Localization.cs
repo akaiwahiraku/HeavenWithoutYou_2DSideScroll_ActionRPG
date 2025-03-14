@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEditor;
-using PixelCrushers.DialogueSystem;
+﻿using UnityEditor;
+using UnityEngine;
 
 
 namespace PixelCrushers.DialogueSystem

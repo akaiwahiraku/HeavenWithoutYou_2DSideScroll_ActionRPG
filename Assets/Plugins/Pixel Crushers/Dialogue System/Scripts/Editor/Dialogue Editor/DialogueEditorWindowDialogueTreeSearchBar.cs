@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
 using System.Globalization;
+using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.DialogueEditor
 {
@@ -86,7 +86,8 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
                     }
                     return;
                 }
-                else {
+                else
+                {
                     current = GetValidSearchIndex(current + direction);
                 }
             }
@@ -102,7 +103,8 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             {
                 return 0;
             }
-            else {
+            else
+            {
                 return index;
             }
         }

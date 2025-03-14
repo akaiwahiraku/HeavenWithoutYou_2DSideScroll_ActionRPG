@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-namespace PixelCrushers.DialogueSystem.UnityGUI
+﻿namespace PixelCrushers.DialogueSystem.UnityGUI
 {
 
     /// <summary>

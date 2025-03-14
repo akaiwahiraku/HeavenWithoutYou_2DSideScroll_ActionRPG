@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Language.Lua
 {
@@ -24,7 +23,7 @@ namespace Language.Lua
                 else
                 {
                     //[PixelCrushers]List<LuaValue> args = this.Args.ArgList.ConvertAll(arg => arg.Evaluate(enviroment));
-					List<LuaValue> args = LuaInterpreterExtensions.EvaluateAll(this.Args.ArgList, enviroment);
+                    List<LuaValue> args = LuaInterpreterExtensions.EvaluateAll(this.Args.ArgList, enviroment);
                     args.Insert(0, baseValue);
                     return function.Function.Invoke(args.ToArray());
                 }

@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UI_SkillSelectionPanel : MonoBehaviour
 {
@@ -151,7 +151,7 @@ public class UI_SkillSelectionPanel : MonoBehaviour
                 if (label != null)
                     label.text = skill.skillName;
                 //else
-                    //Debug.LogWarning("[UI_SkillSelectionPanel] Missing TextMeshProUGUI on skill button prefab.");
+                //Debug.LogWarning("[UI_SkillSelectionPanel] Missing TextMeshProUGUI on skill button prefab.");
 
                 candidateButtons.Add(btnObj);
                 btn.onClick.AddListener(() => OnSkillSelected(skill));
@@ -241,37 +241,39 @@ public class UI_SkillSelectionPanel : MonoBehaviour
 
     private IEnumerator CloseAndReturnFocus()
     {
-        // 一旦選択状態をクリア
+        // 1. 一旦選択状態をクリア
         EventSystem.current.SetSelectedGameObject(null);
 
-        // UI更新が完全に反映されるまで待つ（ここでは EndOfFrame を利用）
-        yield return new WaitForEndOfFrame();
+        // 2. UI更新のために1フレーム待機
+        yield return null;
 
-        // または currentSlot がアクティブな状態になるまで待つ（必要に応じて）
-        yield return new WaitUntil(() => currentSlot != null && currentSlot.gameObject.activeInHierarchy);
-
-        // currentSlot が選択可能な状態か確認
-        Button btn = currentSlot.GetComponent<Button>();
-        if (btn != null)
+        // 3. currentSlot が非アクティブの場合は強制的にアクティブ化
+        if (currentSlot != null && !currentSlot.gameObject.activeInHierarchy)
         {
-            //Debug.Log($"[UI_SkillSelectionPanel] Returning focus to {currentSlot.gameObject.name} using Button.Select().");
-            btn.Select();
-        }
-        else
-        {
-            //Debug.Log($"[UI_SkillSelectionPanel] No Button component on {currentSlot.gameObject.name}. Using SetSelectedGameObject().");
-            EventSystem.current.SetSelectedGameObject(currentSlot.gameObject);
+            currentSlot.gameObject.SetActive(true);
         }
 
-        // 必要に応じて、UI更新の余裕を持たせるため、さらに少し待つ
-        yield return new WaitForSeconds(0.1f);
+        // 4. currentSlot にフォーカスを戻す
+        if (currentSlot != null)
+        {
+            Button btn = currentSlot.GetComponent<Button>();
+            if (btn != null)
+            {
+                btn.Select();
+            }
+            else
+            {
+                EventSystem.current.SetSelectedGameObject(currentSlot.gameObject);
+            }
+        }
 
-        // 候補ボタンのリストをクリアし、パネルを完全に非表示にする
+        // 5. フォーカス設定が反映されるようにさらに1フレーム待機
+        yield return null;
+
+        // 6. 候補ボタンのリストをクリアし、パネルを非表示にする
         candidateButtons.Clear();
         gameObject.SetActive(false);
         isClosing = false;
-
-        //Debug.Log("[UI_SkillSelectionPanel] CloseAndReturnFocus: Panel is now inactive.");
     }
 
 

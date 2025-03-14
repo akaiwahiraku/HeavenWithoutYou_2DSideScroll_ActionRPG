@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -69,7 +69,7 @@ namespace PixelCrushers.DialogueSystem
                     var state = DialogueManager.currentConversationState;
                     var entry = s_pushCurrentEntry ? state.subtitle.dialogueEntry
                         : state.hasNPCResponse ? state.firstNPCResponse.destinationEntry
-                        : state.hasPCResponses ? state.pcResponses[0].destinationEntry 
+                        : state.hasPCResponses ? state.pcResponses[0].destinationEntry
                         : null;
                     if (entry == null)
                     {

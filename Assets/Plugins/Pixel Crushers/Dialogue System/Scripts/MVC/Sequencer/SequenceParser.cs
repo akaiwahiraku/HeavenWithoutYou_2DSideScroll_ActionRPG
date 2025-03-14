@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
 using PixelCrushers.DialogueSystem.SequencerCommands;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {

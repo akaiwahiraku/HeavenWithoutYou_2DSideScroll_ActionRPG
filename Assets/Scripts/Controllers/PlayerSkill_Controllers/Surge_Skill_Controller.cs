@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Surge_Skill_Controller : MonoBehaviour
 {
@@ -73,7 +71,7 @@ public class Surge_Skill_Controller : MonoBehaviour
         int _lightningDamage = player.stats.lightningDamage.GetValue();
         int baseMagicalDamage = _fireDamage + _iceDamage + _lightningDamage + player.stats.intelligence.GetValue();
 
-        baseMagicalDamage = player.stats.ChechTargetResistance(enemyStats, baseMagicalDamage);
+        baseMagicalDamage = player.stats.CheckTargetResistance(enemyStats, baseMagicalDamage);
         int finalDamage = Mathf.RoundToInt(baseMagicalDamage * damageMultiplier);
         enemyStats.TakeDamage(finalDamage);
 

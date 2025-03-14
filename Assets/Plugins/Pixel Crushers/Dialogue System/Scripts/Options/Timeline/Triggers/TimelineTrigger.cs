@@ -2,11 +2,11 @@
 #if UNITY_2017_1_OR_NEWER
 // Copyright (c) Pixel Crushers. All rights reserved.
 
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace PixelCrushers.DialogueSystem
 {

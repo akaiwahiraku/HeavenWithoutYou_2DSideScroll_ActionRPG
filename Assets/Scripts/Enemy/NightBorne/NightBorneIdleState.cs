@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NightBorneIdleState : NightBorneGroundedState
@@ -30,13 +28,13 @@ public class NightBorneIdleState : NightBorneGroundedState
     {
         base.Update();
 
-        if(Vector2.Distance(player.transform.position, enemy.transform.position) < 7)
+        if (Vector2.Distance(player.transform.position, enemy.transform.position) < 7)
             enemy.bossFightBegun = true;
 
         //if (Input.GetKeyDown(KeyCode.V))
         //    stateMachine.ChangeState(enemy.teleportState);
 
-        if(stateTimer < 0 && enemy.bossFightBegun)
+        if (stateTimer < 0 && enemy.bossFightBegun)
             stateMachine.ChangeState(enemy.battleState);
     }
 }

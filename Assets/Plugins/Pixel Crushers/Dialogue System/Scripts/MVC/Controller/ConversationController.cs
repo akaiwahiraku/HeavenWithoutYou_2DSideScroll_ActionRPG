@@ -1,7 +1,7 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -122,8 +122,8 @@ namespace PixelCrushers.DialogueSystem
         /// <param name='endConversationHandler'>
         /// Handler to call to inform when the conversation is done.
         /// </param>
-        public ConversationController(ConversationModel model, ConversationView view, 
-            bool reevaluateLinksAfterSubtitle, bool alwaysForceResponseMenu, 
+        public ConversationController(ConversationModel model, ConversationView view,
+            bool reevaluateLinksAfterSubtitle, bool alwaysForceResponseMenu,
             EndConversationDelegate endConversationHandler)
         {
             isActive = true;
@@ -154,8 +154,8 @@ namespace PixelCrushers.DialogueSystem
         /// <param name='endConversationHandler'>
         /// Handler to call to inform when the conversation is done.
         /// </param>
-        public void Initialize(ConversationModel model, ConversationView view, 
-            bool reevaluateLinksAfterSubtitle, bool alwaysForceResponseMenu, 
+        public void Initialize(ConversationModel model, ConversationView view,
+            bool reevaluateLinksAfterSubtitle, bool alwaysForceResponseMenu,
             EndConversationDelegate endConversationHandler)
         {
             isActive = true;
@@ -226,7 +226,7 @@ namespace PixelCrushers.DialogueSystem
             if (state != null)
             {
                 if (state.subtitle != null) state.subtitle.activeConversationRecord = activeConversationRecord;
-                
+
                 // Check for change of conversation:
                 var newConversationID = m_model.GetConversationID(state);
                 if (newConversationID != m_currentConversationID)
@@ -275,7 +275,7 @@ namespace PixelCrushers.DialogueSystem
             }
             isPCResponseMenuNext = !state.hasNPCResponse && !hasForceAuto &&
                 (numPCResponses > 1 || hasForceMenu || (numPCResponses == 1 && alwaysForceMenu && !string.IsNullOrEmpty(state.pcResponses[0].formattedText.text)));
-            isPCAutoResponseNext = !state.hasNPCResponse && hasForceAuto || 
+            isPCAutoResponseNext = !state.hasNPCResponse && hasForceAuto ||
                 (numPCResponses == 1 && string.IsNullOrEmpty(state.pcResponses[0].formattedText.text)) ||
                 (numPCResponses == 1 && !hasForceMenu && (!alwaysForceMenu || state.pcResponses[0].destinationEntry.isGroup));
         }

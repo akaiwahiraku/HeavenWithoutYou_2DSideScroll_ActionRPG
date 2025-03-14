@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -34,7 +33,7 @@ public class UIManager : MonoBehaviour, ISaveManager
     [SerializeField] private GameObject inGameUI;     // ゲーム中のUI
     [SerializeField] public UI_SkillSelectionPanel skillSelectionPanel; // Inspectorで割り当て
     [SerializeField] public UI_EquipmentSelectionPanel equipmentSelectionPanel;
-
+    [SerializeField] private UI_StatPreview statPreview;
 
     // Menu内の各パネル（子オブジェクト）
     [SerializeField] private GameObject characterUI;
@@ -60,34 +59,11 @@ public class UIManager : MonoBehaviour, ISaveManager
     [Header("UI State Machine")]
     [SerializeField] private UIStateMachine uiStateMachine;
 
-    [Header("Stat Preview Panel")]
-    [SerializeField] private GameObject statPreviewPanel;
-    [SerializeField] private TextMeshProUGUI strengthPreviewText;
-    [SerializeField] private TextMeshProUGUI agilityPreviewText;
-    [SerializeField] private TextMeshProUGUI intelligencePreviewText;
-    [SerializeField] private TextMeshProUGUI vitalityPreviewText;
-    [SerializeField] private TextMeshProUGUI damagePreviewText;
-    [SerializeField] private TextMeshProUGUI critChancePreviewText;
-    [SerializeField] private TextMeshProUGUI critPowerPreviewText;
-    [SerializeField] private TextMeshProUGUI overDrivePreviewText;
-    [SerializeField] private TextMeshProUGUI maxHealthPreviewText;
-    [SerializeField] private TextMeshProUGUI armorPreviewText;
-    [SerializeField] private TextMeshProUGUI evasionPreviewText;
-    [SerializeField] private TextMeshProUGUI magicResistancePreviewText;
-    [SerializeField] private TextMeshProUGUI fireDamagePreviewText;
-    [SerializeField] private TextMeshProUGUI iceDamagePreviewText;
-    [SerializeField] private TextMeshProUGUI lightningDamagePreviewText;
-
     [Header("Skill Slot References")]
     public UI_SkillTreeSlot currentSkillSlot;
     public UI_SkillTreeSlot unlockedSkillSlot;
 
-    #endregion
-
     public bool menuJustClosed = false;
-
-
-    #region Private Fields
 
     public static UIManager instance;
 
@@ -112,18 +88,14 @@ public class UIManager : MonoBehaviour, ISaveManager
     // スキル選択時に現在操作中のスロット
     private UI_SkillSetSlot currentSelectedSkillSlot;
 
-
-
     #endregion
 
-    #region Unity Lifecycle
 
     private void Awake()
     {
         // シングルトン初期化
         if (instance != null)
         {
-            //Debug.LogWarning("[UIManager] Another instance already exists, destroying this one.");
             Destroy(gameObject);
             return;
         }
@@ -131,8 +103,6 @@ public class UIManager : MonoBehaviour, ISaveManager
 
         eventSystem = EventSystem.current;
         joystickInputManager = GetComponentInChildren<JoystickInputManager>();
-
-        // 各パネルはInspectorから設定済みとする
 
         // 初期状態はメニューを閉じる
         CloseMenuUI();
@@ -145,12 +115,12 @@ public class UIManager : MonoBehaviour, ISaveManager
 
         openMenuAction.performed += _ => OpenToggleMenu();
         // ここで、メニューが開いている場合のみ HandleCancel() を呼ぶように変更
-        cancelAction.performed += ctx => {
+        cancelAction.performed += ctx =>
+        {
             if (isMenuOpen)
             {
                 HandleCancel();
             }
-            // メニューが閉じている場合は何もしない（入力は他のシステムで処理される）
         };
     }
 
@@ -216,13 +186,10 @@ public class UIManager : MonoBehaviour, ISaveManager
         joystickControls.Disable();
     }
 
-    #endregion
 
     #region Menu Management
 
-    /// <summary>
     /// メニューのON/OFFを切り替えます。
-    /// </summary>
     private void OpenToggleMenu()
     {
         isMenuOpen = !isMenuOpen;
@@ -253,10 +220,7 @@ public class UIManager : MonoBehaviour, ISaveManager
         }
     }
 
-
-    /// <summary>
     /// パネルの切り替えと状態遷移を行います。
-    /// </summary>
     public void SwitchTo(GameObject panel)
     {
         //Debug.Log("SwitchTo() called. Target panel: " + panel.name);
@@ -287,18 +251,11 @@ public class UIManager : MonoBehaviour, ISaveManager
         {
             uiStateMachine.ChangeState(new UIState_OptionTabState(uiStateMachine, this, optionsUI, optionsTabButton));
         }
-        else
-        {
-            //Debug.LogWarning("Unknown panel passed to SwitchTo: " + panel.name);
-        }
-
+ 
         lastActivePanel = panel;
-        //Debug.Log("LastActivePanel updated to: " + lastActivePanel.name);
     }
 
-    /// <summary>
     /// メニューを閉じ、ゲーム内UIを復帰させます。
-    /// </summary>
     private void CloseMenuUI()
     {
         menuUI.SetActive(false);
@@ -320,9 +277,7 @@ public class UIManager : MonoBehaviour, ISaveManager
         }
     }
 
-    /// <summary>
     /// キャンセル入力時の処理（例：メニューを閉じる）
-    /// </summary>
     private void HandleCancel()
     {
         if (isMenuOpen)
@@ -334,10 +289,8 @@ public class UIManager : MonoBehaviour, ISaveManager
         }
     }
 
-
     #endregion
 
-    #region Cursor & Souls UI
 
     private void UpdatePointerCursor()
     {
@@ -386,7 +339,6 @@ public class UIManager : MonoBehaviour, ISaveManager
         }
     }
 
-    #endregion
 
     #region Save/Load Data
 
@@ -413,78 +365,23 @@ public class UIManager : MonoBehaviour, ISaveManager
 
     #endregion
 
+
     #region Stat Preview
 
     public void ShowStatPreview(ItemData_Equipment hoveredEquipment)
     {
-        //Debug.Log("[UIManager] ShowStatPreview called for: " + hoveredEquipment.itemName);
-        if (hoveredEquipment == null)
-            return;
-
-        ItemData_Equipment currentEquipment = Inventory.instance.GetEquipment(hoveredEquipment.equipmentType);
-        if (currentEquipment != null)
-            Debug.Log("[UIManager] currentEquipment: " + currentEquipment.itemName);
-        else
-            Debug.Log("[UIManager] No current equipment for type: " + hoveredEquipment.equipmentType);
-
-        int diffStrength = hoveredEquipment.strength - (currentEquipment != null ? currentEquipment.strength : 0);
-        int diffAgility = hoveredEquipment.agility - (currentEquipment != null ? currentEquipment.agility : 0);
-        int diffIntelligence = hoveredEquipment.intelligence - (currentEquipment != null ? currentEquipment.intelligence : 0);
-        int diffVitality = hoveredEquipment.vitality - (currentEquipment != null ? currentEquipment.vitality : 0);
-
-        int diffDamage = (hoveredEquipment.damage + hoveredEquipment.strength)
-                         - (currentEquipment != null ? (currentEquipment.damage + currentEquipment.strength) : 0);
-        int diffCritChance = (hoveredEquipment.critChance + hoveredEquipment.agility)
-                             - (currentEquipment != null ? (currentEquipment.critChance + currentEquipment.agility) : 0);
-        int diffCritPower = (hoveredEquipment.critPower + hoveredEquipment.strength)
-                            - (currentEquipment != null ? (currentEquipment.critPower + currentEquipment.strength) : 0);
-
-        int diffArmor = hoveredEquipment.armor - (currentEquipment != null ? currentEquipment.armor : 0);
-        int diffEvasion = (hoveredEquipment.evasion + hoveredEquipment.agility)
-                          - (currentEquipment != null ? (currentEquipment.evasion + currentEquipment.agility) : 0);
-        int diffMagicRes = (hoveredEquipment.magicResistance + hoveredEquipment.intelligence * 3)
-                           - (currentEquipment != null ? (currentEquipment.magicResistance + currentEquipment.intelligence * 3) : 0);
-
-        int diffFireDamage = hoveredEquipment.fireDamage - (currentEquipment != null ? currentEquipment.fireDamage : 0);
-        int diffIceDamage = hoveredEquipment.iceDamage - (currentEquipment != null ? currentEquipment.iceDamage : 0);
-        int diffLightningDamage = hoveredEquipment.lightningDamage - (currentEquipment != null ? currentEquipment.lightningDamage : 0);
-
-        strengthPreviewText.text = FormatDiff(diffStrength);
-        agilityPreviewText.text = FormatDiff(diffAgility);
-        intelligencePreviewText.text = FormatDiff(diffIntelligence);
-        vitalityPreviewText.text = FormatDiff(diffVitality);
-
-        damagePreviewText.text = FormatDiff(diffDamage);
-        critChancePreviewText.text = FormatDiff(diffCritChance);
-        critPowerPreviewText.text = FormatDiff(diffCritPower);
-        //overDrivePreviewText.text = FormatDiff(diffOverDrive);
-
-        //maxHealthPreviewText.text = FormatDiff(diffMaxHealth);
-        armorPreviewText.text = FormatDiff(diffArmor);
-        evasionPreviewText.text = FormatDiff(diffEvasion);
-        magicResistancePreviewText.text = FormatDiff(diffMagicRes);
-
-        fireDamagePreviewText.text = FormatDiff(diffFireDamage);
-        iceDamagePreviewText.text = FormatDiff(diffIceDamage);
-        lightningDamagePreviewText.text = FormatDiff(diffLightningDamage);
-
-        statPreviewPanel.SetActive(true);
-        //Debug.Log("[UIManager] statPreviewPanel active: " + statPreviewPanel.activeSelf);
-    }
-
-    private string FormatDiff(int diff)
-    {
-        if (diff == 0)
-            return "";
-        string color = diff > 0 ? "green" : "red";
-        // 正の数の場合は+記号を付ける
-        string sign = diff > 0 ? "+" : "";
-        return $"<color={color}>{sign}{diff}</color>";
+        if (statPreview != null)
+        {
+            statPreview.ShowStatPreview(hoveredEquipment);
+        }
     }
 
     public void ClearStatPreview()
     {
-        statPreviewPanel.SetActive(false);
+        if (statPreview != null)
+        {
+            statPreview.ClearStatPreview();
+        }
     }
 
     #endregion
@@ -505,19 +402,13 @@ public class UIManager : MonoBehaviour, ISaveManager
         canSubmit = true;
     }
 
-    /// <summary>
     /// UI_SkillSetSlotから呼ばれる。スキル選択パネルを開き、現在のスロットを記録します。
-    /// </summary>
     public void OpenSkillSelectionPanel(SkillCategory category, UI_SkillSetSlot slot)
     {
         currentSelectedSkillSlot = slot;
         if (skillSelectionPanel != null)
         {
             skillSelectionPanel.Open(category, slot);
-        }
-        else
-        {
-           // Debug.LogWarning("[UIManager] skillSelectionPanel is not assigned.");
         }
     }
 
@@ -527,10 +418,6 @@ public class UIManager : MonoBehaviour, ISaveManager
         if (equipmentSelectionPanel != null)
         {
             equipmentSelectionPanel.Open(equipmentType, slot);
-        }
-        else
-        {
-            //Debug.LogWarning("EquipmentSelectionPanel is not assigned in UIManager.");
         }
     }
 
@@ -567,9 +454,7 @@ public class UIManager : MonoBehaviour, ISaveManager
         }
     }
 
-    /// <summary>
     /// 指定のGameObjectが親の子階層にあるかどうかを返す
-    /// </summary>
     private bool IsChildOf(GameObject child, GameObject parent)
     {
         return child.transform.IsChildOf(parent.transform);

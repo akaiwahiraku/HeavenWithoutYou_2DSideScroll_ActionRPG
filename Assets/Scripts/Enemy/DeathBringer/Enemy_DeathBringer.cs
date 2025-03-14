@@ -68,7 +68,7 @@ public class Enemy_DeathBringer : Enemy
 
         if (player.rb.velocity.x != 0)
             xOffset = player.facingDir * spellOffset.x;
-        
+
         Vector3 spellPosition = new Vector3(player.transform.position.x + xOffset, player.transform.position.y + spellOffset.y);
 
         GameObject newSpell = Instantiate(spellPrefab, spellPosition, Quaternion.identity);

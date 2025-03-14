@@ -1,7 +1,7 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -28,7 +28,7 @@ namespace PixelCrushers.DialogueSystem
         /// If blank, uses the override name.
         /// </summary>
         [Tooltip("Name used when saving persistent data. If blank, use actor name.")]
-        [UnityEngine.Serialization.FormerlySerializedAs("internalName")]        
+        [UnityEngine.Serialization.FormerlySerializedAs("internalName")]
         public string persistentDataName;
 
         [Tooltip("Optional portrait. If unassigned, will use portrait of actor in database. This field allows you to assign a Texture.")]

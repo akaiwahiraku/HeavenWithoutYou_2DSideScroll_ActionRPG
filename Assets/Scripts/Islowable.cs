@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-public interface ISlowable
+﻿public interface ISlowable
 {
     /// <summary>
     /// スロー効果を適用します。

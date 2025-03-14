@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneTransition : MonoBehaviour
+public class SceneTransitionManager : MonoBehaviour
 {
     // 移行先のシーン名を指定
     [SerializeField] private string targetSceneName = "StageSelect";

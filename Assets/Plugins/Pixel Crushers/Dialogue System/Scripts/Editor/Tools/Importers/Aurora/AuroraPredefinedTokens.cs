@@ -17,7 +17,7 @@ namespace PixelCrushers.DialogueSystem.Aurora
         /// @cond FOR_V1_COMPATIBILITY
         public static Dictionary<string, string> All { get { return all; } }
         /// @endcond
-        
+
         private static Dictionary<string, string> m_all = new Dictionary<string, string>() {
             { "<FirstName>", "FirstName" }, // The player characacter's first name.
 			{ "<LastName>", "LastName" }, // The PC's Last name.

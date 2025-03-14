@@ -1,12 +1,11 @@
 ﻿#if USE_ARTICY
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Linq;
 
 namespace PixelCrushers.DialogueSystem.Articy
 {
@@ -138,11 +137,13 @@ namespace PixelCrushers.DialogueSystem.Articy
             string stylesText = StylesRegex.Match(s).Value;
             var numberedStyles = StyleRegex.Matches(stylesText)
                                            .Cast<Match>()
-                                           .Select(match => new {
+                                           .Select(match => new
+                                           {
                                                Id = match.Groups["id"].Value,
                                                Style = match.Groups["style"].Value
                                            });
-            var styles = numberedStyles.Select(style => new {
+            var styles = numberedStyles.Select(style => new
+            {
                 style.Id,
                 Bold = BoldRegex.IsMatch(style.Style),
                 Italic = ItalicRegex.IsMatch(style.Style),
@@ -160,12 +161,14 @@ namespace PixelCrushers.DialogueSystem.Articy
             {
                 var innerTexts = PartsRegex.Matches(v.ToString())
                                     .Cast<Match>()
-                                    .Select(match => new {
+                                    .Select(match => new
+                                    {
                                         StyleId = match.Groups["id"].Value,
                                         Text = match.Groups["text"].Value
                                     });
                 // Apply the styles to the texts
-                var editedParts = innerTexts.Select(text => {
+                var editedParts = innerTexts.Select(text =>
+                {
                     var currentStyle = styles.First(style => style.Id == text.StyleId);
                     return ApplyStyle(
                             innerText: text.Text,

@@ -186,7 +186,7 @@ namespace PixelCrushers.DialogueSystem
         {
             if (customLuaFuncs == null)
             {
-                FindAllCustomLuaFuncs(false, 
+                FindAllCustomLuaFuncs(false,
                     out builtinLuaFuncs, out builtinLuaFuncNames,
                     out customLuaFuncs, out customLuaFuncNames);
             }

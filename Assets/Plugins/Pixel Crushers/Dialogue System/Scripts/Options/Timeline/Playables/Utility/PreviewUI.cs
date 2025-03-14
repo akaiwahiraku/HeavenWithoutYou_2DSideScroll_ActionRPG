@@ -2,11 +2,8 @@
 #if UNITY_2017_1_OR_NEWER
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
 #if USE_ADDRESSABLES
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
@@ -75,7 +72,7 @@ namespace PixelCrushers.DialogueSystem
                             entry = database.GetDialogueEntry(entry.outgoingLinks[0]);
                         }
                     }
-                }                
+                }
             }
             isPlayer = false;
             if (entry != null && dialogueManager != null && dialogueManager.initialDatabase != null)
@@ -112,7 +109,7 @@ namespace PixelCrushers.DialogueSystem
         public static string GetSequence(string conversationTitle, int startingEntryID, out DialogueEntry entry, int numContinues = 0)
         {
             bool isPlayer;
-            string sequence = string.Empty;                 
+            string sequence = string.Empty;
             GetDialogueEntry(conversationTitle, startingEntryID, numContinues, out entry, out isPlayer);
             if (entry == null) return string.Empty;
             if (!string.IsNullOrEmpty(entry.Sequence))
@@ -237,32 +234,32 @@ namespace PixelCrushers.DialogueSystem
             }
         }
 
-//#if USE_LIPSYNC
-//        private static float GetLipSyncLength(string lipSyncDataFileName)
-//        {
+        //#if USE_LIPSYNC
+        //        private static float GetLipSyncLength(string lipSyncDataFileName)
+        //        {
 
-//            return DefaultSequenceDuration;
-//        }
+        //            return DefaultSequenceDuration;
+        //        }
 
-//        private static RogoDigital.Lipsync.LipSyncData LoadAudioClip(string audioFileName)
-//        {
-//            AudioClip audioClip;
-//#if UNITY_EDITOR
-//            audioClip = Resources.Load<AudioClip>(audioFileName);
-//            if (audioClip != null) return audioClip;
+        //        private static RogoDigital.Lipsync.LipSyncData LoadAudioClip(string audioFileName)
+        //        {
+        //            AudioClip audioClip;
+        //#if UNITY_EDITOR
+        //            audioClip = Resources.Load<AudioClip>(audioFileName);
+        //            if (audioClip != null) return audioClip;
 
-//#if USE_ADDRESSABLES
-//            var settings = AddressableAssetSettingsDefaultObject.Settings;
-//            var allEntries = new List<AddressableAssetEntry>(settings.groups.SelectMany(g => g.entries));
-//            var foundEntry = allEntries.FirstOrDefault(e => e.address == audioFileName);
-//            if (foundEntry != null) audioClip = AssetDatabase.LoadAssetAtPath<AudioClip>(foundEntry.AssetPath);
-//            if (audioClip != null) return audioClip;
-//#endif
+        //#if USE_ADDRESSABLES
+        //            var settings = AddressableAssetSettingsDefaultObject.Settings;
+        //            var allEntries = new List<AddressableAssetEntry>(settings.groups.SelectMany(g => g.entries));
+        //            var foundEntry = allEntries.FirstOrDefault(e => e.address == audioFileName);
+        //            if (foundEntry != null) audioClip = AssetDatabase.LoadAssetAtPath<AudioClip>(foundEntry.AssetPath);
+        //            if (audioClip != null) return audioClip;
+        //#endif
 
-//#endif
-//            return null;
-//        }
-//#endif
+        //#endif
+        //            return null;
+        //        }
+        //#endif
 
         private static AudioClip LoadAudioClip(string audioFileName)
         {

@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
+using PixelCrushers.DialogueSystem.UnityGUI;
 using UnityEngine;
 using UnityEngine.Events;
-using PixelCrushers.DialogueSystem.UnityGUI;
 using UnityEngine.Serialization;
 
 namespace PixelCrushers.DialogueSystem

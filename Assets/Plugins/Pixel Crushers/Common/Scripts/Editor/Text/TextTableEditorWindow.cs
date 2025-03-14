@@ -173,9 +173,9 @@ namespace PixelCrushers
         private void OnGUI()
         {
             if (Event.current.commandName == "ObjectSelectorClosed" || Event.current.commandName == "ObjectSelectorUpdated")
-            { 
+            {
                 if (m_isPickingOtherTextTable)
-                { 
+                {
                     m_isPickingOtherTextTable = false;
                     AskConfirmImportOtherTextTable(EditorGUIUtility.GetObjectPickerObject() as TextTable);
                 }
@@ -1010,8 +1010,8 @@ namespace PixelCrushers
 
         private void ImportFieldsFromLocalizeUI()
         {
-            if (!EditorUtility.DisplayDialog("Import From Localize UI", 
-                "This will examine all Localize UI components in the current scene and create corresponding fields in the text table. Proceed?", 
+            if (!EditorUtility.DisplayDialog("Import From Localize UI",
+                "This will examine all Localize UI components in the current scene and create corresponding fields in the text table. Proceed?",
                 "OK", "Cancel")) return;
             Undo.RecordObject(m_textTable, "Import");
             foreach (var localizeUI in GameObjectUtility.FindObjectsOfTypeAlsoInactive<LocalizeUI>())
@@ -1038,7 +1038,7 @@ namespace PixelCrushers
             m_textTable.AddField(fieldName);
         }
 
-#endregion
+        #endregion
 
         #region Import Other Text Table
 

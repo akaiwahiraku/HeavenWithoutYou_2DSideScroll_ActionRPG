@@ -51,7 +51,7 @@ namespace PixelCrushers.DialogueSystem
 
         public Dictionary<string, HashSet<BarkGroupMember>> groups = new Dictionary<string, HashSet<BarkGroupMember>>();
 
-        private  class BarkRequest
+        private class BarkRequest
         {
             public BarkGroupMember member;
             public Transform listener;

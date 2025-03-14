@@ -74,7 +74,7 @@ namespace PixelCrushers.DialogueSystem.Articy
                         textureName = imageAsset.displayName.DefaultText + Path.GetExtension(imageAsset.assetFilename);
                         var portrait = LoadTexture(portraitFolder, textureName, actor.Name);
                         if (portrait != null)
-                        { 
+                        {
                             actor.alternatePortraits.Add(portrait);
                         }
                     }

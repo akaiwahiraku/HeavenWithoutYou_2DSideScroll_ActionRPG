@@ -1,6 +1,6 @@
+using PixelCrushers.DialogueSystem.UnityGUI;
 using UnityEngine;
 using UnityEngine.Events;
-using PixelCrushers.DialogueSystem.UnityGUI;
 
 namespace PixelCrushers.DialogueSystem.Demo
 {

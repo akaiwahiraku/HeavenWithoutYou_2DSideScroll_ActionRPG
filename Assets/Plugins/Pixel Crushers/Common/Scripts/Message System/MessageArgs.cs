@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System;
+using UnityEngine;
 
 namespace PixelCrushers
 {
@@ -32,7 +32,8 @@ namespace PixelCrushers
         /// <summary>
         /// If true, the message arguments specify a target.
         /// </summary>
-        public bool hasTarget {
+        public bool hasTarget
+        {
             get
             {
                 return !(target == null || string.IsNullOrEmpty(targetString));
@@ -42,7 +43,8 @@ namespace PixelCrushers
         /// <summary>
         /// True if the target value is a string or StringField.
         /// </summary>
-        public bool isTargetString {
+        public bool isTargetString
+        {
             get
             {
                 var type = (target != null) ? target.GetType() : null;
@@ -53,12 +55,13 @@ namespace PixelCrushers
         /// <summary>
         /// If the target is a string or StringField, its value.
         /// </summary>
-        public string targetString {
+        public string targetString
+        {
             get
             {
                 if (target == null) return string.Empty;
                 var type = target.GetType();
-                return (type == typeof(string)) ? (string)target : 
+                return (type == typeof(string)) ? (string)target :
                     ((type == typeof(StringField)) ? StringField.GetStringValue((StringField)target) : string.Empty);
             }
         }

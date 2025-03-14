@@ -2,10 +2,10 @@
 #if UNITY_2017_1_OR_NEWER
 // Copyright (c) Pixel Crushers. All rights reserved.
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
-using System.Collections;
 
 namespace PixelCrushers.DialogueSystem.SequencerCommands
 {
@@ -76,7 +76,7 @@ namespace PixelCrushers.DialogueSystem.SequencerCommands
         }
 
         private IEnumerator Proceed()
-        { 
+        {
             if (playableDirector == null)
             {
                 if (DialogueDebug.LogWarnings) Debug.LogWarning("Dialogue System: Sequencer: Timeline(" + GetParameters() +

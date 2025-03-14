@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Language.Lua
 {
@@ -9,7 +8,7 @@ namespace Language.Lua
         public LuaValue Evaluate(LuaTable enviroment)
         {
             return new LuaFunction(
-                new LuaFunc(delegate(LuaValue[] args)
+                new LuaFunc(delegate (LuaValue[] args)
                 {
                     var table = new LuaTable(enviroment);
 

@@ -10,7 +10,7 @@ namespace PixelCrushers.Wrappers
     /// between the compiled assembly and source code versions of the original class.
     /// </summary>
     [AddComponentMenu("Pixel Crushers/Save System/Savers/Multi Enabled Saver")]
-    public class MultiEnabledSaver: PixelCrushers.MultiEnabledSaver
+    public class MultiEnabledSaver : PixelCrushers.MultiEnabledSaver
     {
     }
 

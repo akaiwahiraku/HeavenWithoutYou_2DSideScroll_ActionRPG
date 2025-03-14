@@ -119,7 +119,7 @@ public class ShatteredSun_Skill_Controller : MonoBehaviour
         int _lightningDamage = player.stats.lightningDamage.GetValue();
         int baseMagicalDamage = _fireDamage + _iceDamage + _lightningDamage + player.stats.intelligence.GetValue();
 
-        baseMagicalDamage = player.stats.ChechTargetResistance(enemyStats, baseMagicalDamage);
+        baseMagicalDamage = player.stats.CheckTargetResistance(enemyStats, baseMagicalDamage);
         int finalDamage = Mathf.RoundToInt(baseMagicalDamage * damageMultiplier);
         enemyStats.TakeDamage(finalDamage);
 

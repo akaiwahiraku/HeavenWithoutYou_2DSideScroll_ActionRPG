@@ -1,11 +1,11 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEditor;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -205,7 +205,8 @@ namespace PixelCrushers.DialogueSystem
                         {
                             ReadOutgoingLinks(database, readConversations && readDialogueEntries);
                         }
-                        else {
+                        else
+                        {
                             throw new InvalidDataException("Line not recognized: " + line);
                         }
                     }
@@ -253,7 +254,8 @@ namespace PixelCrushers.DialogueSystem
                             {
                                 ReadOutgoingLinks(database, true);
                             }
-                            else {
+                            else
+                            {
                                 throw new InvalidDataException("Line not recognized: " + line);
                             }
                         }
@@ -447,7 +449,7 @@ namespace PixelCrushers.DialogueSystem
             {
                 var inner = altSpritePortraitNames.Substring(1, altSpritePortraitNames.Length - 2);
                 var names = inner.Split(new char[] { ';' });
-                if (actor.spritePortraits == null) actor.spritePortraits= new List<Sprite>();
+                if (actor.spritePortraits == null) actor.spritePortraits = new List<Sprite>();
                 foreach (var altSpritePortraitName in names)
                 {
                     var sprite = AssetDatabase.LoadAssetAtPath(altSpritePortraitName, typeof(Sprite)) as Sprite;
@@ -582,7 +584,8 @@ namespace PixelCrushers.DialogueSystem
                 {
                     sourceLines.RemoveAt(lineNum);
                 }
-                else {
+                else
+                {
                     bool terminated = true;
                     char previousChar = (char)0;
                     for (int i = 0; i < line.Length; i++)
@@ -597,7 +600,8 @@ namespace PixelCrushers.DialogueSystem
                         if (!terminated) sourceLines[lineNum] = line + '"';
                         lineNum++;
                     }
-                    else {
+                    else
+                    {
                         sourceLines[lineNum] = line + "\\n" + sourceLines[lineNum + 1];
                         sourceLines.RemoveAt(lineNum + 1);
                     }
@@ -628,7 +632,8 @@ namespace PixelCrushers.DialogueSystem
                 var values = line.Split(new char[] { ',' });
                 return values[0];
             }
-            else {
+            else
+            {
                 return line;
             }
         }

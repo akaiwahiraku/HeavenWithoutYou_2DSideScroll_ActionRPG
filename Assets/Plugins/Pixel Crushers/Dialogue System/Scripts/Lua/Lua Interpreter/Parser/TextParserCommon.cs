@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,12 +17,12 @@ namespace Language.Lua
 
         public List<Tuple<int, string>> Errors = new List<Tuple<int, string>>();
         private Stack<int> ErrorStack = new Stack<int>();
-    
+
         /// <summary>
         /// Memories parsing results, key is (PositionStart, Noterminal), value is (SyntacticElement, success, PostionAfter).
         /// </summary>
         private Dictionary<Tuple<int, string>, Tuple<object, bool, int>> ParsingResults = new Dictionary<Tuple<int, string>, Tuple<object, bool, int>>();
-        
+
         public Parser() { }
 
         public void SetInput(ParserInput<char> input)
@@ -118,23 +117,24 @@ namespace Language.Lua
             return terminalString;
         }
 
-		//[PixelCrushers] Added PeekTerminalString to allow parser to look ahead w/o consuming tokens:
-		public bool PeekTerminalString(string terminalString) {
-			if (string.IsNullOrEmpty(terminalString)) return true;
-			for (int i = 0; i < terminalString.Length; i++) 
-			{
-				int pos = position + i;
-				if (!Input.HasInput(pos) || (Input.GetInputSymbol(pos) != terminalString[i])) 
-				{
-					return false;
-				}
-			}
+        //[PixelCrushers] Added PeekTerminalString to allow parser to look ahead w/o consuming tokens:
+        public bool PeekTerminalString(string terminalString)
+        {
+            if (string.IsNullOrEmpty(terminalString)) return true;
+            for (int i = 0; i < terminalString.Length; i++)
+            {
+                int pos = position + i;
+                if (!Input.HasInput(pos) || (Input.GetInputSymbol(pos) != terminalString[i]))
+                {
+                    return false;
+                }
+            }
             // Make sure the string ends:
             var afterPos = position + terminalString.Length;
             if (Input.HasInput(afterPos) && !char.IsWhiteSpace(Input.GetInputSymbol(afterPos))) return false;
 
-			return true;
-		}
+            return true;
+        }
 
         private int Error(string message)
         {

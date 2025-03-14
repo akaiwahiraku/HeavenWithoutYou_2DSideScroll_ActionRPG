@@ -1,14 +1,14 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using UnityEngine.Networking;
-using UnityEditor;
-using UnityEditorInternal;
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using UnityEditor;
+using UnityEditorInternal;
+using UnityEngine;
+using UnityEngine.Networking;
 
 namespace PixelCrushers.DialogueSystem.DialogueEditor
 {
@@ -612,7 +612,7 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             foreach (var link in entry.outgoingLinks)
             {
                 if (link.destinationConversationID != entry.conversationID) continue;
-                var child = unprocessed.Find(x => x.id == link.destinationDialogueID); 
+                var child = unprocessed.Find(x => x.id == link.destinationDialogueID);
                 if (child == null) continue;
                 SortDepthFirstRecursive(child, sorted, unprocessed);
             }
@@ -620,7 +620,7 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
 
         private List<DialogueEntry> BreadthFirstSortEntries(List<DialogueEntry> entries)
         {
-            var sorted= new List<DialogueEntry>();
+            var sorted = new List<DialogueEntry>();
             var unprocessed = new List<DialogueEntry>(entries);
             var queued = new Queue<DialogueEntry>();
             var start = entries.Find(x => x.id == 0);

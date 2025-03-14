@@ -1,12 +1,12 @@
 ﻿#if USE_TWINE
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEditorInternal;
-using System;
-using System.IO;
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem.Twine
 {

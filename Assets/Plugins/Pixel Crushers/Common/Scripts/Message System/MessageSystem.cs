@@ -1,8 +1,7 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System.Collections.Generic;
-using System;
+using UnityEngine;
 
 namespace PixelCrushers
 {
@@ -363,7 +362,7 @@ namespace PixelCrushers
                         x.removed = true;
                         continue;
                     }
-                     if (!allowReceiveSameFrameAdded && x.frameAdded == Time.frameCount) continue;
+                    if (!allowReceiveSameFrameAdded && x.frameAdded == Time.frameCount) continue;
                     if (string.Equals(x.message, message) && (string.Equals(x.parameter, parameter) || string.IsNullOrEmpty(x.parameter)))
                     {
                         if (allowExceptions)

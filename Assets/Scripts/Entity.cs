@@ -26,7 +26,7 @@ public class Entity : MonoBehaviour
     [SerializeField] public float groundCheckForeDistance = 1;
     [SerializeField] public Transform groundCheckBack;
     [SerializeField] public float groundCheckBackDistance = 1;
-    [SerializeField] public Transform throughGroundCheck;    
+    [SerializeField] public Transform throughGroundCheck;
     [SerializeField] public float throughGroundCheckDistance = 1;
     [SerializeField] protected Transform wallCheck;
     [SerializeField] protected float wallCheckDistance = .8f;

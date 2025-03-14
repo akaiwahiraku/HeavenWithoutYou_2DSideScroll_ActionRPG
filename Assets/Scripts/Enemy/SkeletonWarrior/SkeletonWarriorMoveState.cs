@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class SkeletonWarriorMoveState : SkeletonWarriorGroundedState
 {
     public SkeletonWarriorMoveState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_SkeletonWarrior enemy) : base(_enemyBase, _stateMachine, _animBoolName, enemy)

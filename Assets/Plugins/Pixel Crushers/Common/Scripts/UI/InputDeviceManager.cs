@@ -5,7 +5,6 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 #if USE_NEW_INPUT
 using UnityEngine.InputSystem;
@@ -525,7 +524,7 @@ namespace PixelCrushers
                 else if (s == "mouse2") return Mouse.current.middleButton.wasPressedThisFrame;
             }
             if (s.StartsWith("joystick") || s.StartsWith("mouse")) return false;
-            if ((KeyCode.Alpha0 <= keyCode && keyCode <= KeyCode.Alpha9) || 
+            if ((KeyCode.Alpha0 <= keyCode && keyCode <= KeyCode.Alpha9) ||
                 (KeyCode.Keypad0 <= keyCode && keyCode <= KeyCode.Keypad9))
             {
                 KeyControl numKeyControl;

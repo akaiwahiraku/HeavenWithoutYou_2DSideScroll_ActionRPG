@@ -1,10 +1,9 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
+using System.Collections;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections;
-using System;
-using System.Text.RegularExpressions;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -160,7 +159,7 @@ namespace PixelCrushers.DialogueSystem
             get
             {
                 if (m_dialogueUI == null)
-                { 
+                {
                     m_dialogueUI = GetComponentInParent<StandardDialogueUI>();
                     if (m_dialogueUI == null) m_dialogueUI = DialogueManager.dialogueUI as StandardDialogueUI;
                 }
@@ -525,9 +524,9 @@ namespace PixelCrushers.DialogueSystem
         }
 
         protected virtual void ShowContinueButtonNow()
-        { 
+        {
             Tools.SetGameObjectActive(continueButton, true);
-            if (InputDeviceManager.autoFocus) Select(); 
+            if (InputDeviceManager.autoFocus) Select();
             if (continueButton != null && continueButton.onClick.GetPersistentEventCount() == 0)
             {
                 continueButton.onClick.RemoveAllListeners();
@@ -582,7 +581,7 @@ namespace PixelCrushers.DialogueSystem
             lastActorID = subtitle.speakerInfo.id;
             CheckSubtitleAnimator(subtitle);
             if (!onlyShowNPCPortraits || subtitle.speakerInfo.isNPC)
-            {                
+            {
                 if (portraitImage != null)
                 {
                     var sprite = subtitle.GetSpeakerPortrait();

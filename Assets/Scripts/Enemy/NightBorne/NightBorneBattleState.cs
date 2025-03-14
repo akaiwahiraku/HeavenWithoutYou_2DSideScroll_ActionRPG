@@ -90,8 +90,6 @@
 //}
 
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NightBorneBattleState : EnemyState
@@ -133,7 +131,7 @@ public class NightBorneBattleState : EnemyState
 
             float distanceToPlayer = enemy.IsPlayerDetected().distance;
 
-            
+
             if (distanceToPlayer <= safeDistance && CanJump())
             {
                 stateMachine.ChangeState(enemy.jumpState);

@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
+﻿using System.Collections;
 using TMPro;
-using System.Collections;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class UI_SkillSetSlot : MonoBehaviour, ISelectHandler, ISubmitHandler

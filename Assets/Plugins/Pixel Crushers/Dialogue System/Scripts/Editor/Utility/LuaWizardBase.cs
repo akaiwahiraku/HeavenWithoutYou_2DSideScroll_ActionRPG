@@ -372,8 +372,8 @@ namespace PixelCrushers.DialogueSystem
             return null;
         }
 
-        public void FindAllCustomLuaFuncs(bool findConditionFuncs, 
-            out CustomLuaFunctionInfoRecord[] builtinLuaFuncs, out string[] builtinLuaFuncNames, 
+        public void FindAllCustomLuaFuncs(bool findConditionFuncs,
+            out CustomLuaFunctionInfoRecord[] builtinLuaFuncs, out string[] builtinLuaFuncNames,
             out CustomLuaFunctionInfoRecord[] customLuaFuncs, out string[] customLuaFuncNames)
         {
             var builtinRecordList = new List<CustomLuaFunctionInfoRecord>();

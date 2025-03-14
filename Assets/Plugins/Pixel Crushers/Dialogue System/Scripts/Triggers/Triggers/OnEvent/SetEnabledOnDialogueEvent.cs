@@ -1,7 +1,7 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -62,7 +62,7 @@ namespace PixelCrushers.DialogueSystem
         }
 
         private void TryActionsNow(SetEnabledAction[] actions, Transform actor)
-        { 
+        {
             foreach (SetEnabledAction action in actions)
             {
                 if (action != null && action.condition != null && action.condition.IsTrue(actor)) DoAction(action, actor);

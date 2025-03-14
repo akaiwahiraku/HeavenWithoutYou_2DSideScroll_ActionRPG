@@ -148,7 +148,7 @@ namespace PixelCrushers.DialogueSystem
         public bool HasAnyResponses { get { return hasAnyResponses; } }
         public bool IsGroup { get { return isGroup; } set { isGroup = value; } }
         /// @endcond
-        
+
         private static Dictionary<DialogueEntry, DialogueEntry> s_lastRandomlyChosenEntry = null;
 
 #if UNITY_2019_3_OR_NEWER && UNITY_EDITOR

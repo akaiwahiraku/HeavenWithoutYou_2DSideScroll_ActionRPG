@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -240,9 +240,9 @@ namespace PixelCrushers.DialogueSystem
         }
 
         private static void TryImportField(Queue<string> lines, string assetIdentifier,
-            List<Field> fields, string fieldHeading, string fieldTitle, 
+            List<Field> fields, string fieldHeading, string fieldTitle,
             bool isLocalizationBuiltIntoFieldTitle = false)
-        { 
+        {
             if (lines.Peek() == $"{Head} {fieldHeading}:")
             {
                 lines.Dequeue();

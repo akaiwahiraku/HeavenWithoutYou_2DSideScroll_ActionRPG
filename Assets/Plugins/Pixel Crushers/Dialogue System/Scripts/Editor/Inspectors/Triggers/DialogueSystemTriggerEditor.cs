@@ -497,7 +497,7 @@ namespace PixelCrushers.DialogueSystem
                     EditorWindowTools.EditorGUILayoutBeginGroup();
                     EditorGUILayout.BeginHorizontal();
                     var barkSourceProperty = serializedObject.FindProperty("barkSource");
-                    if (barkSourceProperty.enumValueIndex < 0) GUI.color = Color.red;                         
+                    if (barkSourceProperty.enumValueIndex < 0) GUI.color = Color.red;
                     EditorGUILayout.PropertyField(barkSourceProperty, true);
                     GUI.color = originalColor;
                     if (GUILayout.Button("x", GUILayout.Width(18), GUILayout.Height(14)))

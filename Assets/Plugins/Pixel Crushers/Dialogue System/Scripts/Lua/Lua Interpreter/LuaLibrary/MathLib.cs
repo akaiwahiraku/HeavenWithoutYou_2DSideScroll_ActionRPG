@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Language.Lua.Library
 {
@@ -175,7 +172,7 @@ namespace Language.Lua.Library
             else if (values.Length == 1)
             {
                 LuaNumber number1 = values[0] as LuaNumber;
-				return new LuaNumber(randomGenerator.Next((int)number1.Number) + 1); //[PixelCrushers] Lua random(x) is [1..x].
+                return new LuaNumber(randomGenerator.Next((int)number1.Number) + 1); //[PixelCrushers] Lua random(x) is [1..x].
             }
             else
             {

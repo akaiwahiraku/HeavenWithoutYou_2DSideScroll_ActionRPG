@@ -1,8 +1,8 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using System;
 using System.Linq;
+using UnityEngine;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -144,7 +144,7 @@ namespace PixelCrushers.DialogueSystem
         /// </summary>
         public bool IsTrue
         {
-            get 
+            get
             {
                 return
                     string.IsNullOrEmpty(questName) ||

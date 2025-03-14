@@ -24,30 +24,30 @@ namespace PixelCrushers
             LockCursor(!value);
         }
 
-		public static bool isCursorVisible
-		{
-			get { return Cursor.visible; }
-		}
-		
-		public static bool isCursorLocked
-		{
-			get { return Cursor.lockState != CursorLockMode.None; }
-		}
-		
-		public static void ShowCursor(bool value) 
-		{
-			Cursor.visible = value;
-		}
-		
-		public static void LockCursor(bool value) 
-		{
-			if (value == false && isCursorLocked) 
-			{
-				cursorLockMode = Cursor.lockState;
-			}
-			Cursor.lockState = value ? cursorLockMode : CursorLockMode.None;
-		}
-		
+        public static bool isCursorVisible
+        {
+            get { return Cursor.visible; }
+        }
+
+        public static bool isCursorLocked
+        {
+            get { return Cursor.lockState != CursorLockMode.None; }
+        }
+
+        public static void ShowCursor(bool value)
+        {
+            Cursor.visible = value;
+        }
+
+        public static void LockCursor(bool value)
+        {
+            if (value == false && isCursorLocked)
+            {
+                cursorLockMode = Cursor.lockState;
+            }
+            Cursor.lockState = value ? cursorLockMode : CursorLockMode.None;
+        }
+
     }
 
 }

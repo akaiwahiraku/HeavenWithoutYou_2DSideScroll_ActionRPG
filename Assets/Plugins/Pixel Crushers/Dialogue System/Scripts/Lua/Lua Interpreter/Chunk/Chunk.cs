@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Language.Lua
+﻿namespace Language.Lua
 {
     public partial class Chunk
     {
@@ -30,7 +25,7 @@ namespace Language.Lua
                 {
                     isBreak = false;
                     //[PixelCrushers]return LuaMultiValue.WrapLuaValues(returnStmt.ExprList.ConvertAll(expr => expr.Evaluate(this.Enviroment)).ToArray());
-					return LuaMultiValue.WrapLuaValues(LuaInterpreterExtensions.EvaluateAll(returnStmt.ExprList, this.Enviroment).ToArray());
+                    return LuaMultiValue.WrapLuaValues(LuaInterpreterExtensions.EvaluateAll(returnStmt.ExprList, this.Enviroment).ToArray());
                 }
                 else if (statement is BreakStmt)
                 {

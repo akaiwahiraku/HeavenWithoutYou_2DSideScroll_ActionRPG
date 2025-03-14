@@ -2,9 +2,9 @@
 #if UNITY_2017_1_OR_NEWER
 // Copyright (c) Pixel Crushers. All rights reserved.
 
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
-using System.Collections.Generic;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -48,7 +48,7 @@ namespace PixelCrushers.DialogueSystem
                         else
                         {
                             DialogueManager.BarkString(input.text, trackBinding.transform, input.listener);
-                        }                        
+                        }
                     }
                     else
                     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour , ISaveManager
+public class GameManager : MonoBehaviour, ISaveManager
 {
 
     public static GameManager instance;
@@ -109,12 +109,12 @@ public class GameManager : MonoBehaviour , ISaveManager
         _data.lostCurrencyX = player.position.x;
         _data.lostCurrencyY = player.position.y;
 
-        if(FindClosestCheckpoint() != null)
+        if (FindClosestCheckpoint() != null)
             _data.closestCheckpointId = FindClosestCheckpoint().id;
 
         _data.checkpoints.Clear();
 
-        foreach(Checkpoint checkpoint in checkpoints)
+        foreach (Checkpoint checkpoint in checkpoints)
         {
             _data.checkpoints.Add(checkpoint.id, checkpoint.activationStatus);
         }

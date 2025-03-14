@@ -12,7 +12,7 @@ namespace PixelCrushers
     public class StringAsset : ScriptableObject
     {
 
-        [TextArea(minLines:3, maxLines:20)]
+        [TextArea(minLines: 3, maxLines: 20)]
         [SerializeField]
         private string m_text;
 

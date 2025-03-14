@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace PixelCrushers
 {
@@ -19,5 +19,5 @@ namespace PixelCrushers
             }
         }
 
-   }
+    }
 }
